@@ -1,0 +1,7 @@
+node_modules
+dist/
+.idea/
+.env
+swagger.tmp.yaml
+.eslintcache
+.DS_Store
