@@ -31,6 +31,8 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       # Downloads a copy of the code in your repository before running CI tests
         - name: Check out repository code
@@ -46,7 +48,7 @@ jobs:
         - name: Run Source ORM Tests
           run: npm run test-orm
           env: 
-            PG_HOST: postgres
+            PG_HOST: localhost
             PG_PORT: ${{ job.services.postgres.ports[5432] }}
             PG_USERNAME: postgres
             PG_PASSWORD: postgres
