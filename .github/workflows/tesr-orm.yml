@@ -34,3 +34,5 @@ jobs:
           run: npm run build
         - name: Run Source ORM Tests
           run: npm run test-orm
+          env: 
+            PG_PORT: ${{ job.services.postgres.ports[5432] }}
