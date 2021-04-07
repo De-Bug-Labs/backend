@@ -7,7 +7,7 @@
       "start": "ts-node src/index.ts",
       "test": "jest dist/tests",
       "test-src": "jest dist/tests --testPathIgnorePatterns=\"dist/tests/orm\"",
-      "test-orm": "jest dist/tests/orm",
+      "test-orm": "npm run migration-run && jest dist/tests/orm",
       "build": "npm run format && npm run eslint && tsc",
       "serve": "nodemon dist/src",
       "serve-debug": "nodemon --inspect=127.0.0.1:9230 dist/src",
