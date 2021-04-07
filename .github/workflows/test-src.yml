@@ -2,7 +2,7 @@ name: Node Continuous Testing
 
 on:
   pull_request:
-    branches: [ master, develop]
+    branches: [ master, develop ]
 
 
 jobs:
@@ -13,6 +13,9 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 14.16.0
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+      - name: Install dependencies
+        run: npm ci
+      - name: Build JS
+        run: npm run build
+      - name: Run Source Code Tests
+        run: npm run test-src

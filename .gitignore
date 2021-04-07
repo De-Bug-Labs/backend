@@ -1,6 +1,10 @@
+.idea/
+.vscode/
 node_modules
 dist/
-.idea/
+build/
+tmp/
+temp/
 .env
 swagger.tmp.yaml
 .eslintcache
