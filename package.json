@@ -21,7 +21,9 @@
       "typeorm": "ts-node ./node_modules/typeorm/cli.js",
       "migration-create": "npm run typeorm migration:generate -- -n \"$npm_config_name\" && npm run eslint-orm-fix",
       "migration-run": "npm run typeorm migration:run",
-      "migration-revert": "npm run typeorm migration:revert"
+      "migration-revert": "npm run typeorm migration:revert",
+      "load-initial-data": "node dist/src/orm/initialData.ts",
+      "load-test-data": "node dist/tests/orm/testData.ts"
    },
    "repository": {
       "type": "git",

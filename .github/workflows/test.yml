@@ -41,16 +41,11 @@ jobs:
           uses: actions/setup-node@master
           with:
             node-version: 14.16.0
+        - name: Copy .env
+          run: cp .env.example .env
         - name: Install dependencies
           run: npm ci
         - name: Build JS
           run: npm run build
         - name: Run Source ORM Tests
           run: npm run test-orm
-          env: 
-            PG_HOST: localhost
-            PG_PORT: ${{ job.services.postgres.ports[5432] }}
-            PG_USERNAME: postgres
-            PG_PASSWORD: postgres
-            PG_DATABASE: gaap
-            PG_SCHEMA: public
