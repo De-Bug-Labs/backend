@@ -14,7 +14,6 @@ beforeEach(async () => {
 	await connection.clear();
 });
 
-// TODO
 test('store Joe and fetch it', async () => {
 	const user = new ExampleUser();
 	user.firstName = 'John';
