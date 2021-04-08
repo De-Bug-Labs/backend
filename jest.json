@@ -1,7 +1,14 @@
 {
     "collectCoverage": true,
+    "collectCoverageFrom": [
+        "dist/src/**/*.{js,ts}"
+    ],
     "coveragePathIgnorePatterns": [
-        "/orm/migration/"
+        "/orm/migration/",
+        "<rootDir>/node_modules/",
+        ".*\/(index.(ts|js))",
+        ".*\/(clear.(ts|js))",
+        ".*\/(initialData.(ts|js))"
     ],
     "verbose": true
 }
