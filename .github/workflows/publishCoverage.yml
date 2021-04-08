@@ -1,4 +1,4 @@
-name: Deploy Coverage
+name: Deploy Coverage 🔗
 on:
   push:
     branches: [ develop ]
@@ -21,23 +21,23 @@ jobs:
           - 5432:5432
     steps:
       # Downloads a copy of the code in your repository before running CI tests
-        - name: Checkout 🛎️
+        - name: Check out repository code 🛎️
           uses: actions/checkout@master
-        - name: Init node
+        - name: Init node 🟢 
           uses: actions/setup-node@master
           with:
             node-version: 14.16.0
-        - name: Copy .env
+        - name: Copy .env 📋
           run: cp .env.example .env
-        - name: Install dependencies
+        - name: Install dependencies 🛠️
           run: npm ci
-        - name: Build JS
+        - name: Build JS 🏗️
           run: npm run build
-        - name: Run Migrations
+        - name: Run Migrations 🐦
           run: npm run migration-run
-        - name: Load initial data
+        - name: Load initial data 💾
           run: npm run load-initial-data
-        - name: Run test Coverage
+        - name: Run test Coverage 🗃️
           run: npm run test-coverage
         - name: Deploy 🚀
           uses: JamesIves/github-pages-deploy-action@4.1.1
