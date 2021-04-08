@@ -1,5 +1,5 @@
-import connection from '../../src/connect';
-import { ExampleUser } from '../../src/orm/entities';
+import connection from '../connect';
+import { ExampleUser } from './entities';
 
 connection
 	.create()

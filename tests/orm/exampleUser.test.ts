@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
-import { ExampleUser } from '../../src/orm/entity/exampleUser';
+import { ExampleUser } from '../../src/orm/entities';
 
 beforeAll(async () => {
 	await connection.create();
@@ -8,10 +8,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
 	await connection.close();
-});
-
-beforeEach(async () => {
-	await connection.clear();
 });
 
 test('store Joe and fetch it', async () => {

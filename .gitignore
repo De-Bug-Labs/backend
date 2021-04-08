@@ -5,6 +5,7 @@ dist/
 build/
 tmp/
 temp/
+coverage/
 .env
 swagger.tmp.yaml
 .eslintcache

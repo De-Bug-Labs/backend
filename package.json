@@ -6,8 +6,9 @@
    "scripts": {
       "start": "ts-node src/index.ts",
       "test": "jest dist/tests",
+      "test-coverage": "jest dist --config jest.json",
       "test-src": "jest dist/tests --testPathIgnorePatterns=\"dist/tests/orm\"",
-      "test-orm": "npm run migration-run && jest dist/tests/orm",
+      "test-orm": "jest dist/tests/orm",
       "build": "npm run format && npm run eslint && tsc",
       "serve": "nodemon dist/src",
       "serve-debug": "nodemon --inspect=127.0.0.1:9230 dist/src",
@@ -22,8 +23,9 @@
       "migration-create": "npm run typeorm migration:generate -- -n \"$npm_config_name\" && npm run eslint-orm-fix",
       "migration-run": "npm run typeorm migration:run",
       "migration-revert": "npm run typeorm migration:revert",
-      "load-initial-data": "node dist/src/orm/initialData.ts",
-      "load-test-data": "node dist/tests/orm/testData.ts"
+      "load-initial-data": "node dist/src/orm/initialData.js",
+      "load-test-data": "node dist/tests/orm/testData.js",
+      "clear-database": "node dist/src/orm/clear.js"
    },
    "repository": {
       "type": "git",

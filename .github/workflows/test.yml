@@ -34,6 +34,12 @@ jobs:
           run: npm ci
         - name: Build JS
           run: npm run build
+        - name: Run Migrations
+          run: npm run migration-run
+        - name: Load initial data
+          run: npm run load-initial-data
+        - name: Load test data
+          run: npm run load-test-data
         - name: Run Source Code Tests
           run: npm run test-src
         - name: Run Source ORM Tests
