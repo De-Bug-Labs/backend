@@ -8,6 +8,7 @@
         "<rootDir>/node_modules/",
         ".*\/(index.(ts|js))",
         ".*\/(clear.(ts|js))",
+        ".*\/(connect.(ts|js))",
         ".*\/(initialData.(ts|js))"
     ],
     "verbose": true

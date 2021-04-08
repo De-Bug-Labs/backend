@@ -9,7 +9,7 @@
       "test-coverage": "jest dist --config jest.json",
       "test-src": "jest dist/tests --testPathIgnorePatterns=\"dist/tests/orm\"",
       "test-orm": "jest dist/tests/orm",
-      "build": "npm run format && npm run eslint && tsc --build --clean && tsc",
+      "build": "npm run format && npm run eslint && rm -rf dist/* && tsc",
       "serve": "nodemon dist/src",
       "serve-debug": "nodemon --inspect=127.0.0.1:9230 dist/src",
       "watch": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
