@@ -1,0 +1,7 @@
+{
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+        "/orm/migration/"
+    ],
+    "verbose": true
+}
