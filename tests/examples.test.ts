@@ -1,5 +1,5 @@
-const sum = require('../src/examples')
+import { addNumbers as add } from '../src/examples';
 
 test('adds 2 numbers', () => {
-    expect(sum(1,2)).toEqual(3)
-})
+	expect(add(1, 2)).toEqual(3);
+});

@@ -1,10 +1,9 @@
-name: Continuous Testing
+name: Deploy Coverage
 on:
-  pull_request:
-    branches: [ master, develop ]
-
+  push:
+    branches: [ develop ]
 jobs:
-  test:
+  build-and-deploy:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -22,7 +21,7 @@ jobs:
           - 5432:5432
     steps:
       # Downloads a copy of the code in your repository before running CI tests
-        - name: Check out repository code
+        - name: Checkout 🛎️
           uses: actions/checkout@master
         - name: Init node
           uses: actions/setup-node@master
@@ -38,9 +37,10 @@ jobs:
           run: npm run migration-run
         - name: Load initial data
           run: npm run load-initial-data
-        - name: Load test data
-          run: npm run load-test-data
-        - name: Run Source Code Tests
-          run: npm run test-src
-        - name: Run Source ORM Tests
-          run: npm run test-orm
+        - name: Run test Coverage
+          run: npm run test-coverage
+        - name: Deploy 🚀
+          uses: JamesIves/github-pages-deploy-action@4.1.1
+          with:
+            branch: gh-pages # The branch the action should deploy to.
+            folder: coverage # The folder the action should deploy.
