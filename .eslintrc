@@ -10,10 +10,13 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "camelcase": ["warn"],
         "quotes": [ "warn", "single" ],
         "no-console": ["warn", {"allow": [
                 "warn",
-                "error"
+                "error",
+                "info"
             ]}
         ]
     }
