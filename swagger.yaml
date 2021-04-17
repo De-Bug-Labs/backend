@@ -1,0 +1,102 @@
+swagger: '2.0'
+info: 
+  version: 0.0.1
+  title: GAAP API
+host: 'localhost:5000'
+basePath: /api
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  BasicAuth:
+    type: basic
+security:
+  - BasicAuth: []
+parameters: 
+  pageParam:
+    name: page
+    in: query
+    description: The page number
+    required: false
+    type: integer
+  pageSizeParam:
+    name: pageSize
+    in: query
+    description: Max numer of elements per page
+    required: false
+    type: integer
+paths:
+  /swagger:
+    x-swagger-pipe: swagger_raw
+  /example/{id}:
+    x-swagger-router-controller: ExampleController
+    x-typeorm-repository-name: ExampleUser
+    get:
+      x-security-privilege: 'test:read'
+      operationId: exampleTest
+      description: Test the example endpoint
+      tags:
+        - example
+      parameters:
+        - name: id
+          type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/Example'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      x-security-privilege: 'test:read'
+      operationId: exampleTest1
+      description: Test the example endpoint
+      tags:
+        - example
+      parameters:
+        - name: id
+          type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/Example'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+
+definitions:
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  Example:
+    type: object
+    properties: 
+      id:
+        type: integer
+      uuid:
+        type: string
+        format: uuid
