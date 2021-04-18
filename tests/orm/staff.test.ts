@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
-import { Staff} from '../../src/orm/entities';
+import { Staff } from '../../src/orm/entities';
 beforeAll(async () => {
 	await connection.create();
 });
@@ -11,9 +11,7 @@ afterAll(async () => {
 
 test('create a new collaborator', async () => {
 	const staff = new Staff();
-	staff.email='email@gmail.com'
-    staff.post_register;//llave foranea matute arregla esto
-    staff.staff_department;//llave foranea matute arregla esto
+	staff.email = 'test@test.com';
 	const res = await getRepository(Staff).save(staff);
 	const checkStaff = await getRepository(Staff).findOne({
 		where: {

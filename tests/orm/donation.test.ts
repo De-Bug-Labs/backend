@@ -12,14 +12,14 @@ afterAll(async () => {
 
 test('Register  a new donation', async () => {
 	const donation = new Donation();
-	donation.amount=1000;
-    donation.date= new Date(2020, 11, 12, 11, 52);;
-    donation.name='Juan Perez';
+	donation.amount = 1000;
+	donation.date = new Date(2020, 11, 12, 11, 52);
+	donation.name = 'TestDonationName';
 	const res = await getRepository(Donation).save(donation);
 	const checkDonation = await getRepository(Donation).findOne({
 		where: {
 			id_donation: res.id_donation,
 		},
 	});
-	expect(checkDonation).toMatchObject(Donation);
+	expect(checkDonation).toMatchObject(donation);
 });

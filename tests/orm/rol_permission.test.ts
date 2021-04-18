@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
-import { Rol_Permission} from '../../src/orm/entities';
+import { Rol_Permission, Rol, Permission } from '../../src/orm/entities';
 beforeAll(async () => {
 	await connection.create();
 });
@@ -11,22 +11,22 @@ afterAll(async () => {
 
 test('create a new register of post_register', async () => {
 	const rol_permission = new Rol_Permission();
-    //matute arregla esto
-    rol_permission.permission=await getRepository(Staff_Department).findOneOrFail({
+	//matute arregla esto
+	rol_permission.permission = await getRepository(Permission).findOneOrFail({
 		where: {
-			name:'Estudiantes',//matute arreglalo
+			name: 'TestPermission',
 		},
 	});
-    rol_permission.rol=await getRepository(Staff_Department).findOneOrFail({
+	rol_permission.rol = await getRepository(Rol).findOneOrFail({
 		where: {
-			name:'Estudiantes',//matute arreglalo
+			name: 'Administrador',
 		},
 	});
 	const res = await getRepository(Rol_Permission).save(rol_permission);
-	const checkPost_Register= await getRepository(Rol_Permission).findOne({
+	const checkPost_Register = await getRepository(Rol_Permission).findOne({
 		where: {
 			id_rol_permission: res.id_rol_permission,
 		},
 	});
-	expect(checkPost_Register).toMatchObject(Rol_Permission);
+	expect(checkPost_Register).toMatchObject(rol_permission);
 });

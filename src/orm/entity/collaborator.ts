@@ -18,6 +18,6 @@ export class Collaborator {
 	@Column({ type: 'varchar', nullable: false })
 	public institution!: string;
 
-	@ManyToOne(type => Section, (section) => section.id_section)
+	@ManyToOne((type) => Section, (section) => section.id_section)
 	public section!: Section;
 }

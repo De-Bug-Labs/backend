@@ -25,7 +25,7 @@
       "load-initial-data": "node dist/src/orm/initialData.js",
       "load-test-data": "node dist/tests/orm/testData.js",
       "clear-database": "node dist/src/orm/clear.js",
-      "clean":"rimraf dis/*"
+      "clean": "rimraf dis/*"
    },
    "repository": {
       "type": "git",

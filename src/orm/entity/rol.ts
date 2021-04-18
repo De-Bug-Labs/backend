@@ -13,5 +13,5 @@ export class Rol {
 	public description!: string;
 
 	@OneToMany(() => User, (user) => user.id_user)
-	public user!: User[];
+	public user!: User;
 }

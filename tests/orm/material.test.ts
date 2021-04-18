@@ -10,15 +10,15 @@ afterAll(async () => {
 	await connection.close();
 });
 
-test('Register  a new donation', async () => {
+test('Register a new material', async () => {
 	const material = new Material();
-    material.link="https://www.youtube.com/watch?v=SMiVJ4mmbQM";
-    material.title="clases de baile";
+	material.link = 'https://www.youtube.com/watch?v=SMiVJ4mmbQM';
+	material.title = 'clases de baile';
 	const res = await getRepository(Material).save(material);
 	const checkMaterial = await getRepository(Material).findOne({
 		where: {
 			id_material: res.id_material,
 		},
 	});
-	expect(checkMaterial).toMatchObject(Material);
+	expect(checkMaterial).toMatchObject(material);
 });

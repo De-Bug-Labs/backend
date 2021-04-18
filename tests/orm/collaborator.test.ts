@@ -11,15 +11,15 @@ afterAll(async () => {
 
 test('create a new collaborator', async () => {
 	const collaborator = new Collaborator();
-	collaborator.description='estudiante isc';
-    collaborator.institution='tec';
-    collaborator.name='nerbie tamute';
-    collaborator.section=await getRepository(Section).findOneOrFail({
+	collaborator.description = 'TestCollaboratorDescription';
+	collaborator.institution = 'TestCollaboratorInstitution';
+	collaborator.name = 'TestCollaborator';
+	collaborator.section = await getRepository(Section).findOneOrFail({
 		where: {
-			name:'Estudiantes',
+			name: 'TestSectionName',
 		},
 	});
-    collaborator.srcimg= 'img/hola.jpg';
+	collaborator.srcimg = 'img/test.jpg';
 	const res = await getRepository(Collaborator).save(collaborator);
 	const checkCollaborator = await getRepository(Collaborator).findOne({
 		where: {
