@@ -18,7 +18,7 @@ app.use(bodyParser.json.apply({ limit: 100_000_000, type: 'application/json' }))
 app.use(cookieParser());
 
 createConnection()
-	.then(async con => {
+	.then(async (con) => {
 		app.listen(process.env.APP_PORT, () => {
 			console.info('App is running at http://localhost:%d', process.env.APP_PORT);
 		});
