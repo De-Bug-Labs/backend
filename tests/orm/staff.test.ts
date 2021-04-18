@@ -9,7 +9,7 @@ afterAll(async () => {
 	await connection.close();
 });
 
-test('create a new collaborator', async () => {
+test('create a new register  of staff', async () => {
 	const staff = new Staff();
 	staff.email = 'test@test.com';
 	const res = await getRepository(Staff).save(staff);
