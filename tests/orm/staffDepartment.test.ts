@@ -9,7 +9,7 @@ afterAll(async () => {
 	await connection.close();
 });
 
-test('create a new register of staff_department', async () => {
+test('create a new register of staff department', async () => {
 	const staffDepartment = new StaffDepartment();
 	staffDepartment.department = await getRepository(Department).findOneOrFail({
 		where: {

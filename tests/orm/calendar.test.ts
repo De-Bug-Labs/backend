@@ -1,4 +1,3 @@
-import { timeStamp } from 'node:console';
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
 import { Calendar } from '../../src/orm/entities';

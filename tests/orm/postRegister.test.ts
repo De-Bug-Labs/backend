@@ -9,7 +9,7 @@ afterAll(async () => {
 	await connection.close();
 });
 
-test('create a new register of post_register', async () => {
+test('create a new register of post register', async () => {
 	const postRegister = new PostRegister();
 	postRegister.date = new Date();
 	postRegister.description = 'cocina mexicana';

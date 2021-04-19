@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
-import { Department, StaffDepartment } from '../../src/orm/entities';
+import { Department } from '../../src/orm/entities';
 beforeAll(async () => {
 	await connection.create();
 });
@@ -20,5 +20,7 @@ test('create a new collaborator', async () => {
 			idDepartment: res.idDepartment,
 		},
 	});
+	console.log(typeof checkDepartment);
+
 	expect(checkDepartment).toMatchObject(department);
 });

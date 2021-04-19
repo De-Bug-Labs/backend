@@ -9,7 +9,7 @@ afterAll(async () => {
 	await connection.close();
 });
 
-test('create a new register  of staff', async () => {
+test('create a new staff', async () => {
 	const staff = new Staff();
 	staff.email = 'test@test.com';
 	const res = await getRepository(Staff).save(staff);
@@ -18,5 +18,5 @@ test('create a new register  of staff', async () => {
 			idStaff: res.idStaff,
 		},
 	});
-	expect(checkStaff).toMatchObject(staff);
+	expect(checkStaff).toThrow();
 });

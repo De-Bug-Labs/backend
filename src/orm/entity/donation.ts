@@ -8,7 +8,7 @@ export class Donation {
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
 
-	@Column({ type: 'date', nullable: false })
+	@Column({ type: 'timestamptz', nullable: false })
 	public date!: Date;
 
 	@Column({ type: 'int', nullable: false })

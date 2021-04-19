@@ -18,7 +18,7 @@ export class PostRegister {
 	@Column({ type: 'varchar', nullable: false })
 	public description!: string;
 
-	@Column({ type: 'date', nullable: false })
+	@Column({ type: 'timestamptz', nullable: false })
 	public date!: Date;
 
 	@ManyToOne(() => Staff, (staff) => staff.idStaff)

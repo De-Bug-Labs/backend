@@ -9,7 +9,7 @@ afterAll(async () => {
 	await connection.close();
 });
 
-test('create a new register of post_register', async () => {
+test('create a new Rol Permission', async () => {
 	const rolPermission = new RolPermission();
 	//matute arregla esto
 	rolPermission.permission = await getRepository(Permission).findOneOrFail({
@@ -19,7 +19,7 @@ test('create a new register of post_register', async () => {
 	});
 	rolPermission.rol = await getRepository(Rol).findOneOrFail({
 		where: {
-			name: 'Administrador',
+			name: 'TestRol',
 		},
 	});
 	const res = await getRepository(RolPermission).save(rolPermission);

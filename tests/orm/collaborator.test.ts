@@ -26,5 +26,7 @@ test('create a new collaborator', async () => {
 			idCollaborator: res.idCollaborator,
 		},
 	});
+	console.log(typeof checkCollaborator);
+
 	expect(checkCollaborator).toMatchObject(collaborator);
 });
