@@ -16,7 +16,7 @@ test('create a new collaborator', async () => {
 	const res = await getRepository(Section).save(section);
 	const checkSection = await getRepository(Section).findOne({
 		where: {
-			id_section: res.id_section,
+			idSection: res.idSection,
 		},
 	});
 	expect(checkSection).toMatchObject(section);

@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
-export class Donation_Settings {
+export class DonationSettings {
 	@PrimaryColumn({ type: 'date', nullable: false, unique: true })
 	public date!: Date;
 

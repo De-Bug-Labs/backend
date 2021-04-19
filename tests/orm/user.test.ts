@@ -17,14 +17,14 @@ test('create a new collaborator', async () => {
 	user.password = '234jjjsdfk234';
 	user.rol = await getRepository(Rol).findOneOrFail({
 		where: {
-			name: 'edit help portal',
+			name: 'testRol',
 		},
 	});
 
 	const res = await getRepository(User).save(user);
 	const checkUser = await getRepository(User).findOne({
 		where: {
-			id_user: res.id_user,
+			idUser: res.idUser,
 		},
 	});
 	expect(checkUser).toMatchObject(user);

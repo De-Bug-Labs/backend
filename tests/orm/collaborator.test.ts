@@ -23,7 +23,7 @@ test('create a new collaborator', async () => {
 	const res = await getRepository(Collaborator).save(collaborator);
 	const checkCollaborator = await getRepository(Collaborator).findOne({
 		where: {
-			id_collaborator: res.id_collaborator,
+			idCollaborator: res.idCollaborator,
 		},
 	});
 	expect(checkCollaborator).toMatchObject(collaborator);

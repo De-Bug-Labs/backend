@@ -15,7 +15,7 @@ test('create a new register  of staff', async () => {
 	const res = await getRepository(Staff).save(staff);
 	const checkStaff = await getRepository(Staff).findOne({
 		where: {
-			id_staff: res.id_staff,
+			idStaff: res.idStaff,
 		},
 	});
 	expect(checkStaff).toMatchObject(staff);

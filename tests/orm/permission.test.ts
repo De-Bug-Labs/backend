@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
-import { Permission, Rol_Permission } from '../../src/orm/entities';
+import { Permission } from '../../src/orm/entities';
 
 beforeAll(async () => {
 	await connection.create();
@@ -17,7 +17,7 @@ test('Register  a new permission', async () => {
 	const res = await getRepository(Permission).save(permission);
 	const checkPermission = await getRepository(Permission).findOne({
 		where: {
-			id_permission: res.id_permission,
+			idPermission: res.idPermission,
 		},
 	});
 	expect(checkPermission).toMatchObject(permission);

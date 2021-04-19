@@ -4,7 +4,7 @@ import { User } from './user';
 @Entity()
 export class Rol {
 	@PrimaryGeneratedColumn('uuid')
-	public id_rol!: number;
+	public idRol!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
@@ -12,6 +12,6 @@ export class Rol {
 	@Column({ type: 'varchar', nullable: false })
 	public description!: string;
 
-	@OneToMany(() => User, (user) => user.id_user)
+	@OneToMany(() => User, (user) => user.idUser)
 	public user!: User;
 }

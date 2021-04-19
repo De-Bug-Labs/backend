@@ -1,3 +1,4 @@
+import { timeStamp } from 'node:console';
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
 import { Calendar } from '../../src/orm/entities';
@@ -15,12 +16,12 @@ test('create calendar event', async () => {
 	event.title = 'Clase de cocina';
 	event.description = 'Clases de cocina mexicana';
 	event.address = 'centro de queretaro';
-	event.date = new Date(2020, 11, 12, 11, 52);
+	event.date = new Date();
 	event.srcimg = 'img/hola.jpg';
 	const res = await getRepository(Calendar).save(event);
 	const checkEvent = await getRepository(Calendar).findOne({
 		where: {
-			id_calendar: res.id_calendar,
+			idCalendar: res.idCalendar,
 		},
 	});
 	expect(checkEvent).toMatchObject(event);

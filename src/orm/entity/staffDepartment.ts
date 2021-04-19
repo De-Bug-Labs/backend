@@ -2,13 +2,13 @@ import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Staff } from './staff';
 import { Department } from './department';
 @Entity()
-export class Staff_Department {
+export class StaffDepartment {
 	@PrimaryGeneratedColumn('uuid')
-	public id_staff_department!: number;
+	public idStaffDepartment!: number;
 
-	@ManyToOne(() => Staff, (staff) => staff.id_staff)
+	@ManyToOne(() => Staff, (staff) => staff.idStaff)
 	public staff!: Staff;
 
-	@ManyToOne(() => Department, (department) => department.id_department)
+	@ManyToOne(() => Department, (department) => department.idDepartment)
 	public department!: Department;
 }

@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class Donation {
 	@PrimaryGeneratedColumn('uuid')
-	public id_donation!: number;
+	public idDonation!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;

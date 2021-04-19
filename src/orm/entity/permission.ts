@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Rol_Permission } from './rol_permission';
+import { RolPermission } from './rolPermission';
 @Entity()
 export class Permission {
 	@PrimaryGeneratedColumn('uuid')
-	public id_permission!: number;
+	public idPermission!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
@@ -11,6 +11,6 @@ export class Permission {
 	@Column({ type: 'varchar', nullable: false })
 	public description!: string;
 
-	@OneToMany(() => Rol_Permission, (rol_permission) => rol_permission.permission)
-	public permission!: Rol_Permission[];
+	@OneToMany(() => RolPermission, (rolPermission) => rolPermission.permission)
+	public permission!: RolPermission[];
 }

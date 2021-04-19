@@ -4,7 +4,7 @@ import { Section } from './section';
 @Entity()
 export class Collaborator {
 	@PrimaryGeneratedColumn('uuid')
-	public id_collaborator!: number;
+	public idCollaborator!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
@@ -18,6 +18,6 @@ export class Collaborator {
 	@Column({ type: 'varchar', nullable: false })
 	public institution!: string;
 
-	@ManyToOne((type) => Section, (section) => section.id_section)
+	@ManyToOne(() => Section, (section) => section.idSection)
 	public section!: Section;
 }

@@ -1,14 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Collaborator } from './collaborator';
 
 @Entity()
 export class Section {
 	@PrimaryGeneratedColumn('uuid')
-	public id_section!: number;
+	public idSection!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
 
-	@OneToMany(() => Collaborator, (collaborator) => collaborator.id_collaborator)
+	@OneToMany(() => Collaborator, (collaborator) => collaborator.idCollaborator)
 	public collaborator!: Collaborator[];
 }

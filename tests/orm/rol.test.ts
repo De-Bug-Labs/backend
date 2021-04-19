@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
-import { Rol, User } from '../../src/orm/entities';
+import { Rol } from '../../src/orm/entities';
 beforeAll(async () => {
 	await connection.create();
 });
@@ -15,10 +15,10 @@ test('create a new register of rol', async () => {
 	rol.description = 'TestRolDescription';
 
 	const res = await getRepository(Rol).save(rol);
-	const checkPost_Register = await getRepository(Rol).findOne({
+	const checkPostRegister = await getRepository(Rol).findOne({
 		where: {
-			id_rol: res.id_rol,
+			idRol: res.idRol,
 		},
 	});
-	expect(checkPost_Register).toMatchObject(rol);
+	expect(checkPostRegister).toMatchObject(rol);
 });

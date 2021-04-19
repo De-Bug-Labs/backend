@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Staff } from './staff';
 
 @Entity()
-export class Post_Register {
+export class PostRegister {
 	@PrimaryGeneratedColumn('uuid')
-	public id_post!: number;
+	public idPost!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
@@ -21,6 +21,6 @@ export class Post_Register {
 	@Column({ type: 'date', nullable: false })
 	public date!: Date;
 
-	@ManyToOne(() => Staff, (staff) => staff.id_staff)
+	@ManyToOne(() => Staff, (staff) => staff.idStaff)
 	public staff!: Staff;
 }

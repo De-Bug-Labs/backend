@@ -4,7 +4,7 @@ import { Rol } from './rol';
 @Entity()
 export class User {
 	@PrimaryGeneratedColumn('uuid')
-	public id_user!: number;
+	public idUser!: number;
 
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	public email!: string;
@@ -18,6 +18,6 @@ export class User {
 	@Column({ type: 'varchar', nullable: false })
 	public password!: string;
 
-	@ManyToOne(() => Rol, (rol) => rol.id_rol)
+	@ManyToOne(() => Rol, (rol) => rol.idRol)
 	public rol!: Rol;
 }
