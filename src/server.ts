@@ -7,6 +7,7 @@ import { app } from './app';
 
 dotenv.config();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 process.on('uncaughtException', (error: any) => {
 	if (error && error.code !== 'ECONNREFUSED') console.error(error);
 });
@@ -18,7 +19,7 @@ app.use(bodyParser.json.apply({ limit: 100_000_000, type: 'application/json' }))
 app.use(cookieParser());
 
 createConnection()
-	.then(async con => {
+	.then(async () => {
 		app.listen(process.env.APP_PORT, () => {
 			console.info('App is running at http://localhost:%d', process.env.APP_PORT);
 		});

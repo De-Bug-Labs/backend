@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { createConnection, FileLogger } from 'typeorm';
-import { ExampleUser } from './orm/entities';
+// import { createConnection, FileLogger } from 'typeorm';
+// import { ExampleUser } from './orm/entities';
 import * as YAML from 'yamljs';
 import express from 'express';
 import * as SwaggerExpress from 'swagger-express-mw';
@@ -57,7 +57,7 @@ const config = {
 				cb();
 			} else {
 				const privilege = req.swagger.operation['x-security-privilege'];
-				console.log(privilege);
+				console.info(privilege);
 				//validator.validate(userinfo.sub, privilege, cb)
 			}
 		},
