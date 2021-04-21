@@ -37,6 +37,8 @@ jobs:
           run: npm run migration-run
         - name: Load initial data 💾
           run: npm run load-initial-data
+        - name: Load test data 🧪💾
+          run: npm run load-test-data
         - name: Run test Coverage 🗃️
           run: npm run test-coverage
         - name: Deploy 🚀
