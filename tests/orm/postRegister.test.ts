@@ -23,8 +23,9 @@ test('create a new register of post register', async () => {
 	});
 	const res = await getRepository(PostRegister).save(postRegister);
 	const checkPostRegister = await getRepository(PostRegister).findOne({
+		relations: ['staff'],
 		where: {
-			idPost: res.idPost,
+			id: res.id,
 		},
 	});
 	expect(checkPostRegister).toMatchObject(postRegister);

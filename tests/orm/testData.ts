@@ -1,5 +1,5 @@
 import connection from '../../src/connect';
-import { ExampleUser, Rol, Section, Staff, Department, Permission } from '../../src/orm/entities';
+import { ExampleUser, Role, Section, Staff, Department, Permission } from '../../src/orm/entities';
 
 connection
 	.create()
@@ -17,7 +17,7 @@ connection
 		await con
 			.createQueryBuilder()
 			.insert()
-			.into(Rol)
+			.into(Role)
 			.values([{ name: 'TestRol', description: 'TestRolDescription' }])
 			.execute();
 		await con
@@ -45,4 +45,7 @@ connection
 			.values([{ name: 'TestPermission', description: 'Test Permission' }])
 			.execute();
 	})
-	.then(() => connection.close());
+	.then(() => {
+		console.info('Load test data done');
+		connection.close();
+	});

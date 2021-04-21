@@ -1,17 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { PostRegister } from './postRegister';
-import { StaffDepartment } from './staffDepartment';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Department, PostRegister } from '../entities';
 @Entity()
 export class Staff {
 	@PrimaryGeneratedColumn('uuid')
-	public idStaff!: number;
+	public id!: string;
 
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	public email!: string;
 
-	@OneToMany(() => PostRegister, (postRegister) => postRegister.idPost)
+	@OneToMany(() => PostRegister, (postRegister) => postRegister.id)
 	public postRegister!: PostRegister;
 
-	@OneToMany(() => StaffDepartment, (staffDepartment) => staffDepartment.staff)
-	public staffDepartment!: StaffDepartment;
+	@ManyToMany(() => Department, (department) => department.id)
+	@JoinTable({ name: 'staff_department' })
+	public departments!: Department[];
 }

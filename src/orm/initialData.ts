@@ -15,4 +15,7 @@ connection
 			])
 			.execute();
 	})
-	.then(() => connection.close());
+	.then(() => {
+		console.info('Load initial data done');
+		connection.close();
+	});

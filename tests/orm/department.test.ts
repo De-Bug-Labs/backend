@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
 import { Department } from '../../src/orm/entities';
+
 beforeAll(async () => {
 	await connection.create();
 });
@@ -17,10 +18,9 @@ test('create a new collaborator', async () => {
 	const res = await getRepository(Department).save(department);
 	const checkDepartment = await getRepository(Department).findOne({
 		where: {
-			idDepartment: res.idDepartment,
+			id: res.id,
 		},
 	});
-	console.log(typeof checkDepartment);
 
 	expect(checkDepartment).toMatchObject(department);
 });

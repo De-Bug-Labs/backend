@@ -20,7 +20,7 @@ test('create calendar event', async () => {
 	const res = await getRepository(Calendar).save(event);
 	const checkEvent = await getRepository(Calendar).findOne({
 		where: {
-			idCalendar: res.idCalendar,
+			id: res.id,
 		},
 	});
 	expect(checkEvent).toMatchObject(event);

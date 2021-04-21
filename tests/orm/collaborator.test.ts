@@ -22,11 +22,11 @@ test('create a new collaborator', async () => {
 	collaborator.srcimg = 'img/test.jpg';
 	const res = await getRepository(Collaborator).save(collaborator);
 	const checkCollaborator = await getRepository(Collaborator).findOne({
+		relations: ['section'],
 		where: {
-			idCollaborator: res.idCollaborator,
+			id: res.id,
 		},
 	});
-	console.log(typeof checkCollaborator);
 
 	expect(checkCollaborator).toMatchObject(collaborator);
 });

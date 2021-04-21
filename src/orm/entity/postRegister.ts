@@ -4,7 +4,7 @@ import { Staff } from './staff';
 @Entity()
 export class PostRegister {
 	@PrimaryGeneratedColumn('uuid')
-	public idPost!: number;
+	public id!: string;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
@@ -21,6 +21,6 @@ export class PostRegister {
 	@Column({ type: 'timestamptz', nullable: false })
 	public date!: Date;
 
-	@ManyToOne(() => Staff, (staff) => staff.idStaff)
+	@ManyToOne(() => Staff, (staff) => staff.id)
 	public staff!: Staff;
 }

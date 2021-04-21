@@ -17,7 +17,7 @@ test('Register a new material', async () => {
 	const res = await getRepository(Material).save(material);
 	const checkMaterial = await getRepository(Material).findOne({
 		where: {
-			idMaterial: res.idMaterial,
+			id: res.id,
 		},
 	});
 	expect(checkMaterial).toMatchObject(material);

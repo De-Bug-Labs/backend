@@ -1,4 +1,3 @@
-import { timeStamp } from 'node:console';
 import { getRepository } from 'typeorm';
 import connection from '../../src/connect';
 import { Donation } from '../../src/orm/entities';
@@ -19,7 +18,7 @@ test('Register  a new donation', async () => {
 	const res = await getRepository(Donation).save(donation);
 	const checkDonation = await getRepository(Donation).findOne({
 		where: {
-			idDonation: res.idDonation,
+			id: res.id,
 		},
 	});
 	expect(checkDonation).toMatchObject(donation);

@@ -4,11 +4,11 @@ import { Collaborator } from './collaborator';
 @Entity()
 export class Section {
 	@PrimaryGeneratedColumn('uuid')
-	public idSection!: number;
+	public id!: string;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
 
-	@OneToMany(() => Collaborator, (collaborator) => collaborator.idCollaborator)
+	@OneToMany(() => Collaborator, (collaborator) => collaborator.id)
 	public collaborator!: Collaborator[];
 }

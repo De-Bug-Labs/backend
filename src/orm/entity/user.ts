@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Rol } from './rol';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Role } from '../entities';
 
 @Entity()
 export class User {
 	@PrimaryGeneratedColumn('uuid')
-	public idUser!: number;
+	public id!: number;
 
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	public email!: string;
@@ -18,6 +18,7 @@ export class User {
 	@Column({ type: 'varchar', nullable: false })
 	public password!: string;
 
-	@ManyToOne(() => Rol, (rol) => rol.idRol)
-	public rol!: Rol;
+	@ManyToMany(() => Role, (rol) => rol.id)
+	@JoinTable({ name: 'user_role' })
+	public roles!: Role[];
 }

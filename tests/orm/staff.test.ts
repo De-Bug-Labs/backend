@@ -1,4 +1,4 @@
-import { getRepository } from 'typeorm';
+import { getRepository, QueryFailedError } from 'typeorm';
 import connection from '../../src/connect';
 import { Staff } from '../../src/orm/entities';
 beforeAll(async () => {
@@ -12,11 +12,8 @@ afterAll(async () => {
 test('create a new staff', async () => {
 	const staff = new Staff();
 	staff.email = 'test@test.com';
-	const res = await getRepository(Staff).save(staff);
-	const checkStaff = await getRepository(Staff).findOne({
-		where: {
-			idStaff: res.idStaff,
-		},
-	});
-	expect(checkStaff).toThrow();
+	const func = async () => {
+		return await getRepository(Staff).save(staff);
+	};
+	expect(func).rejects.toEqual(new QueryFailedError('default', undefined, 'test'));
 });

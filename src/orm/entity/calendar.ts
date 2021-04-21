@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class Calendar {
 	@PrimaryGeneratedColumn('uuid')
-	public idCalendar!: string;
+	public id!: string;
 
 	@Column({ type: 'timestamptz', nullable: false })
 	public date!: Date;

@@ -17,7 +17,7 @@ test('create a new register of view', async () => {
 	const res = await getRepository(View).save(view);
 	const checkView = await getRepository(View).findOne({
 		where: {
-			idView: res.idView,
+			id: res.id,
 		},
 	});
 	expect(checkView).toMatchObject(view);

@@ -12,10 +12,14 @@ const connection = {
 	async clear(): Promise<void> {
 		const connection = getConnection();
 		const entities = connection.entityMetadatas;
-		entities.forEach(async (entity) => {
-			const repository = connection.getRepository(entity.name);
-			await repository.query(`DELETE FROM ${entity.tableName}`);
-		});
+		try {
+			entities.forEach(async (entity) => {
+				const repository = connection.getRepository(entity.name);
+				await repository.query(`TRUNCATE TABLE "${entity.tableName}" CASCADE`);
+			});
+		} catch (error) {
+			throw new Error(`ERROR: Cleaning test db: ${error}`);
+		}
 	},
 };
 export default connection;

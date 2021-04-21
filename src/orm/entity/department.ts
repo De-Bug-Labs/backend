@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { StaffDepartment } from './staffDepartment';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Staff } from '../entities';
 
 @Entity()
 export class Department {
 	@PrimaryGeneratedColumn('uuid')
-	public idDepartment!: number;
+	public id!: number;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;
@@ -12,6 +12,7 @@ export class Department {
 	@Column({ type: 'varchar', nullable: false })
 	public description!: string;
 
-	@OneToMany(() => StaffDepartment, (staffDepartment) => staffDepartment.department)
-	public staffDepartment!: StaffDepartment;
+	@ManyToMany(() => Staff, (staff) => staff.id)
+	@JoinTable({ name: 'staff_department' })
+	public staff!: Staff[];
 }
