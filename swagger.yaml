@@ -144,8 +144,56 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-  #-------//Example Endpoints-------------------
+   #-------//end example endpoints-------------------
+  /mail:
+    x-swagger-router-controller: EmailController
+    x-typeorm-repository-name: Staff
+    post:
+      x-security-privilege: 'test:read'
+      operationId: createRegisterEmail
+      description: Test the example endpoint
+      tags:
+        - mail
+      parameters:
+        - name: postRegister
+          in: body
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              departmentId:
+                type: string
+                format: uuid
+                description: 'ID of the specialist that will receive the email'
+              name:
+                type: string
+                description: 'Name of the person who is going to send the email'
+              email:
+                type: string 
+                description: 'Email of the person who is sending the emai'
+              phone:
+                type: string
+                description: 'Phone of the person who is sendind the emai'
+              description:
+                type: string  
+                description: 'Description of the email'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulMail'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    
 
+ 
 definitions:
   ErrorResponse:
     required:
@@ -170,3 +218,22 @@ definitions:
             type: string
             format: uuid
       - $ref: '#/definitions/ExampleUser'
+  SuccessfulMail:
+    type: object
+    properties:
+        id_post:
+          type: string
+          format: uuid
+        staffId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string  
+        phone:
+          type: string  
+        description:
+          type: string 
+        date:
+          type: string  
+
