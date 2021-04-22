@@ -31,26 +31,56 @@ parameters:
     type: integer
 paths:
   /swagger:
-    x-swagger-pipe: swagger_raw
+    x-swagger-pipe: swagger_raw 
+  #---------Example Endpoints-------------------
+  /example:
+    x-swagger-router-controller: ExampleController
+    x-typeorm-repository-name: ExampleUser
+    post:
+      x-security-privilege: 'test:write'
+      operationId: createExampleUser
+      description: Create a new example user
+      tags:
+        - example
+      parameters:
+        - name: exampleUser
+          description: user
+          in: body
+          schema:
+            $ref: '#/definitions/ExampleUser'
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/ExampleResponse'
+        '400':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /example/{id}:
     x-swagger-router-controller: ExampleController
     x-typeorm-repository-name: ExampleUser
     get:
       x-security-privilege: 'test:read'
-      operationId: exampleTest
-      description: Test the example endpoint
+      operationId: readExampleUser
+      description: Find an example user by id
       tags:
         - example
       parameters:
         - name: id
-          type: integer
+          type: string
+          format: uuid
           in: path
           required: true
       responses:
         '200':
           description: Test successful
           schema:
-            $ref: '#/definitions/Example'
+            $ref: '#/definitions/ExampleResponse'
         '404':
           description: Test unsuccessful
           schema:
@@ -59,22 +89,28 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    post:
-      x-security-privilege: 'test:read'
-      operationId: exampleTest1
-      description: Test the example endpoint
+    put:
+      x-security-privilege: 'test:write'
+      operationId: updateExampleUser
+      description: Update an example user by id
       tags:
         - example
       parameters:
         - name: id
-          type: integer
+          type: string
+          format: uuid
           in: path
           required: true
+        - name: exampleUser
+          description: user
+          in: body
+          schema:
+            $ref: '#/definitions/ExampleUser'
       responses:
         '200':
           description: Test successful
           schema:
-            $ref: '#/definitions/Example'
+            $ref: '#/definitions/ExampleResponse'
         '404':
           description: Test unsuccessful
           schema:
@@ -83,25 +119,50 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    delete:
+      x-security-privilege: 'test:delete'
+      operationId: deleteExampleUser
+      description: Delete an example user by id
+      tags:
+        - example
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/ExampleResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+   #-------//end example endpoints-------------------
   /mail:
-    x-swagger-router-controller: ExampleController
-    x-typeorm-repository-name: ExampleUser
+    x-swagger-router-controller: EmailController
+    x-typeorm-repository-name: Staff
     post:
       x-security-privilege: 'test:read'
-      operationId: Mail
+      operationId: createRegisterEmail
       description: Test the example endpoint
       tags:
-        - example
+        - mail
       parameters:
-        - in: body
-          name: user
+        - name: postRegister
+          in: body
+          required: true
           description: The user to create.
           schema:
             type: object
-            required:
-              - userName
             properties:
-              id:
+              departmentId:
                 type: string
                 format: uuid
                 description: 'ID of the specialist that will receive the email'
@@ -118,10 +179,10 @@ paths:
                 type: string  
                 description: 'Description of the email'
       responses:
-        '200':
+        '201':
           description: Test successful
           schema:
-            $ref: '#/definitions/Example'
+            $ref: '#/definitions/SuccessfulMail'
         '404':
           description: Test unsuccessful
           schema:
@@ -132,7 +193,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
     
 
-
+ 
 definitions:
   ErrorResponse:
     required:
@@ -140,11 +201,39 @@ definitions:
     properties:
       message:
         type: string
-  Example:
+  ExampleUser:
     type: object
-    properties: 
-      id:
-        type: integer
-      uuid:
-        type: string
-        format: uuid
+    properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        age:
+          type: number
+  ExampleResponse:
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+      - $ref: '#/definitions/ExampleUser'
+  SuccessfulMail:
+    type: object
+    properties:
+        id_post:
+          type: string
+          format: uuid
+        staffId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string  
+        phone:
+          type: string  
+        description:
+          type: string 
+        date:
+          type: string  
+

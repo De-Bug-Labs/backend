@@ -44,6 +44,14 @@ connection
 			.into(Permission)
 			.values([{ name: 'TestPermission', description: 'Test Permission' }])
 			.execute();
+		const staffUsr = await con.getRepository(Staff).save({
+			email: 'hola@test.com',
+		});
+		await con.getRepository(Department).save({
+			name: 'Tanatologia',
+			description: 'Descripcion de Tanatologia',
+			staff: [staffUsr],
+		});
 	})
 	.then(() => {
 		console.info('Load test data done');
