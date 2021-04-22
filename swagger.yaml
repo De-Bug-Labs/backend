@@ -145,6 +145,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
    #-------//end example endpoints-------------------
+   #-------register email form-----------------------
   /mail:
     x-swagger-router-controller: EmailController
     x-typeorm-repository-name: Staff
@@ -191,7 +192,49 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    
+    #----------//register email form------------
+    #----------Create new staff member----------
+  /staff:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    post:
+      x-security-privilege: 'test:read'
+      operationId: createStaff
+      description: Test the example endpoint
+      tags:
+        - staff
+      parameters:
+        - name: staff
+          in: body
+          required: true
+          description: The staff to create.
+          schema:
+            type: object
+            properties:
+              departmentId:
+                type: string
+                format: uuid
+                description: 'ID of the department of the staff'
+              name:
+                type: string
+                description: 'Name of the staff'
+              email:
+                type: string 
+                description: 'Email of the staff'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//create new staff member----------
 
  
 definitions:
@@ -236,4 +279,13 @@ definitions:
           type: string 
         date:
           type: string  
-
+  SuccessfulStaff:
+    type: object
+    properties:
+        StaffId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string  
