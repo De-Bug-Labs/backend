@@ -83,6 +83,54 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /mail:
+    x-swagger-router-controller: ExampleController
+    x-typeorm-repository-name: ExampleUser
+    post:
+      x-security-privilege: 'test:read'
+      operationId: Mail
+      description: Test the example endpoint
+      tags:
+        - example
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: 'ID of the specialist that will receive the email'
+              name:
+                type: string
+                description: 'Name of the person who is going to send the email'
+              email:
+                type: string 
+                description: 'Email of the person who is sending the emai'
+              phone:
+                type: string
+                description: 'Phone of the person who is sendind the emai'
+              description:
+                type: string  
+                description: 'Description of the email'
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/Example'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    
 
 
 definitions:
