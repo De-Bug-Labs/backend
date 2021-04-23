@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619139931210" clover="3.2.0">
-  <project timestamp="1619139931210" name="All files">
-    <metrics statements="243" coveredstatements="124" conditionals="16" coveredconditionals="0" methods="43" coveredmethods="21" elements="302" coveredelements="145" complexity="0" loc="243" ncloc="243" packages="4" files="21" classes="21"/>
+<coverage generated="1619216212116" clover="3.2.0">
+  <project timestamp="1619216212116" name="All files">
+    <metrics statements="250" coveredstatements="131" conditionals="16" coveredconditionals="0" methods="43" coveredmethods="21" elements="309" coveredelements="152" complexity="0" loc="250" ncloc="250" packages="4" files="22" classes="22"/>
     <package name="src">
       <metrics statements="51" coveredstatements="2" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -148,176 +148,186 @@
       </file>
     </package>
     <package name="src.orm">
-      <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="entities.ts" path="/home/runner/work/backend/backend/src/orm/entities.ts">
-        <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="3" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="8" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="11" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="14" count="14" type="stmt"/>
+        <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="3" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="8" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="11" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="14" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
       </file>
     </package>
     <package name="src.orm.entity">
-      <metrics statements="108" coveredstatements="108" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="20"/>
+      <metrics statements="114" coveredstatements="114" conditionals="0" coveredconditionals="0" methods="20" coveredmethods="20"/>
       <file name="calendar.ts" path="/home/runner/work/backend/backend/src/orm/entity/calendar.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
-        <line num="18" count="14" type="stmt"/>
-        <line num="21" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="18" count="15" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
       </file>
       <file name="collaborator.ts" path="/home/runner/work/backend/backend/src/orm/entity/collaborator.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="16" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="21" count="14" type="stmt"/>
-        <line num="22" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="16" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
+        <line num="22" count="15" type="stmt"/>
       </file>
       <file name="department.ts" path="/home/runner/work/backend/backend/src/orm/entity/department.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
-        <line num="17" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
       </file>
       <file name="donation.ts" path="/home/runner/work/backend/backend/src/orm/entity/donation.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
       </file>
       <file name="donationSettings.ts" path="/home/runner/work/backend/backend/src/orm/entity/donationSettings.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
       </file>
       <file name="exampleUser.ts" path="/home/runner/work/backend/backend/src/orm/entity/exampleUser.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+      </file>
+      <file name="information.ts" path="/home/runner/work/backend/backend/src/orm/entity/information.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
       </file>
       <file name="material.ts" path="/home/runner/work/backend/backend/src/orm/entity/material.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
       </file>
       <file name="permission.ts" path="/home/runner/work/backend/backend/src/orm/entity/permission.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
-        <line num="17" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
       </file>
       <file name="postRegister.ts" path="/home/runner/work/backend/backend/src/orm/entity/postRegister.ts">
         <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="16" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="22" count="14" type="stmt"/>
-        <line num="24" count="14" type="stmt"/>
-        <line num="25" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="16" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="22" count="15" type="stmt"/>
+        <line num="24" count="15" type="stmt"/>
+        <line num="25" count="15" type="stmt"/>
       </file>
       <file name="role.ts" path="/home/runner/work/backend/backend/src/orm/entity/role.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
-        <line num="17" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="21" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
       </file>
       <file name="section.ts" path="/home/runner/work/backend/backend/src/orm/entity/section.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
       </file>
       <file name="staff.ts" path="/home/runner/work/backend/backend/src/orm/entity/staff.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="14" count="14" type="stmt"/>
-        <line num="15" count="14" type="stmt"/>
-        <line num="17" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="14" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
       </file>
       <file name="user.ts" path="/home/runner/work/backend/backend/src/orm/entity/user.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="2" count="14" type="stmt"/>
-        <line num="5" count="14" type="stmt"/>
-        <line num="7" count="14" type="stmt"/>
-        <line num="10" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="16" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="21" count="14" type="stmt"/>
-        <line num="23" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="16" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
+        <line num="23" count="15" type="stmt"/>
       </file>
       <file name="view.ts" path="/home/runner/work/backend/backend/src/orm/entity/view.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="14" type="stmt"/>
-        <line num="4" count="14" type="stmt"/>
-        <line num="6" count="14" type="stmt"/>
-        <line num="9" count="14" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="9" count="15" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
       </file>
     </package>
   </project>
