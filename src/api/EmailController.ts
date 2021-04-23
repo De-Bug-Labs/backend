@@ -1,11 +1,6 @@
 import { getManager } from 'typeorm';
-import { Department, ExampleUser } from '../orm/entities';
+import { Department } from '../orm/entities';
 import { PostRegister } from '../orm/entity/postRegister';
-import { Staff } from '../orm/entity/staff';
-
-const exampleRepo = getManager().getRepository(ExampleUser);
-
-const staffRepo = getManager().getRepository(Staff);
 const departmentRepo = getManager().getRepository(Department);
 const registerRepo = getManager().getRepository(PostRegister);
 
@@ -26,7 +21,7 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 			})
 		).staff;
 		usr.staff = staff[0];
-        usr.date=new Date();
+		usr.date = new Date();
 		console.info(usr);
 		const insert = await registerRepo.save(usr);
 		res.status(201).json(insert);
