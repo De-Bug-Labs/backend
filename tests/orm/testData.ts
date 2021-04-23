@@ -46,7 +46,7 @@ connection
 			.execute();
 		const staffUsr = await con.getRepository(Staff).save({
 			email: 'hola@test.com',
-			name: 'holaStaff'
+			name: 'holaStaff',
 		});
 		await con.getRepository(Department).save({
 			name: 'Tanatologia',
