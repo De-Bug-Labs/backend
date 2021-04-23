@@ -270,8 +270,89 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     #-------------//Delete staff member--------------
-
- 
+    #----------Create new user----------
+  /user:
+    x-swagger-router-controller: UserController
+    x-typeorm-repository-name: User
+    post:
+      x-security-privilege: 'test:read'
+      operationId: createUser
+      description: Create a new user
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              roleId:
+                type: array
+                description: 'ID of user's role'
+                items:
+                  type: string
+                  format: uuid
+              name:
+                type: string
+                description: 'First name of the user'
+              lastName:
+                type: string
+                description: 'Last name of the user'
+              email:
+                type: string 
+                description: 'Email of the user'
+              password:
+                type: string
+                description: 'Password of the user'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//create new user----------
+  #---------------Delete user--------------
+    delete:
+      x-security-privilege: 'test:delete'
+      operationId: deleteUser
+      description: Delete a user by id
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: The user to delete.
+          schema:
+            type: object
+            properties:
+              userId:
+                type: string
+                format: uuid
+                description: 'id of the user'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'    
+     #-------------//Delete user--------------
 definitions:
   ErrorResponse:
     required:
@@ -321,6 +402,18 @@ definitions:
           type: string
           format: uuid
         name:
+          type: string
+        email:
+          type: string  
+  SuccessfulUser:
+    type: object
+    properties:
+        userId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        lastName:
           type: string
         email:
           type: string  
