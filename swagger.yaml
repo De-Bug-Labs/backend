@@ -237,6 +237,39 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     #-------------//create new staff member----------
+    #---------------Delete staff member--------------
+    delete:
+      x-security-privilege: 'test:delete'
+      operationId: deleteStaff
+      description: Delete an staff member by id
+      tags:
+        - staff
+      parameters:
+        - name: staff
+          in: body
+          required: true
+          description: The staff to delete.
+          schema:
+            type: object
+            properties:
+              staffId:
+                type: string
+                format: uuid
+                description: 'id of the staff member'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//Delete staff member--------------
 
  
 definitions:

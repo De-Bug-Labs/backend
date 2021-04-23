@@ -25,3 +25,13 @@ export const createStaff = async (req, res): Promise<void> => {
 		res.status(400).json(e);
 	}
 };
+
+export const deleteStaff = async (req, res): Promise<void> => {
+	try {
+		const usr = await staffRepo.findOneOrFail(req.swagger.params.staff.raw.staffId);
+		await staffRepo.delete(req.swagger.params.staff.raw.staffId);
+		res.status(200).json(usr);
+	} catch (e) {
+		res.status(410).json(e);
+	}
+};
