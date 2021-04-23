@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/api/EmailController.ts</title>
+    <title>Code coverage report for src/api/StaffController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/api</a> EmailController.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/api</a> StaffController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -84,14 +84,10 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,13 +100,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -123,30 +113,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { getManager } from 'typeorm';</span>
 <span class="cstat-no" title="statement not covered" >import { Department } from '../orm/entities';</span>
-<span class="cstat-no" title="statement not covered" >import { PostRegister } from '../orm/entity/postRegister';</span>
+<span class="cstat-no" title="statement not covered" >import { Staff } from '../orm/entity/staff';</span>
+&nbsp;
+const staffRepo = <span class="cstat-no" title="statement not covered" >getManager().getRepository(Staff);</span>
 const departmentRepo = <span class="cstat-no" title="statement not covered" >getManager().getRepository(Department);</span>
-const registerRepo = <span class="cstat-no" title="statement not covered" >getManager().getRepository(PostRegister);</span>
 &nbsp;
 //Example of CRUD (Create, Read, Update, Delete)
 //implementation of an example entity in TypeORM with swagger
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >createRegisterEmail = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
+export const <span class="cstat-no" title="statement not covered" >createStaff = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		let usr = <span class="cstat-no" title="statement not covered" >new PostRegister();</span>
-<span class="cstat-no" title="statement not covered" >		usr = req.swagger.params.postRegister.raw;</span>
-		const department = <span class="cstat-no" title="statement not covered" >req.swagger.params.postRegister.raw.departmentId;</span>
-		const staff = <span class="cstat-no" title="statement not covered" >(</span>
-			await departmentRepo.findOneOrFail({
-				relations: ['staff'],
-				where: {
-					id: department,
-				},
-			})
-		).staff;
-<span class="cstat-no" title="statement not covered" >		usr.staff = staff[0];</span>
-<span class="cstat-no" title="statement not covered" >		usr.date = new Date();</span>
+		let usr = <span class="cstat-no" title="statement not covered" >new Staff();</span>
+<span class="cstat-no" title="statement not covered" >		usr = req.swagger.params.staff.raw;</span>
+<span class="cstat-no" title="statement not covered" >		usr.name = req.swagger.params.staff.raw.name;</span>
+<span class="cstat-no" title="statement not covered" >		usr.email = req.swagger.params.staff.raw.email;</span>
+		const departmentId = <span class="cstat-no" title="statement not covered" >req.swagger.params.staff.raw.departmentId;</span>
+		const department = <span class="cstat-no" title="statement not covered" >await departmentRepo.findByIds(departmentId);</span>
+<span class="cstat-no" title="statement not covered" >		usr.departments = department;</span>
 <span class="cstat-no" title="statement not covered" >		console.info(usr);</span>
-		const insert = <span class="cstat-no" title="statement not covered" >await registerRepo.save(usr);</span>
+		const insert = <span class="cstat-no" title="statement not covered" >await staffRepo.save(usr);</span>
 <span class="cstat-no" title="statement not covered" >		res.status(201).json(insert);</span>
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		console.info(e);</span>
