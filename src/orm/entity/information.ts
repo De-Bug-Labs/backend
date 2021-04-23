@@ -11,6 +11,6 @@ export class Information {
 	@Column({ type: 'text', nullable: false })
 	public instalation!: string;
 
-    @Column({ type: 'text', nullable: false })
+	@Column({ type: 'text', nullable: false })
 	public team!: string;
 }
