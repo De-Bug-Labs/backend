@@ -212,9 +212,11 @@ paths:
             type: object
             properties:
               departmentId:
-                type: string
-                format: uuid
+                type: array
                 description: 'ID of the department of the staff'
+                items:
+                  type: string
+                  format: uuid
               name:
                 type: string
                 description: 'Name of the staff'
