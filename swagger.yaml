@@ -258,15 +258,15 @@ paths:
                 description: 'id of the staff member'
       responses:
         '201':
-          description: Test successful
+          description: staff successful
           schema:
             $ref: '#/definitions/SuccessfulStaff'
         '404':
-          description: Test unsuccessful
+          description: staff unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: staff unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
     #-------------//Delete staff member--------------
@@ -292,7 +292,7 @@ paths:
                 type: array
                 description: 'ID of users role'
                 items:
-                  type: array
+                  type: string
                   format: uuid
               name:
                 type: string
@@ -311,16 +311,8 @@ paths:
           description: Test successful
           schema:
             $ref: '#/definitions/SuccessfulUser'
-        '404':
-          description: Test unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description: Test unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
     #-------------//create new user----------
-  #---------------Delete user--------------
+    #---------------Delete user--------------
     delete:
       x-security-privilege: 'test:delete'
       operationId: deleteUser
@@ -353,6 +345,68 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'    
      #-------------//Delete user--------------
+    #---------------Print Information--------------
+  /information/{id}:
+    x-swagger-router-controller: InformationController
+    x-typeorm-repository-name: Information
+    get:
+      x-security-privilege: 'test:read'
+      operationId: readInformation
+      description: Find information by id and print
+      tags:
+        - information
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information successfull
+          schema:
+            $ref: '#/definitions/SuccessfulInformation'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//Print Information--------------
+    #-------------update Information--------------
+    put:
+      x-security-privilege: 'test:write'
+      operationId: updateInformation
+      description: Update information
+      tags:
+        - information
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: information
+          description: information object
+          in: body
+          schema:
+            $ref: '#/definitions/Information'
+      responses:
+        '200':
+          description: Information update successful
+          schema:
+            $ref: '#/definitions/InformationResponse'
+        '404':
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-----------//update Information--------------
 definitions:
   ErrorResponse:
     required:
@@ -377,6 +431,23 @@ definitions:
             type: string
             format: uuid
       - $ref: '#/definitions/ExampleUser'
+  Information:
+    type: object
+    properties:
+        mision:
+          type: string
+        instalation:
+          type: string
+        team:
+          type: string
+  InformationResponse:
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+      - $ref: '#/definitions/Information'
   SuccessfulMail:
     type: object
     properties:
@@ -404,7 +475,7 @@ definitions:
         name:
           type: string
         email:
-          type: string  
+          type: string 
   SuccessfulUser:
     type: object
     properties:
@@ -417,3 +488,15 @@ definitions:
           type: string
         email:
           type: string  
+  SuccessfulInformation:
+    type: object
+    properties:
+        InformationId:
+          type: string
+          format: uuid
+        mission:
+          type: string
+        instalation:
+          type: string  
+        team:
+          type: string
