@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619222129965" clover="3.2.0">
-  <project timestamp="1619222129965" name="All files">
-    <metrics statements="265" coveredstatements="131" conditionals="16" coveredconditionals="0" methods="47" coveredmethods="21" elements="328" coveredelements="152" complexity="0" loc="265" ncloc="265" packages="4" files="23" classes="23"/>
+<coverage generated="1619315864882" clover="3.2.0">
+  <project timestamp="1619315864882" name="All files">
+    <metrics statements="285" coveredstatements="131" conditionals="16" coveredconditionals="0" methods="51" coveredmethods="21" elements="352" coveredelements="152" complexity="0" loc="285" ncloc="285" packages="4" files="24" classes="24"/>
     <package name="src">
       <metrics statements="51" coveredstatements="2" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -66,7 +66,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="85" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="18" coveredmethods="0"/>
+      <metrics statements="105" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="22" coveredmethods="0"/>
       <file name="EmailController.ts" path="/home/runner/work/backend/backend/src/api/EmailController.ts">
         <metrics statements="18" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -163,6 +163,29 @@
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
+      </file>
+      <file name="UserController.ts" path="/home/runner/work/backend/backend/src/api/UserController.ts">
+        <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.orm">
