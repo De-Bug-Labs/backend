@@ -290,9 +290,9 @@ paths:
             properties:
               roleId:
                 type: array
-                description: 'ID of user's role'
+                description: 'ID of users role'
                 items:
-                  type: string
+                  type: array
                   format: uuid
               name:
                 type: string
