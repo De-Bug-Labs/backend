@@ -458,7 +458,7 @@ paths:
     x-typeorm-repository-name: Material
     #-------Create new material-----
     post:
-      x-security-privilege: 'test:write'
+      x-security-privilege: 'material:write'
       operationId: createMaterial
       description: Create  new material
       tags:
@@ -495,7 +495,7 @@ paths:
     x-typeorm-repository-name: Material
     #----------------Delete material---------------
     delete:
-      x-security-privilege: 'test:delete'
+      x-security-privilege: 'material:delete'
       operationId: deleteMaterial
       description: Delete an Material by Id
       tags:
@@ -522,7 +522,7 @@ paths:
      #-------//Delete material------------------- 
      #-------update material-------------------  
     put:
-      x-security-privilege: 'test:delete'
+      x-security-privilege: 'material:modify'
       operationId: updateMaterial
       description: Delete an Material by Id
       tags:
