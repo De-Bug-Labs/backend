@@ -524,7 +524,7 @@ paths:
     put:
       x-security-privilege: 'material:modify'
       operationId: updateMaterial
-      description: Delete an Material by Id
+      description: Modify Material by Id
       tags:
         - material
       parameters:
@@ -547,7 +547,7 @@ paths:
                 description: 'link of the material'
       responses:
         '200':
-          description: Material deleted successful
+          description: Material edited successful
           schema:
             $ref: '#/definitions/MaterialResponse'
         '404':
@@ -558,7 +558,34 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//update material-------------------   
+     #-------//update material-------------------  
+     #-------//read material-------------------   
+    get:
+      x-security-privilege: 'material:read'
+      operationId: readMaterial
+      description: read  Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Material read successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//read material-------------------     
 definitions:
   ErrorResponse:
     required:

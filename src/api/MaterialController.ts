@@ -36,3 +36,12 @@ export const updateMaterial = async (req, res): Promise<void> => {
 		res.status(404).json(e);
 	}
 };
+
+export const readMaterial= async (req, res): Promise<void> => {
+	try {
+		const usr = await materialRepo.findOneOrFail(req.swagger.params.id.raw);
+		res.status(200).json(usr);
+	} catch (e) {
+		res.status(404).json(e);
+	}
+};
