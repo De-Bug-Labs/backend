@@ -26,3 +26,13 @@ export const deleteMaterial = async (req, res): Promise<void> => {
 		res.status(410).json(e);
 	}
 };
+
+export const updateMaterial = async (req, res): Promise<void> => {
+	try {
+		await materialRepo.update(req.swagger.params.id.raw, req.swagger.params.material.raw);
+		const usr = await materialRepo.findOneOrFail(req.swagger.params.id.raw);
+		res.status(200).json(usr);
+	} catch (e) {
+		res.status(404).json(e);
+	}
+};
