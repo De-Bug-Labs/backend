@@ -21,7 +21,7 @@ export const updateInformation = async (req, res): Promise<void> => {
 		const usr = await informationRepo.findOneOrFail(req.swagger.params.id.raw);
 		res.status(200).json(usr);
 	} catch (e) {
-        console.info(e);
+		console.info(e);
 		res.status(404).json(e);
 	}
 };

@@ -24,7 +24,7 @@ export class User {
 	public roles!: Role[];
 
 	@BeforeInsert()
-    async hashPassword() {
-        this.password = await bcrypt.hash(this.password, 10);
-    }
+	async hashPassword() {
+		this.password = await bcrypt.hash(this.password, 10);
+	}
 }
