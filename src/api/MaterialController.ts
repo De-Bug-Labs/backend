@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { getManager } from 'typeorm';
 import { Material } from '../orm/entities';
 
@@ -17,6 +18,36 @@ export const createMaterial = async (req, res): Promise<void> => {
 	}
 };
 
+export const consultMaterial = async (req, res): Promise<void> => {
+	try {
+		const page = req.swagger.params.page.raw;
+		const pageSize = req.swagger.params.pageSize.raw;
+		const materials = await materialRepo.find({take:pageSize,skip:(page-1)* pageSize});
+		if(materials.length)
+			res.status(200).json(materials);
+		else
+			res.status(404).json({message: 'index out of bound'});
+	} catch (e) {
+		res.status(400).json(e);
+	}
+};
+
+export const consultMaterialPages = async (req, res): Promise<void> => {
+	try {
+		const page = req.swagger.params.page.raw;
+		const pageSize = req.swagger.params.pageSize.raw;
+		const materials = await materialRepo.count();
+		res.status(200).json({
+			page: page, 
+			pageSize: pageSize,
+			materialsCount: materials,
+			pageCount: Math.ceil(materials / pageSize),
+		});
+	} catch (e) {
+		res.status(400).json(e);
+	}
+};
+
 export const deleteMaterial = async (req, res): Promise<void> => {
 	try {
 		const usr = await materialRepo.findOneOrFail(req.swagger.params.id.raw);
@@ -26,6 +57,7 @@ export const deleteMaterial = async (req, res): Promise<void> => {
 		res.status(410).json(e);
 	}
 };
+
 
 export const updateMaterial = async (req, res): Promise<void> => {
 	try {
