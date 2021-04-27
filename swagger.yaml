@@ -150,7 +150,7 @@ paths:
     x-swagger-router-controller: EmailController
     x-typeorm-repository-name: Staff
     post:
-      x-security-privilege: 'test:read'
+      x-security-privilege: 'mail:write'
       operationId: createRegisterEmail
       description: Test the example endpoint
       tags:
@@ -198,7 +198,7 @@ paths:
     x-swagger-router-controller: StaffController
     x-typeorm-repository-name: Staff
     post:
-      x-security-privilege: 'test:read'
+      x-security-privilege: 'staff:write'
       operationId: createStaff
       description: Test the example endpoint
       tags:
@@ -239,7 +239,7 @@ paths:
     #-------------//create new staff member----------
     #---------------Delete staff member--------------
     delete:
-      x-security-privilege: 'test:delete'
+      x-security-privilege: 'staff:delete'
       operationId: deleteStaff
       description: Delete an staff member by id
       tags:
@@ -275,7 +275,7 @@ paths:
     x-swagger-router-controller: UserController
     x-typeorm-repository-name: User
     post:
-      x-security-privilege: 'test:read'
+      x-security-privilege: 'user:write'
       operationId: createUser
       description: Create a new user
       tags:
@@ -314,7 +314,7 @@ paths:
     #-------------//create new user----------
     #---------------Delete user--------------
     delete:
-      x-security-privilege: 'test:delete'
+      x-security-privilege: 'user:delete'
       operationId: deleteUser
       description: Delete a user by id
       tags:
@@ -350,7 +350,7 @@ paths:
     x-swagger-router-controller: InformationController
     x-typeorm-repository-name: Information
     get:
-      x-security-privilege: 'test:read'
+      x-security-privilege: 'information:read'
       operationId: readInformation
       description: Find information by id and print
       tags:
@@ -377,7 +377,7 @@ paths:
     #-------------//Print Information--------------
     #-------------update Information--------------
     put:
-      x-security-privilege: 'test:write'
+      x-security-privilege: 'information:modify'
       operationId: updateInformation
       description: Update information
       tags:
@@ -412,7 +412,7 @@ paths:
     x-typeorm-repository-name: Staff
     #-------------update personel information--------------
     put:
-      x-security-privilege: 'test:write'
+      x-security-privilege: 'staff:modify'
       operationId: updateStaff
       description: Update staff
       tags:
