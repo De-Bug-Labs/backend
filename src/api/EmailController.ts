@@ -9,8 +9,8 @@ const registerRepo = getManager().getRepository(PostRegister);
 
 export const createRegisterEmail = async (req, res): Promise<void> => {
 	try {
-		let usr = new PostRegister();
-		usr = req.swagger.params.postRegister.raw;
+		let email = new PostRegister();
+		email = req.swagger.params.postRegister.raw;
 		const department = req.swagger.params.postRegister.raw.departmentId;
 		const staff = (
 			await departmentRepo.findOneOrFail({
@@ -20,10 +20,9 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 				},
 			})
 		).staff;
-		usr.staff = staff[0];
-		usr.date = new Date();
-		console.info(usr);
-		const insert = await registerRepo.save(usr);
+		email.staff = staff[0];
+		email.date = new Date();
+		const insert = await registerRepo.save(email);
 		res.status(201).json(insert);
 	} catch (e) {
 		console.info(e);
