@@ -161,9 +161,9 @@ const materialRepo = <span class="cstat-no" title="statement not covered" >getMa
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >createMaterial = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		let usr = <span class="cstat-no" title="statement not covered" >new Material();</span>
-<span class="cstat-no" title="statement not covered" >		usr = req.swagger.params.material.raw;</span>
-		const insert = <span class="cstat-no" title="statement not covered" >await materialRepo.save(usr);</span>
+		let material = <span class="cstat-no" title="statement not covered" >new Material();</span>
+<span class="cstat-no" title="statement not covered" >		material = req.swagger.params.material.raw;</span>
+		const insert = <span class="cstat-no" title="statement not covered" >await materialRepo.save(material);</span>
 <span class="cstat-no" title="statement not covered" >		res.status(201).json(insert);</span>
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		res.status(400).json(e);</span>
@@ -172,9 +172,9 @@ export const <span class="cstat-no" title="statement not covered" >createMateria
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >deleteMaterial = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		const usr = <span class="cstat-no" title="statement not covered" >await materialRepo.findOneOrFail(req.swagger.params.id.raw);</span>
+		const material = <span class="cstat-no" title="statement not covered" >await materialRepo.findOneOrFail(req.swagger.params.id.raw);</span>
 <span class="cstat-no" title="statement not covered" >		await materialRepo.delete(req.swagger.params.id.raw);</span>
-<span class="cstat-no" title="statement not covered" >		res.status(200).json(usr);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(200).json(material);</span>
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		res.status(410).json(e);</span>
 	}
@@ -183,8 +183,8 @@ export const <span class="cstat-no" title="statement not covered" >deleteMateria
 export const <span class="cstat-no" title="statement not covered" >updateMaterial = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
 <span class="cstat-no" title="statement not covered" >		await materialRepo.update(req.swagger.params.id.raw, req.swagger.params.material.raw);</span>
-		const usr = <span class="cstat-no" title="statement not covered" >await materialRepo.findOneOrFail(req.swagger.params.id.raw);</span>
-<span class="cstat-no" title="statement not covered" >		res.status(200).json(usr);</span>
+		const material = <span class="cstat-no" title="statement not covered" >await materialRepo.findOneOrFail(req.swagger.params.id.raw);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(200).json(material);</span>
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		res.status(404).json(e);</span>
 	}
@@ -192,8 +192,8 @@ export const <span class="cstat-no" title="statement not covered" >updateMateria
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >readMaterial = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		const usr = <span class="cstat-no" title="statement not covered" >await materialRepo.findOneOrFail(req.swagger.params.id.raw);</span>
-<span class="cstat-no" title="statement not covered" >		res.status(200).json(usr);</span>
+		const material = <span class="cstat-no" title="statement not covered" >await materialRepo.findOneOrFail(req.swagger.params.id.raw);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(200).json(material);</span>
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		res.status(404).json(e);</span>
 	}
@@ -205,7 +205,7 @@ export const <span class="cstat-no" title="statement not covered" >readMaterial 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Apr 27 2021 01:15:41 GMT+0000 (Coordinated Universal Time)
+                at Tue Apr 27 2021 22:46:30 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
