@@ -31,26 +31,56 @@ parameters:
     type: integer
 paths:
   /swagger:
-    x-swagger-pipe: swagger_raw
+    x-swagger-pipe: swagger_raw 
+  #---------Example Endpoints-------------------
+  /example:
+    x-swagger-router-controller: ExampleController
+    x-typeorm-repository-name: ExampleUser
+    post:
+      x-security-privilege: 'test:write'
+      operationId: createExampleUser
+      description: Create a new example user
+      tags:
+        - example
+      parameters:
+        - name: exampleUser
+          description: user
+          in: body
+          schema:
+            $ref: '#/definitions/ExampleUser'
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/ExampleResponse'
+        '400':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /example/{id}:
     x-swagger-router-controller: ExampleController
     x-typeorm-repository-name: ExampleUser
     get:
       x-security-privilege: 'test:read'
-      operationId: exampleTest
-      description: Test the example endpoint
+      operationId: readExampleUser
+      description: Find an example user by id
       tags:
         - example
       parameters:
         - name: id
-          type: integer
+          type: string
+          format: uuid
           in: path
           required: true
       responses:
         '200':
           description: Test successful
           schema:
-            $ref: '#/definitions/Example'
+            $ref: '#/definitions/ExampleResponse'
         '404':
           description: Test unsuccessful
           schema:
@@ -59,22 +89,101 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    put:
+      x-security-privilege: 'test:write'
+      operationId: updateExampleUser
+      description: Update an example user by id
+      tags:
+        - example
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: exampleUser
+          description: user
+          in: body
+          schema:
+            $ref: '#/definitions/ExampleUser'
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/ExampleResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      x-security-privilege: 'test:delete'
+      operationId: deleteExampleUser
+      description: Delete an example user by id
+      tags:
+        - example
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/ExampleResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+   #-------//end example endpoints-------------------
+   #-------register email form-----------------------
+  /mail:
+    x-swagger-router-controller: EmailController
+    x-typeorm-repository-name: Staff
     post:
-      x-security-privilege: 'test:read'
-      operationId: exampleTest1
+      x-security-privilege: 'mail:write'
+      operationId: createRegisterEmail
       description: Test the example endpoint
       tags:
-        - example
+        - mail
       parameters:
-        - name: id
-          type: integer
-          in: path
+        - name: postRegister
+          in: body
           required: true
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              departmentId:
+                type: string
+                format: uuid
+                description: 'ID of the specialist that will receive the email'
+              name:
+                type: string
+                description: 'Name of the person who is going to send the email'
+              email:
+                type: string 
+                description: 'Email of the person who is sending the emai'
+              phone:
+                type: string
+                description: 'Phone of the person who is sendind the emai'
+              description:
+                type: string  
+                description: 'Description of the email'
       responses:
-        '200':
+        '201':
           description: Test successful
           schema:
-            $ref: '#/definitions/Example'
+            $ref: '#/definitions/SuccessfulMail'
         '404':
           description: Test unsuccessful
           schema:
@@ -83,8 +192,400 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-
-
+    #----------//register email form------------
+    #----------Create new staff member----------
+  /staff:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    post:
+      x-security-privilege: 'staff:write'
+      operationId: createStaff
+      description: Test the example endpoint
+      tags:
+        - staff
+      parameters:
+        - name: staff
+          in: body
+          required: true
+          description: The staff to create.
+          schema:
+            type: object
+            properties:
+              departmentId:
+                type: array
+                description: 'ID of the department of the staff'
+                items:
+                  type: string
+                  format: uuid
+              name:
+                type: string
+                description: 'Name of the staff'
+              email:
+                type: string 
+                description: 'Email of the staff'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//create new staff member----------
+    #---------------Delete staff member--------------
+    delete:
+      x-security-privilege: 'staff:delete'
+      operationId: deleteStaff
+      description: Delete an staff member by id
+      tags:
+        - staff
+      parameters:
+        - name: staff
+          in: body
+          required: true
+          description: The staff to delete.
+          schema:
+            type: object
+            properties:
+              staffId:
+                type: string
+                format: uuid
+                description: 'id of the staff member'
+      responses:
+        '201':
+          description: staff successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: staff unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: staff unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//Delete staff member--------------
+    #----------Create new user----------
+  /user:
+    x-swagger-router-controller: UserController
+    x-typeorm-repository-name: User
+    post:
+      x-security-privilege: 'user:write'
+      operationId: createUser
+      description: Create a new user
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              roleId:
+                type: array
+                description: 'ID of users role'
+                items:
+                  type: string
+                  format: uuid
+              name:
+                type: string
+                description: 'First name of the user'
+              lastName:
+                type: string
+                description: 'Last name of the user'
+              email:
+                type: string 
+                description: 'Email of the user'
+              password:
+                type: string
+                description: 'Password of the user'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+    #-------------//create new user----------
+    #---------------Delete user--------------
+    delete:
+      x-security-privilege: 'user:delete'
+      operationId: deleteUser
+      description: Delete a user by id
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: The user to delete.
+          schema:
+            type: object
+            properties:
+              userId:
+                type: string
+                format: uuid
+                description: 'id of the user'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'    
+     #-------------//Delete user--------------
+    #---------------Print Information--------------
+  /information/{id}:
+    x-swagger-router-controller: InformationController
+    x-typeorm-repository-name: Information
+    get:
+      x-security-privilege: 'information:read'
+      operationId: readInformation
+      description: Find information by id and print
+      tags:
+        - information
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information successfull
+          schema:
+            $ref: '#/definitions/SuccessfulInformation'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//Print Information--------------
+    #-------------update Information--------------
+    put:
+      x-security-privilege: 'information:modify'
+      operationId: updateInformation
+      description: Update information
+      tags:
+        - information
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: information
+          description: information object
+          in: body
+          schema:
+            $ref: '#/definitions/Information'
+      responses:
+        '200':
+          description: Information update successful
+          schema:
+            $ref: '#/definitions/InformationResponse'
+        '404':
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-----------//update Information--------------
+  /staff/{id}:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    #-------------update personel information--------------
+    put:
+      x-security-privilege: 'staff:modify'
+      operationId: updateStaff
+      description: Update staff
+      tags:
+        - staff
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: staff
+          description: staff object
+          in: body
+          schema:
+            type: object
+            properties:
+              departmentId:
+                description: 'ID of the department of the staff'
+                type: string
+                format: uuid
+              name:
+                type: string
+                description: 'Name of the staff'
+              email:
+                type: string 
+                description: 'Email of the staff'
+      responses:
+        '200':
+          description: Staff Information update successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-----------//update staff information--------------    
+  /material:
+    x-swagger-router-controller: MaterialController
+    x-typeorm-repository-name: Material
+    #-------Create new material-----
+    post:
+      x-security-privilege: 'material:write'
+      operationId: createMaterial
+      description: Create  new material
+      tags:
+        - material
+      parameters:
+        - name: material
+          description: material
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: 'Name of the material'
+              link:
+                type: string 
+                description: 'Link of the material'
+      responses:
+        '201':
+          description: Material successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '400':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+            #-----------//Create new material-------------  
+  /material/{id}:
+    x-swagger-router-controller: MaterialController
+    x-typeorm-repository-name: Material
+    #----------------Delete material---------------
+    delete:
+      x-security-privilege: 'material:delete'
+      operationId: deleteMaterial
+      description: Delete an Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Material deleted successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//Delete material------------------- 
+     #-------update material-------------------  
+    put:
+      x-security-privilege: 'material:modify'
+      operationId: updateMaterial
+      description: Modify Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: material
+          description: material object
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: 'title of the material'
+              link:
+                type: string 
+                description: 'link of the material'
+      responses:
+        '200':
+          description: Material edited successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//update material-------------------  
+     #-------//read material-------------------   
+    get:
+      x-security-privilege: 'material:read'
+      operationId: readMaterial
+      description: read  Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Material read successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//read material-------------------     
 definitions:
   ErrorResponse:
     required:
@@ -92,11 +593,100 @@ definitions:
     properties:
       message:
         type: string
-  Example:
+  ExampleUser:
     type: object
-    properties: 
-      id:
-        type: integer
-      uuid:
-        type: string
-        format: uuid
+    properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        age:
+          type: number
+  ExampleResponse:
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+      - $ref: '#/definitions/ExampleUser'
+  Information:
+    type: object
+    properties:
+        mision:
+          type: string
+        instalation:
+          type: string
+        team:
+          type: string
+  InformationResponse:
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+      - $ref: '#/definitions/Information'
+  SuccessfulMail:
+    type: object
+    properties:
+        id_post:
+          type: string
+          format: uuid
+        staffId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string  
+        phone:
+          type: string  
+        description:
+          type: string 
+        date:
+          type: string  
+  SuccessfulStaff:
+    type: object
+    properties:
+        StaffId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string 
+  SuccessfulUser:
+    type: object
+    properties:
+        userId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string  
+  SuccessfulInformation:
+    type: object
+    properties:
+        InformationId:
+          type: string
+          format: uuid
+        mission:
+          type: string
+        instalation:
+          type: string  
+        team:
+          type: string
+  MaterialResponse:  
+    type: object
+    properties:
+        materialId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        link:
+          type: string  
+

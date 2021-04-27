@@ -30,7 +30,7 @@ connection
 			.createQueryBuilder()
 			.insert()
 			.into(Staff)
-			.values([{ email: 'test@test.com' }])
+			.values([{ name: 'testStaff', email: 'test@test.com' }])
 			.execute();
 		await con
 			.createQueryBuilder()
@@ -44,6 +44,15 @@ connection
 			.into(Permission)
 			.values([{ name: 'TestPermission', description: 'Test Permission' }])
 			.execute();
+		const staffUsr = await con.getRepository(Staff).save({
+			email: 'hola@test.com',
+			name: 'holaStaff',
+		});
+		await con.getRepository(Department).save({
+			name: 'Tanatologia',
+			description: 'Descripcion de Tanatologia',
+			staff: [staffUsr],
+		});
 	})
 	.then(() => {
 		console.info('Load test data done');

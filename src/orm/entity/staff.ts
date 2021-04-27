@@ -8,6 +8,9 @@ export class Staff {
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	public email!: string;
 
+	@Column({ type: 'varchar', nullable: false })
+	public name!: string;
+
 	@OneToMany(() => PostRegister, (postRegister) => postRegister.id)
 	public postRegister!: PostRegister;
 
