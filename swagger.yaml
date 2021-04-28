@@ -236,6 +236,28 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaff
+      description: consult staff by pagination
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     #-------------//create new staff member----------
     #---------------Delete staff member--------------
     delete:
@@ -404,6 +426,40 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         default:
           description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /staff/pages:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaffPages
+      description: consult staff
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              page:
+                type: number
+              pageSize:
+                type: number
+              staffCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
     #-----------//update Information--------------
