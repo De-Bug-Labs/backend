@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619563590853" clover="3.2.0">
-  <project timestamp="1619563590853" name="All files">
-    <metrics statements="311" coveredstatements="131" conditionals="16" coveredconditionals="0" methods="59" coveredmethods="21" elements="386" coveredelements="152" complexity="0" loc="311" ncloc="311" packages="4" files="25" classes="25"/>
+<coverage generated="1619640582458" clover="3.2.0">
+  <project timestamp="1619640582458" name="All files">
+    <metrics statements="326" coveredstatements="131" conditionals="18" coveredconditionals="0" methods="63" coveredmethods="21" elements="407" coveredelements="152" complexity="0" loc="326" ncloc="326" packages="4" files="25" classes="25"/>
     <package name="src">
       <metrics statements="51" coveredstatements="2" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -66,7 +66,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="131" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="30" coveredmethods="0"/>
+      <metrics statements="146" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="34" coveredmethods="0"/>
       <file name="EmailController.ts" path="/home/runner/work/backend/backend/src/api/EmailController.ts">
         <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -136,34 +136,49 @@
         <line num="25" count="0" type="stmt"/>
       </file>
       <file name="MaterialController.ts" path="/home/runner/work/backend/backend/src/api/MaterialController.ts">
-        <metrics statements="27" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
+        <metrics statements="42" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="12" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
       </file>
       <file name="StaffController.ts" path="/home/runner/work/backend/backend/src/api/StaffController.ts">
         <metrics statements="25" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
