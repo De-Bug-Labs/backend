@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619640582458" clover="3.2.0">
-  <project timestamp="1619640582458" name="All files">
-    <metrics statements="326" coveredstatements="131" conditionals="18" coveredconditionals="0" methods="63" coveredmethods="21" elements="407" coveredelements="152" complexity="0" loc="326" ncloc="326" packages="4" files="25" classes="25"/>
+<coverage generated="1619648802871" clover="3.2.0">
+  <project timestamp="1619648802871" name="All files">
+    <metrics statements="341" coveredstatements="131" conditionals="20" coveredconditionals="0" methods="67" coveredmethods="21" elements="428" coveredelements="152" complexity="0" loc="341" ncloc="341" packages="4" files="25" classes="25"/>
     <package name="src">
       <metrics statements="51" coveredstatements="2" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -66,7 +66,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="146" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="34" coveredmethods="0"/>
+      <metrics statements="161" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="38" coveredmethods="0"/>
       <file name="EmailController.ts" path="/home/runner/work/backend/backend/src/api/EmailController.ts">
         <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -181,7 +181,7 @@
         <line num="74" count="0" type="stmt"/>
       </file>
       <file name="StaffController.ts" path="/home/runner/work/backend/backend/src/api/StaffController.ts">
-        <metrics statements="25" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <metrics statements="40" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -207,6 +207,21 @@
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
       </file>
       <file name="UserController.ts" path="/home/runner/work/backend/backend/src/api/UserController.ts">
         <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
