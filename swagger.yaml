@@ -12,10 +12,12 @@ consumes:
 produces:
   - application/json
 securityDefinitions:
-  BasicAuth:
-    type: basic
+  JWT: 
+    type: apiKey
+    in: query
+    name: auth
 security:
-  - BasicAuth: []
+  - JWT: []
 parameters: 
   pageParam:
     name: page
@@ -275,7 +277,6 @@ paths:
     x-swagger-router-controller: UserController
     x-typeorm-repository-name: User
     post:
-      x-security-privilege: 'user:write'
       operationId: createUser
       description: Create a new user
       tags:
@@ -302,6 +303,7 @@ paths:
                 description: 'Last name of the user'
               email:
                 type: string 
+                format: email
                 description: 'Email of the user'
               password:
                 type: string
@@ -344,7 +346,33 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'    
-     #-------------//Delete user--------------
+    #-------------//Delete user--------------
+  /login:
+    x-swagger-router-controller: AuthController
+    x-typeorm-repository-name: User
+    post:
+      operationId: login
+      description: login to account
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            properties: 
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+      responses:
+        '200':
+          description: Login successful
+        '400':
+          description: Wrong request
+        '401':
+          description: Wrong credentials
     #---------------Print Information--------------
   /information/{id}:
     x-swagger-router-controller: InformationController
