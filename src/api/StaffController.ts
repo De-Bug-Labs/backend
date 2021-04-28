@@ -34,4 +34,34 @@ export const deleteStaff = async (req, res): Promise<void> => {
 	} catch (e) {
 		res.status(410).json(e);
 	}
+}; 
+
+export const consultStaff = async (req, res): Promise<void> => {
+	try {
+		const page = req.swagger.params.page.raw;
+		const pageSize = req.swagger.params.pageSize.raw;
+		const staffs = await staffRepo.find({take:pageSize,skip:(page-1)* pageSize});
+		if(staffs.length)
+			res.status(200).json(staffs);
+		else
+			res.status(404).json({message: 'index out of bound'});
+	} catch (e) {
+		res.status(400).json(e);
+	}
+};
+
+export const consultStaffPages = async (req, res): Promise<void> => {
+	try {
+		const page = req.swagger.params.page.raw;
+		const pageSize = req.swagger.params.pageSize.raw;
+		const staffs = await staffRepo.count();
+		res.status(200).json({
+			page: page, 
+			pageSize: pageSize,
+			staffsCount: staffs,
+			pageCount: Math.ceil(staffs / pageSize),
+		});
+	} catch (e) {
+		res.status(400).json(e);
+	}
 };
