@@ -16,7 +16,7 @@ export class User {
 	@Column({ type: 'varchar', nullable: false })
 	public lastName!: string;
 
-	@Column({ type: 'varchar', nullable: false })
+	@Column({ type: 'varchar', nullable: false, select: false })
 	public password!: string;
 
 	@ManyToMany(() => Role, (rol) => rol.id)
@@ -26,5 +26,9 @@ export class User {
 	@BeforeInsert()
 	async hashPassword() {
 		this.password = await bcrypt.hash(this.password, 10);
+	}
+
+	async checkIfPasswordIsValid(unencryptedPassword: string) {
+		return await bcrypt.compareSync(unencryptedPassword, this.password);
 	}
 }
