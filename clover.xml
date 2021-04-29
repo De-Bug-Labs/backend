@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619657055959" clover="3.2.0">
-  <project timestamp="1619657055959" name="All files">
-    <metrics statements="341" coveredstatements="131" conditionals="20" coveredconditionals="0" methods="67" coveredmethods="21" elements="428" coveredelements="152" complexity="0" loc="341" ncloc="341" packages="4" files="25" classes="25"/>
+<coverage generated="1619657196691" clover="3.2.0">
+  <project timestamp="1619657196691" name="All files">
+    <metrics statements="350" coveredstatements="131" conditionals="22" coveredconditionals="0" methods="69" coveredmethods="21" elements="441" coveredelements="152" complexity="0" loc="350" ncloc="350" packages="4" files="26" classes="26"/>
     <package name="src">
       <metrics statements="51" coveredstatements="2" conditionals="16" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -66,7 +66,19 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="161" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="38" coveredmethods="0"/>
+      <metrics statements="170" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="40" coveredmethods="0"/>
+      <file name="DepartmentController.ts" path="/home/runner/work/backend/backend/src/api/DepartmentController.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
       <file name="EmailController.ts" path="/home/runner/work/backend/backend/src/api/EmailController.ts">
         <metrics statements="17" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
