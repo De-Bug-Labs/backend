@@ -720,7 +720,145 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//read material-------------------     
+  /collaborator:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator
+    put:
+      x-security-privilege: 'collaborator:write'
+      operationId: createCollaborator
+      description: create new collaborator
+      tags:
+        - collaborator
+      parameters:
+        - name: collaborator
+          in: body
+          required: true
+          description: The collaborator to create.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              srcimg:
+                type: string 
+              institution:
+                type: string
+              sectionId:
+                type: string
+                format: uuid
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /collaborator/{sectionid}:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultCollaborator
+      description: consult collaborators
+      tags:
+        - collaborator
+      parameters:
+        - name: sectionid
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'     
+  /collaborator/{sectionid}/pages:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultCollaboratorPages
+      description: consult collaborators pagination size by section
+      tags:
+        - collaborator
+      parameters:
+        - name: sectionid
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              page:
+                type: number
+              pageSize:
+                type: number
+              materialsCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /collaborator/{id}:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultCollaborator
+      description: consult collaborators
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'     
+
+#---------------definitions------------------
 definitions:
   ErrorResponse:
     required:
@@ -833,4 +971,21 @@ definitions:
         name:
           type: string
         description:
+          type: string 
+  CollaboratorResponse:  
+    type: object
+    properties:
+        collaboratorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
           type: string  
+        srcimg:
+          type: string 
+        institution:
+          type: string
+        sectionId:
+          type: string
+          format: uuid 
