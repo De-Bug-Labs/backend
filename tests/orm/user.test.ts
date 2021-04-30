@@ -17,7 +17,7 @@ test('create a new collaborator', async () => {
 	user.password = '234jjjsdfk234';
 	user.roles = await getRepository(Role).find({
 		where: {
-			name: 'testRol',
+			name: 'Administrador',
 		},
 	});
 
