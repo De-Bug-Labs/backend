@@ -1,6 +1,5 @@
 import { getRepository } from 'typeorm';
-import { User } from '../orm/entity/user';
-import { Role } from '../orm/entity/role';
+import { User, Role } from '../orm/entities';
 import _ from 'lodash';
 
 // const userRepo = getManager().getRepository(User);

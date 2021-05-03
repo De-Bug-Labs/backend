@@ -1,6 +1,5 @@
 import { getManager } from 'typeorm';
-import { Department } from '../orm/entities';
-import { PostRegister } from '../orm/entity/postRegister';
+import { Department, PostRegister } from '../orm/entities';
 const departmentRepo = getManager().getRepository(Department);
 const registerRepo = getManager().getRepository(PostRegister);
 
