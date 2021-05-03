@@ -49,4 +49,5 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		console.info(e);
 		res.status(400).json(e);
 	}
+	
 };
