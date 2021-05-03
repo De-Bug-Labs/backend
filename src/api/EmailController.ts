@@ -2,8 +2,6 @@ import { getManager } from 'typeorm';
 import { Department } from '../orm/entities';
 import { PostRegister } from '../orm/entity/postRegister';
 
-var nodemailer = require('nodemailer');
-
 const departmentRepo = getManager().getRepository(Department);
 const registerRepo = getManager().getRepository(PostRegister);
 
@@ -29,28 +27,24 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		const insert = await registerRepo.save(email);
 		res.status(201).json(insert);
 
-		var transporter = nodemailer.createTransport({
+		const nodemailer = require('nodemailer');
+
+		const transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {
-			  user: 'user@mail.com',
-			  pass: 'pass@pass'
-			}
-		  });
-		  
-		  var mailOptions = {
+				user: 'user@mail.com',
+				pass: 'pass@pass',
+			},
+		});
+
+		const mailOptions = {
 			from: 'user@mail.com',
 			to: 'userreceiver@mail.com', //buscar una forma de poner el staff aqui
 			subject: 'Sending Email using Node.js',
-			text: message //esto ya esta resuelto
-		  };
-		  
-		  transporter.sendMail(mailOptions, function(error, info){
-			if (error) {
-			  console.log(error);
-			} else {
-			  console.log('Email sent: ' + info.response);
-			}
-		  });
+			text: message, //esto ya esta resuelto
+		};
+
+		transporter.sendMail(mailOptions);
 	} catch (e) {
 		console.info(e);
 		res.status(400).json(e);
