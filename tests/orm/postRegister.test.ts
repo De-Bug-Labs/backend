@@ -12,13 +12,13 @@ afterAll(async () => {
 test('create a new register of post register', async () => {
 	const postRegister = new PostRegister();
 	postRegister.date = new Date();
-	postRegister.description = 'cocina mexicana';
-	postRegister.email = 'test@gmail.com';
-	postRegister.name = 'Juan Pancho';
+	postRegister.description = 'las abichuelas me provocan gases';
+	postRegister.email = 'abuelo@gmail.com';
+	postRegister.name = 'Emilio Rivas';
 	postRegister.phone = '4272265540';
 	postRegister.staff = await getRepository(Staff).findOneOrFail({
 		where: {
-			email: 'test@test.com',
+			email: 'jisus3000@gmail.com',
 		},
 	});
 	const res = await getRepository(PostRegister).save(postRegister);

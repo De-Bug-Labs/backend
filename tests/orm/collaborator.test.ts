@@ -11,12 +11,12 @@ afterAll(async () => {
 
 test('create a new collaborator', async () => {
 	const collaborator = new Collaborator();
-	collaborator.description = 'TestCollaboratorDescription';
-	collaborator.institution = 'TestCollaboratorInstitution';
-	collaborator.name = 'TestCollaborator';
+	collaborator.description = 'Bromneas?, es un papusho, su rostro parece tallado por los mismos angeles';
+	collaborator.institution = 'Tecnologico de Monterrey';
+	collaborator.name = 'Alberto Matute';
 	collaborator.section = await getRepository(Section).findOneOrFail({
 		where: {
-			name: 'TestSectionName',
+			name: 'Estudiantes',
 		},
 	});
 	collaborator.srcimg = 'img/test.jpg';

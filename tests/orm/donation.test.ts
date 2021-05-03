@@ -12,9 +12,9 @@ afterAll(async () => {
 
 test('Register  a new donation', async () => {
 	const donation = new Donation();
-	donation.amount = 1000;
+	donation.amount = 1000000;
 	donation.date = new Date();
-	donation.name = 'TestDonationName';
+	donation.name = 'Don Dimadon';
 	const res = await getRepository(Donation).save(donation);
 	const checkDonation = await getRepository(Donation).findOne({
 		where: {

@@ -236,6 +236,28 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaff
+      description: consult staff by pagination
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     #-------------//create new staff member----------
     #---------------Delete staff member--------------
     delete:
@@ -406,6 +428,40 @@ paths:
           description: Information update unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /staff/pages:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaffPages
+      description: consult staff
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              page:
+                type: number
+              pageSize:
+                type: number
+              staffCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     #-----------//update Information--------------
   /staff/{id}:
     x-swagger-router-controller: StaffController
@@ -490,6 +546,59 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
             #-----------//Create new material-------------  
+    get:
+      x-security-privilege: 'material:read'
+      operationId: consultMaterial
+      description: consult material by pagination
+      tags:
+        - material
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /material/pages:
+    x-swagger-router-controller: MaterialController
+    x-typeorm-repository-name: Material
+    get:
+      x-security-privilege: 'material:read'
+      operationId: consultMaterialPages
+      description: consult material
+      tags:
+        - material
+      parameters:
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              materialsCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /material/{id}:
     x-swagger-router-controller: MaterialController
     x-typeorm-repository-name: Material
@@ -585,7 +694,201 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//read material-------------------     
+  /department:
+    x-swagger-router-controller: DepartmentController
+    x-typeorm-repository-name: Department
+    #----------------consult departments---------------
+    get:
+      x-security-privilege: 'department:read'
+      operationId: consultDepartment
+      description: consult departments
+      tags:
+        - department
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/DepartmentResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /collaborator:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator
+    put:
+      x-security-privilege: 'collaborator:write'
+      operationId: createCollaborator
+      description: create new collaborator
+      tags:
+        - collaborator
+      parameters:
+        - name: collaborator
+          in: body
+          required: true
+          description: The collaborator to create.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              srcimg:
+                type: string 
+              institution:
+                type: string
+              sectionId:
+                type: string
+                format: uuid
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /collaborator/{id}:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultCollaborator
+      description: consult collaborator by id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /sectioncount/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultSectionPagination
+      description: consult section with number of collaborators
+      tags:
+        - section
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionCount:
+                type: number
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+#----------------------Section--------------------
+  /section:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSections
+      description: consult sections (3 sections total) with number of collaborators and pagination based on page size
+      tags:
+        - section
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionName:
+                type: string
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /section/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: collaborator   
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSectionPage
+      description: return page of collaborators of selected section (3 sections)
+      tags:
+        - section
+      parameters:
+        - name: id
+          description: id of the section
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+        - $ref: '#/parameters/pageParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              sectionCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+#---------------definitions------------------
 definitions:
   ErrorResponse:
     required:
@@ -689,4 +992,30 @@ definitions:
           type: string
         link:
           type: string  
-
+  DepartmentResponse:  
+    type: object
+    properties:
+        departmentId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string 
+  CollaboratorResponse:  
+    type: object
+    properties:
+        collaboratorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string  
+        srcimg:
+          type: string 
+        institution:
+          type: string
+        sectionId:
+          type: string
+          format: uuid 
