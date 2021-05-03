@@ -31,11 +31,9 @@ export const consultMaterial = async (req, res): Promise<void> => {
 
 export const consultMaterialPages = async (req, res): Promise<void> => {
 	try {
-		const page = req.swagger.params.page.raw;
 		const pageSize = req.swagger.params.pageSize.raw;
 		const materials = await materialRepo.count();
 		res.status(200).json({
-			page: page,
 			pageSize: pageSize,
 			materialsCount: materials,
 			pageCount: Math.ceil(materials / pageSize),

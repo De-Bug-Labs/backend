@@ -1,5 +1,5 @@
 import connection from '../../src/connect';
-import { ExampleUser, Role, Section, Staff, Department, Permission, Material } from '../../src/orm/entities';
+import { ExampleUser, Role, Section, Staff, Department, Permission, Material, Collaborator } from '../../src/orm/entities';
 
 connection
 	.create()
@@ -18,39 +18,50 @@ connection
 			.createQueryBuilder()
 			.insert()
 			.into(Role)
-			.values([{ name: 'TestRol', description: 'TestRolDescription' }])
-			.execute();
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Section)
-			.values([{ name: 'TestSectionName' }])
+			.values([
+				{
+					name: 'Administrador',
+					description:
+						'Usuario con alto nivel de permisos, capaz de manejar el sistema desde el subdominio administrativo, cuenta con credenciales necesarias para ingresar al sistema',
+				},
+			])
 			.execute();
 		await con
 			.createQueryBuilder()
 			.insert()
 			.into(Staff)
-			.values([{ name: 'testStaff', email: 'test@test.com' }])
+			.values([{ name: 'Rodolfo Neri Vela', email: 'vela@nasa.com' }])
 			.execute();
 		await con
 			.createQueryBuilder()
 			.insert()
 			.into(Department)
-			.values([{ name: 'nutricion', description: 'Descripcion de nutricion' }])
+			.values([
+				{
+					name: 'Nutricion',
+					description:
+						'disciplina que se ocupa de la prevención, diagnóstico y tratamiento de los cambios nutricionales y metabólicos relacionados con enfermedades agudas o crónicas y con condiciones causadas por un exceso o falta de energía',
+				},
+			])
 			.execute();
 		await con
 			.createQueryBuilder()
 			.insert()
 			.into(Permission)
-			.values([{ name: 'TestPermission', description: 'Test Permission' }])
+			.values([
+				{
+					name: 'Crear Evento',
+					description: 'Funcion que le permite al usuario crear y manejar un evento en el modulo del calendario',
+				},
+			])
 			.execute();
 		const staffUsr = await con.getRepository(Staff).save({
-			email: 'hola@test.com',
-			name: 'holaStaff',
+			email: 'jisus3000@gmail.com',
+			name: 'Jesus Cristo',
 		});
 		await con.getRepository(Department).save({
 			name: 'Tanatologia',
-			description: 'Descripcion de Tanatologia',
+			description: 'disciplina integral que aborda todo lo relacionado con el fenómeno de la muerte en el ser humano',
 			staff: [staffUsr],
 		});
 		await con
@@ -76,6 +87,77 @@ connection
 				{ title: 'old songs ', link: 'https://www.youtube.com/watch?v=BrnDlRmW5hs&t=309s' },
 			])
 			.execute();
+		await con.getRepository(Section).save([{ name: 'Estudiantes' }, { name: 'Profesionales' }, { name: 'Empresarios' }]);
+
+		await con.getRepository(Collaborator).save([
+			{
+				name: 'Emilio Rivas',
+				description:
+					'Una persona que trabajaba demasiado y aun asi se quejaba de todo lo que habia que haccerse, verdaderamente un heroe mexicano',
+				srcimg: 'img/test.jpg',
+				institution: 'Tecnologico de Monterrey',
+				section: await con.getRepository(Section).findOneOrFail({
+					where: {
+						name: 'Estudiantes',
+					},
+				}),
+			},
+			{
+				name: 'Bernardo Estrada',
+				description: 'Una persona que sabia todo y al mismo tiempo no sabia nada, un ejemplo a seguir',
+				srcimg: 'img/test.jpg',
+				institution: 'Tecnologico de Monterrey',
+				section: await con.getRepository(Section).findOneOrFail({
+					where: {
+						name: 'Estudiantes',
+					},
+				}),
+			},
+			{
+				name: 'Mutate Tatume',
+				description: 'tutametatumemutate',
+				srcimg: 'img/test.jpg',
+				institution: 'Mexico',
+				section: await con.getRepository(Section).findOneOrFail({
+					where: {
+						name: 'Empresarios',
+					},
+				}),
+			},
+			{
+				name: 'Luis Carranza',
+				description: 'Heroe del ambito de sistemas mobiles',
+				srcimg: 'img/test.jpg',
+				institution: 'Tecnologico de Monterrey',
+				section: await con.getRepository(Section).findOneOrFail({
+					where: {
+						name: 'Profesionales',
+					},
+				}),
+			},
+			{
+				name: 'Luis Corral',
+				description: 'heroe del ambito de sistemas mobiles pero chad',
+				srcimg: 'img/test.jpg',
+				institution: 'Tecnologico de Monterrey',
+				section: await con.getRepository(Section).findOneOrFail({
+					where: {
+						name: 'Profesionales',
+					},
+				}),
+			},
+			{
+				name: 'Rutarde Tuntante',
+				description: 'nadie sabe que hizo pero algo hizo',
+				srcimg: 'img/test.jpg',
+				institution: 'UNAM',
+				section: await con.getRepository(Section).findOneOrFail({
+					where: {
+						name: 'Empresarios',
+					},
+				}),
+			},
+		]);
 	})
 	.then(() => {
 		console.info('Load test data done');

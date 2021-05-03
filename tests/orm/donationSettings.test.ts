@@ -12,7 +12,7 @@ afterAll(async () => {
 test('create a new register of donation_settings', async () => {
 	const donationSettings = new DonationSettings();
 	donationSettings.date = new Date();
-	donationSettings.limit = 500;
+	donationSettings.limit = 5000000;
 	const res = await getRepository(DonationSettings).save(donationSettings);
 	const checkRegister = await getRepository(DonationSettings).findOne({
 		where: {

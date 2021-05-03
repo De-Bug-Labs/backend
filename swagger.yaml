@@ -578,7 +578,6 @@ paths:
       tags:
         - material
       parameters:
-        - $ref: '#/parameters/pageParam'
         - $ref: '#/parameters/pageSizeParam'
       responses:
         '200':
@@ -586,8 +585,6 @@ paths:
           schema:
             type: object
             properties:
-              page:
-                type: number
               pageSize:
                 type: number
               materialsCount: 
@@ -711,7 +708,7 @@ paths:
         '200':
           description: successful
           schema:
-            $ref: '#/definitions/MaterialResponse'
+            $ref: '#/definitions/DepartmentResponse'
         '404':
           description: Test unsuccessful
           schema:
@@ -720,7 +717,178 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//read material-------------------     
+  /collaborator:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator
+    put:
+      x-security-privilege: 'collaborator:write'
+      operationId: createCollaborator
+      description: create new collaborator
+      tags:
+        - collaborator
+      parameters:
+        - name: collaborator
+          in: body
+          required: true
+          description: The collaborator to create.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              srcimg:
+                type: string 
+              institution:
+                type: string
+              sectionId:
+                type: string
+                format: uuid
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /collaborator/{id}:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultCollaborator
+      description: consult collaborator by id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /sectioncount/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultSectionPagination
+      description: consult section with number of collaborators
+      tags:
+        - section
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionCount:
+                type: number
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+#----------------------Section--------------------
+  /section:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSections
+      description: consult sections (3 sections total) with number of collaborators and pagination based on page size
+      tags:
+        - section
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionName:
+                type: string
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /section/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: collaborator   
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSectionPage
+      description: return page of collaborators of selected section (3 sections)
+      tags:
+        - section
+      parameters:
+        - name: id
+          description: id of the section
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+        - $ref: '#/parameters/pageParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              sectionCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+#---------------definitions------------------
 definitions:
   ErrorResponse:
     required:
@@ -833,4 +1001,21 @@ definitions:
         name:
           type: string
         description:
+          type: string 
+  CollaboratorResponse:  
+    type: object
+    properties:
+        collaboratorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
           type: string  
+        srcimg:
+          type: string 
+        institution:
+          type: string
+        sectionId:
+          type: string
+          format: uuid 
