@@ -815,6 +815,77 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    #-------update collaborator-------------------           
+    put:
+      x-security-privilege: 'collaborator:modify'
+      operationId: updateCollaborator
+      description: Modify Collaborator by Id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: collaborator
+          description: collaborator object
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              srcimg:
+                type: string 
+              institution:
+                type: string
+              section:
+                type: string
+                format: uuid
+      responses:
+        '200':
+          description: Collaborator edited successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//update collaborator-------------------
+     #-------delete collaborator------------------
+    delete:
+      x-security-privilege: 'collaborator:delete'
+      operationId: deleteCollaborator
+      description: Delete  collaborator by id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Collaborator successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+   #-------//delete collaborator------------------ 
   /sectioncount/{id}:
     x-swagger-router-controller: SectionController
     x-typeorm-repository-name: Section   
@@ -916,7 +987,7 @@ paths:
         default:
           description:  unsuccessful
           schema:
-            $ref: '#/definitions/ErrorResponse'  
+            $ref: '#/definitions/ErrorResponse' 
 #---------------definitions------------------
 definitions:
   ErrorResponse:
