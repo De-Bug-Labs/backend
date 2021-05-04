@@ -11,7 +11,7 @@ afterAll(async () => {
 
 test('create a new collaborator', async () => {
 	const section = new Section();
-	section.name = 'nutricion';
+	section.name = 'testSection';
 
 	const res = await getRepository(Section).save(section);
 	const checkSection = await getRepository(Section).findOne({
