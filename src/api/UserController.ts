@@ -1,9 +1,7 @@
 import { getRepository } from 'typeorm';
 import { User, Role } from '../orm/entities';
 import _ from 'lodash';
-
-// const userRepo = getManager().getRepository(User);
-// const roleRepo = getManager().getRepository(Role);
+import * as bcrypt from 'bcrypt';
 
 export const createUser = async (req, res): Promise<void> => {
 	const userRepo = getRepository(User);
@@ -12,14 +10,11 @@ export const createUser = async (req, res): Promise<void> => {
 	try {
 		let usr = new User();
 		usr = req.swagger.params.user.raw;
-		// usr.name = req.swagger.params.user.raw.name;
-		// usr.lastName = req.swagger.params.user.raw.lastName;
-		// usr.email = req.swagger.params.user.raw.email;
 		usr.password = req.swagger.params.user.raw.password;
 		const roleId = req.swagger.params.user.raw.roleId;
 		const role = await roleRepo.findByIds(roleId);
 		usr.roles = role;
-		console.info(usr);
+		await hashPassword(usr);
 		const insert = await userRepo.save(usr);
 		res.status(201).json(insert);
 	} catch (e) {
@@ -51,3 +46,7 @@ export const getUser = async (id: string): Promise<User | undefined> => {
 	const user = await getRepository(User).findOne(id);
 	return user;
 };
+
+const hashPassword = async (usr) => (usr.password = await bcrypt.hash(usr.password, 10));
+export const checkIfPasswordIsValid = async (usr, unencryptedPassword: string) =>
+	await bcrypt.compareSync(unencryptedPassword, usr.password);

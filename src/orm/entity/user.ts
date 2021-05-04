@@ -1,6 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BeforeInsert } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { Role } from '../entities';
-import * as bcrypt from 'bcrypt';
 
 @Entity()
 export class User {
@@ -22,13 +21,4 @@ export class User {
 	@ManyToMany(() => Role, (rol) => rol.id)
 	@JoinTable({ name: 'user_role' })
 	public roles!: Role[];
-
-	@BeforeInsert()
-	async hashPassword() {
-		this.password = await bcrypt.hash(this.password, 10);
-	}
-
-	async checkIfPasswordIsValid(unencryptedPassword: string) {
-		return await bcrypt.compareSync(unencryptedPassword, this.password);
-	}
 }
