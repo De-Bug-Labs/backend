@@ -28,5 +28,6 @@ test('create a new collaborator', async () => {
 			id: res.id,
 		},
 	});
+	delete user.password;
 	expect(checkUser).toMatchObject(user);
 });

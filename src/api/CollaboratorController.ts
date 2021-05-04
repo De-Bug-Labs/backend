@@ -36,7 +36,7 @@ export const consultCollaboratorPage = async (req, res): Promise<void> => {
 		const sectionId = req.swagger.params.id.raw;
 		const page = req.swagger.params.page.raw;
 		const pageSize = req.swagger.params.pageSize.raw;
-		const collaborators = await collaboratorRepo.findByIds(sectionId,{ take: pageSize, skip: (page - 1) * pageSize });
+		const collaborators = await collaboratorRepo.findByIds(sectionId, { take: pageSize, skip: (page - 1) * pageSize });
 		if (collaborators.length) res.status(200).json(collaborators);
 		else res.status(404).json({ message: 'index out of bound' });
 	} catch (e) {
