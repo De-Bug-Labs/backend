@@ -15,12 +15,6 @@ connection
 				{ firstName: 'Jane', lastName: 'Doe', age: 22 },
 			])
 			.execute();
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Role)
-			.values([{ name: 'prueba', description: 'rol de test' }])
-			.execute();
 	})
 	.then(() => {
 		console.info('Load initial data done');

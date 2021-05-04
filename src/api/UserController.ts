@@ -23,6 +23,16 @@ export const createUser = async (req, res): Promise<void> => {
 	}
 };
 
+export const getAllUsers = async (req, res): Promise<void> => {
+	const userRepo = getRepository(User);
+	try {
+		const usr = await userRepo.find();
+		res.status(200).json(usr);
+	} catch (e) {
+		res.status(404).json(e);
+	}
+};
+
 export const deleteUser = async (req, res): Promise<void> => {
 	res.status(501);
 };
