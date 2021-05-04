@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
-import config from '../../config/config';
 import { User } from '../orm/entities';
 import { checkIfPasswordIsValid, getUserPermissions } from './UserController';
 
@@ -12,7 +11,7 @@ export const login = async (req: Request, res: Response) => {
 	}
 
 	const userRepo = getRepository(User);
-	let user: User | undefined;
+	let user: User;
 	let permissions = Array<string>();
 	try {
 		user = await userRepo.findOneOrFail({
@@ -21,7 +20,8 @@ export const login = async (req: Request, res: Response) => {
 		});
 		permissions = await getUserPermissions(user.id);
 	} catch (e) {
-		user = undefined;
+		res.status(401).json({ message: 'Incorect username or password' }).send();
+		return;
 	}
 
 	if (!user || !(await checkIfPasswordIsValid(user, password))) {
@@ -34,8 +34,10 @@ export const login = async (req: Request, res: Response) => {
 		username: user.email,
 		permissions: permissions,
 	};
-	const token = jwt.sign(payload, config.jwtSecret, {
-		expiresIn: '1h',
+	const jwtSecret = process.env.JWT_SECRET || '';
+	const jwtExpire = process.env.JWT_EXPIRE || '30m';
+	const token = jwt.sign(payload, jwtSecret, {
+		expiresIn: jwtExpire,
 	});
 
 	res.send({ payload, token });
