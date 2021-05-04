@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -114,25 +114,7 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -168,30 +150,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,8 +178,8 @@
 <span class="cstat-no" title="statement not covered" >import express from 'express';</span>
 <span class="cstat-no" title="statement not covered" >import * as SwaggerExpress from 'swagger-express-mw';</span>
 <span class="cstat-no" title="statement not covered" >import * as SwaggerUi from 'swagger-ui-express';</span>
-<span class="cstat-no" title="statement not covered" >import * as _ from 'lodash';</span>
-<span class="cstat-no" title="statement not covered" >import md5 from 'blueimp-md5';</span>
+<span class="cstat-no" title="statement not covered" >import { checkJwt } from './middleware/checkJwt';</span>
+<span class="cstat-no" title="statement not covered" >import { checkRoles } from './middleware/checkRoles';</span>
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >app = express();</span>
 &nbsp;
@@ -242,34 +206,16 @@ const config = <span class="cstat-no" title="statement not covered" >{</span>
 	configDir: __dirname + '/../../config',
 	swaggerFile: __dirname + '/../../swagger.yaml',
 	swaggerSecurityHandlers: {
-		BasicAuth: function <span class="fstat-no" title="function not covered" >securityHandler(</span>req, res, cb) {
-			let userinfo;
-<span class="cstat-no" title="statement not covered" >			if (!_.isUndefined(req.headers.oidc_userinfo_json)) {</span>
-<span class="cstat-no" title="statement not covered" >				userinfo = JSON.parse(req.headers.oidc_userinfo_json);</span>
-<span class="cstat-no" title="statement not covered" >				if (req.cookies.impersonate) {</span>
-					const [impersonate, signFromHeaders] = <span class="cstat-no" title="statement not covered" >req.cookies.imersonate.split(';');</span>
-					const sign = <span class="cstat-no" title="statement not covered" >md5(`${impersonate};${userinfo.sub};${process.env.IMPERSONATE_SECRET}`);</span>
-<span class="cstat-no" title="statement not covered" >					if (signFromHeaders === sign) {</span>
-<span class="cstat-no" title="statement not covered" >						req.headers.loggedInUsr = userinfo.sub;</span>
-<span class="cstat-no" title="statement not covered" >						userinfo.sub = impersonate;</span>
-						// eslint-disable-next-line camelcase
-<span class="cstat-no" title="statement not covered" >						req.headers.oidc_userinfo_json = JSON.stringify(userinfo);</span>
-					}
-				}
-<span class="cstat-no" title="statement not covered" >				if (req.cookies.logInAs) {</span>
-<span class="cstat-no" title="statement not covered" >					userinfo.info.sub = req.cookies.logInAs;</span>
-					// eslint-disable-next-line camelcase
-<span class="cstat-no" title="statement not covered" >					req.headers.oidc_userinfo_json = JSON.stringify(userinfo);</span>
-				}
-			}
-<span class="cstat-no" title="statement not covered" >			if (_.isUndefined(userinfo)) {</span>
-<span class="cstat-no" title="statement not covered" >				cb();</span>
-			} else {
-				const privilege = <span class="cstat-no" title="statement not covered" >req.swagger.operation['x-security-privilege'];</span>
-<span class="cstat-no" title="statement not covered" >				console.info(privilege);</span>
-				//validator.validate(userinfo.sub, privilege, cb)
-			}
+		JWT: async function <span class="fstat-no" title="function not covered" >securityHandler(</span>req, res, cb) {
+<span class="cstat-no" title="statement not covered" >			checkJwt(req, res);</span>
+<span class="cstat-no" title="statement not covered" >			checkRoles(req, res, cb);</span>
 		},
+		// 	} else {
+		// 		const privilege = req.swagger.operation['x-security-privilege'];
+		// 		console.info(privilege);
+		// 		validator.validate(userinfo.sub, privilege, cb);
+		// 	}
+		// },
 	},
 };
 &nbsp;
@@ -289,7 +235,7 @@ const swaggerDoc = <span class="cstat-no" title="statement not covered" >YAML.lo
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon May 03 2021 02:17:42 GMT+0000 (Coordinated Universal Time)
+                at Tue May 04 2021 04:49:31 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
