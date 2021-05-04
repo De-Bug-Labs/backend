@@ -43,3 +43,23 @@ export const consultCollaboratorPage = async (req, res): Promise<void> => {
 		res.status(400).json(e);
 	}
 };
+
+export const deleteCollaborator = async (req, res): Promise<void> => {
+	try {
+		const collaborator = await collaboratorRepo.findOneOrFail(req.swagger.params.id.raw);
+		await collaboratorRepo.delete(req.swagger.params.id.raw);
+		res.status(200).json(collaborator);
+	} catch (e) {
+		res.status(410).json(e);
+	}
+};
+
+export const updateCollaborator = async (req, res): Promise<void> => {
+	try {
+		await collaboratorRepo.update(req.swagger.params.id.raw, req.swagger.params.collaborator.raw);
+		const usr = await collaboratorRepo.findOneOrFail(req.swagger.params.id.raw);
+		res.status(200).json(usr);
+	} catch (e) {
+		res.status(404).json(e);
+	}
+};
