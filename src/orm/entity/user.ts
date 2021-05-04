@@ -4,7 +4,7 @@ import { Role } from '../entities';
 @Entity()
 export class User {
 	@PrimaryGeneratedColumn('uuid')
-	public id!: number;
+	public id!: string;
 
 	@Column({ type: 'varchar', nullable: false, unique: true })
 	public email!: string;
@@ -16,7 +16,7 @@ export class User {
 	public lastName!: string;
 
 	@Column({ type: 'varchar', nullable: false, select: false })
-	public password!: string;
+	public password?: string;
 
 	@ManyToMany(() => Role, (rol) => rol.id)
 	@JoinTable({ name: 'user_role' })

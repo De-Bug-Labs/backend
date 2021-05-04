@@ -4,7 +4,7 @@ import { Staff } from '../entities';
 @Entity()
 export class Department {
 	@PrimaryGeneratedColumn('uuid')
-	public id!: number;
+	public id!: string;
 
 	@Column({ type: 'varchar', nullable: false })
 	public name!: string;

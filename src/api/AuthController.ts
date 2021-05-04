@@ -3,73 +3,74 @@ import { getRepository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
 import config from '../../config/config';
 import { User } from '../orm/entities';
-
+import { checkIfPasswordIsValid, getUserPermissions } from './UserController';
 
 export const login = async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    if(!(email && password)) {
-        res.status(200).send();
-    }
+	const { email, password } = req.body;
+	if (!(email && password)) {
+		res.status(200).send();
+	}
 
-    const userRepo = getRepository(User);
-    let user: User;
-    try {
-        user = await userRepo.findOneOrFail({ where:  { email }})
-    } catch(e) {
-        res.status(401).send();
-        return;
-    }
-    
-    if(!user.checkIfPasswordIsValid(password)) {
-        res.status(401).send();
-        return;
-    }
+	const userRepo = getRepository(User);
+	let user: User | undefined;
+	let permissions = Array<string>();
+	try {
+		user = await userRepo.findOneOrFail({
+			where: { email },
+			select: ['id', 'email', 'password'],
+		});
+		permissions = await getUserPermissions(user.id);
+	} catch (e) {
+		user = undefined;
+	}
 
-    const token = jwt.sign(
-        { 
-            userId: user.id,
-            username: user.email
-        },
-        config.jwtSecret,
-        {
-            expiresIn: '1h'
-        }
-    );
+	if (!user || !(await checkIfPasswordIsValid(user, password))) {
+		res.status(401).json({ message: 'Incorect username or password' }).send();
+		return;
+	}
 
-    res.send(token);
-}
+	const payload = {
+		userId: user.id,
+		username: user.email,
+		permissions: permissions,
+	};
+	const token = jwt.sign(payload, config.jwtSecret, {
+		expiresIn: '1h',
+	});
 
+	res.send({ payload, token });
+};
 
-export const logout = async (req: Request, res: Response) => {
-    res.locals.jwtPayload
+// !Cant logout on JWT
+// export const logout = async (req: Request, res: Response) => {
+// 	res.locals.jwtPayload;
 
-    res.send(token);
-}
+// 	res.send(token);
+// };
 
 export const changePassword = async (req: Request, res: Response) => {
-    const id = res.locals.jwtPayload.userId;
+	const id = res.locals.jwtPayload.userId;
 
-    const { oldPass, newPass } = req.body;
-    if( !(oldPass && newPass) ) {
-        res.status(400).send();
-        return;
-    }
-    const userRepository = getRepository(User);
-    let user: User;
+	const { oldPass, newPass } = req.body;
+	if (!(oldPass && newPass)) {
+		res.status(400).send();
+		return;
+	}
+	const userRepository = getRepository(User);
+	let user: User;
 
-    
-    try {
-        user = await userRepository.findOneOrFail(id);
-    } catch (id) {
-        res.status(401).send();
-        return;
-    }
-    
-    if(!(user.checkIfPasswordIsValid(oldPass))) {
-        res.status(400).send();
-        return;         
-    }
-    user.password = newPass;
-    userRepository.save(user);
-    res.status(204).send();
-}
+	try {
+		user = await userRepository.findOneOrFail(id);
+	} catch (id) {
+		res.status(401).send();
+		return;
+	}
+
+	if (!checkIfPasswordIsValid(user, oldPass)) {
+		res.status(400).send();
+		return;
+	}
+	user.password = newPass;
+	userRepository.save(user);
+	res.status(204).send();
+};

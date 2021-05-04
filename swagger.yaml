@@ -14,7 +14,7 @@ produces:
 securityDefinitions:
   JWT: 
     type: apiKey
-    in: query
+    in: header
     name: auth
 security:
   - JWT: []
@@ -373,6 +373,7 @@ paths:
     x-swagger-router-controller: AuthController
     x-typeorm-repository-name: User
     post:
+      x-security-privilege: 
       operationId: login
       description: login to account
       tags:
