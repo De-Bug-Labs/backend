@@ -31,7 +31,7 @@ export const login = async (req: Request, res: Response) => {
 
 	const payload = {
 		userId: user.id,
-		username: user.email,
+		email: user.email,
 		permissions: permissions,
 	};
 	const jwtSecret = process.env.JWT_SECRET || '';
