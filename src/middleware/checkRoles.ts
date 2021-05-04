@@ -6,6 +6,6 @@ export const checkRoles = async (req, res, next: NextFunction) => {
 	if (!permission || userPermissions.indexOf(permission) !== -1) {
 		next();
 	} else {
-		res.status(401).send;
+		res.status(401).send();
 	}
 };
