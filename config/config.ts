@@ -1,8 +1,9 @@
 import * as dotenv from 'dotenv';  
 dotenv.config();
 
-const wl: Array<string | undefined> = (process.env.CORS_WHITELIST || '').split(',');
+const wl: Array<string | undefined | null> = (process.env.CORS_WHITELIST || '').split(',');
 wl.push(undefined);
+wl.push(null);
 
 export default {
     guestPermissions: [
