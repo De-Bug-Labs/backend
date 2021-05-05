@@ -1,23 +1,30 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+import config from '../../config/config';
 
-export const checkJwt = (req: Request, res: Response) => {
-	const token = <string>req.body.auth;
+export const checkJwt = (req: Request, res: Response): boolean => {
+	let token = <string>req.headers.authorization;
 	const jwtSecret = process.env.JWT_SECRET || '';
-	const jwtExpire = process.env.JWT_EXPIRE || '30m';
+	const jwtExpire = process.env.JWT_EXPIRE || '5m';
 
 	if (token) {
 		try {
-			const jwtPayload = jwt.verify(token, jwtSecret);
+			token = token.replace('Bearer ', '');
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const jwtPayload: any = jwt.verify(token, jwtSecret);
 			res.locals.jwtPayload = jwtPayload;
-			const newToken = jwt.sign(jwtPayload, jwtSecret, { expiresIn: jwtExpire });
+			const { id, email, permissions } = jwtPayload;
+			const newToken = jwt.sign({ id, email, permissions }, jwtSecret, { expiresIn: jwtExpire });
 			res.setHeader('token', newToken);
 			res.cookie('token', newToken);
 		} catch (e) {
-			res.status(401).send();
-			return;
+			res.status(401).json(e).send();
+			return false;
 		}
 	} else {
-		res.locals.jwtPayload = { permissions: [] };
+		res.locals.jwtPayload = {
+			permissions: config.guestPermissions,
+		};
 	}
+	return true;
 };

@@ -10,11 +10,10 @@ export const createUser = async (req, res): Promise<void> => {
 	try {
 		let usr = new User();
 		usr = req.swagger.params.user.raw;
-		usr.password = req.swagger.params.user.raw.password;
+		usr.password = await hashPassword(req.swagger.params.user.raw.password);
 		const roleId = req.swagger.params.user.raw.roleId;
 		const role = await roleRepo.findByIds(roleId);
 		usr.roles = role;
-		await hashPassword(usr);
 		const insert = await userRepo.save(usr);
 		res.status(201).json(insert);
 	} catch (e) {
@@ -57,7 +56,7 @@ export const getUser = async (id: string): Promise<User | undefined> => {
 	return user;
 };
 
-const hashPassword = async (usr: User) => (usr.password = await bcrypt.hash(usr.password, 10));
+export const hashPassword = async (pwd: string) => await bcrypt.hash(pwd, 10);
 export const checkIfPasswordIsValid = async (usr: User, unencryptedPassword: string): Promise<boolean> => {
 	const res = await bcrypt.compare(unencryptedPassword, usr.password);
 	return res === true;
