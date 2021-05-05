@@ -17,7 +17,7 @@ test('create a new collaborator', async () => {
 	user.password = '234jjjsdfk234';
 	user.roles = await getRepository(Role).find({
 		where: {
-			name: 'testRol',
+			name: 'Administrador',
 		},
 	});
 
@@ -28,5 +28,6 @@ test('create a new collaborator', async () => {
 			id: res.id,
 		},
 	});
+	delete user.password;
 	expect(checkUser).toMatchObject(user);
 });

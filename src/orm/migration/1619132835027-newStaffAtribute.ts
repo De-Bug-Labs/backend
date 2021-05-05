@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateFromUML1618960329084 implements MigrationInterface {
-	name = 'CreateFromUML1618960329084';
+export class newStaffAtribute1619132835027 implements MigrationInterface {
+	name = 'newStaffAtribute1619132835027';
 
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.query(
@@ -12,6 +12,9 @@ export class CreateFromUML1618960329084 implements MigrationInterface {
 		);
 		await queryRunner.query(
 			'CREATE TABLE "public"."collaborator" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "description" character varying NOT NULL, "srcimg" character varying NOT NULL, "institution" character varying NOT NULL, "sectionId" uuid, CONSTRAINT "PK_1c5cd83154da82f6ad955fb67e1" PRIMARY KEY ("id"))',
+		);
+		await queryRunner.query(
+			'CREATE TABLE "public"."example_user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "firstName" character varying NOT NULL, "lastName" character varying NOT NULL, "age" integer NOT NULL, CONSTRAINT "PK_2673ead44b59f956d2274522ac0" PRIMARY KEY ("id"))',
 		);
 		await queryRunner.query(
 			'CREATE TABLE "public"."donation_settings" ("date" TIMESTAMP WITH TIME ZONE NOT NULL, "limit" integer NOT NULL, CONSTRAINT "PK_1ee69e5547778d8709dda108325" PRIMARY KEY ("date"))',
@@ -26,7 +29,7 @@ export class CreateFromUML1618960329084 implements MigrationInterface {
 			'CREATE TABLE "public"."permission" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "description" character varying NOT NULL, CONSTRAINT "PK_5fdbe810f27ad2158d241b56b76" PRIMARY KEY ("id"))',
 		);
 		await queryRunner.query(
-			'CREATE TABLE "public"."staff" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "email" character varying NOT NULL, CONSTRAINT "UQ_1ffedaa40d577e985ee601915e2" UNIQUE ("email"), CONSTRAINT "PK_c7879e4c2a09b630716078ee54c" PRIMARY KEY ("id"))',
+			'CREATE TABLE "public"."staff" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "email" character varying NOT NULL, "name" character varying NOT NULL, CONSTRAINT "UQ_1ffedaa40d577e985ee601915e2" UNIQUE ("email"), CONSTRAINT "PK_c7879e4c2a09b630716078ee54c" PRIMARY KEY ("id"))',
 		);
 		await queryRunner.query(
 			'CREATE TABLE "public"."post_register" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "email" character varying NOT NULL, "phone" character varying NOT NULL, "description" character varying NOT NULL, "date" TIMESTAMP WITH TIME ZONE NOT NULL, "staffId" uuid, CONSTRAINT "PK_c977229da114bdbe772e2617626" PRIMARY KEY ("id"))',
@@ -112,6 +115,7 @@ export class CreateFromUML1618960329084 implements MigrationInterface {
 		await queryRunner.query('DROP TABLE "public"."material"');
 		await queryRunner.query('DROP TABLE "public"."donation"');
 		await queryRunner.query('DROP TABLE "public"."donation_settings"');
+		await queryRunner.query('DROP TABLE "public"."example_user"');
 		await queryRunner.query('DROP TABLE "public"."collaborator"');
 		await queryRunner.query('DROP TABLE "public"."section"');
 		await queryRunner.query('DROP TABLE "public"."calendar"');

@@ -12,3 +12,4 @@ export * from './entity/section';
 export * from './entity/staff';
 export * from './entity/user';
 export * from './entity/view';
+export * from './entity/information';

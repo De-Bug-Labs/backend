@@ -12,10 +12,12 @@ consumes:
 produces:
   - application/json
 securityDefinitions:
-  BasicAuth:
-    type: basic
+  JWT: 
+    type: apiKey
+    in: header
+    name: auth
 security:
-  - BasicAuth: []
+  - JWT: []
 parameters: 
   pageParam:
     name: page
@@ -144,8 +146,871 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-  #-------//Example Endpoints-------------------
-
+   #-------//end example endpoints-------------------
+   #-------register email form-----------------------
+  /mail:
+    x-swagger-router-controller: EmailController
+    x-typeorm-repository-name: Staff
+    post:
+      x-security-privilege: 'mail:write'
+      operationId: createRegisterEmail
+      description: Test the example endpoint
+      tags:
+        - mail
+      parameters:
+        - name: postRegister
+          in: body
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              departmentId:
+                type: string
+                format: uuid
+                description: 'ID of the specialist that will receive the email'
+              name:
+                type: string
+                description: 'Name of the person who is going to send the email'
+              email:
+                type: string 
+                description: 'Email of the person who is sending the emai'
+              phone:
+                type: string
+                description: 'Phone of the person who is sendind the emai'
+              description:
+                type: string  
+                description: 'Description of the email'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulMail'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #----------//register email form------------
+    #----------Create new staff member----------
+  /staff:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    post:
+      x-security-privilege: 'staff:write'
+      operationId: createStaff
+      description: Test the example endpoint
+      tags:
+        - staff
+      parameters:
+        - name: staff
+          in: body
+          required: true
+          description: The staff to create.
+          schema:
+            type: object
+            properties:
+              departmentId:
+                type: array
+                description: 'ID of the department of the staff'
+                items:
+                  type: string
+                  format: uuid
+              name:
+                type: string
+                description: 'Name of the staff'
+              email:
+                type: string 
+                description: 'Email of the staff'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaff
+      description: consult staff by pagination
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//create new staff member----------
+    #---------------Delete staff member--------------
+    delete:
+      x-security-privilege: 'staff:delete'
+      operationId: deleteStaff
+      description: Delete an staff member by id
+      tags:
+        - staff
+      parameters:
+        - name: staff
+          in: body
+          required: true
+          description: The staff to delete.
+          schema:
+            type: object
+            properties:
+              staffId:
+                type: string
+                format: uuid
+                description: 'id of the staff member'
+      responses:
+        '201':
+          description: staff successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: staff unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: staff unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//Delete staff member--------------
+    #----------Create new user----------
+  /user:
+    x-swagger-router-controller: UserController
+    x-typeorm-repository-name: User
+    post:
+      x-security-privilege: user:create
+      operationId: createUser
+      description: Create a new user
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              roleId:
+                type: array
+                description: 'ID of users role'
+                items:
+                  type: string
+                  format: uuid
+              name:
+                type: string
+                description: 'First name of the user'
+              lastName:
+                type: string
+                description: 'Last name of the user'
+              email:
+                type: string 
+                format: email
+                description: 'Email of the user'
+              password:
+                type: string
+                description: 'Password of the user'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+    #-------------//create new user----------
+    #-------------get all users----------
+    get:
+      x-security-privilege: 'user:get'
+      operationId: getAllUsers
+      description: Fetch all user
+      tags:
+        - user
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//get all users----------
+    #---------------Delete user--------------
+    delete:
+      x-security-privilege: 'user:delete'
+      operationId: deleteUser
+      description: Delete a user by id
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: The user to delete.
+          schema:
+            type: object
+            properties:
+              userId:
+                type: string
+                format: uuid
+                description: 'id of the user'
+      responses:
+        '201':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'    
+    #-------------//Delete user--------------
+  /login:
+    x-swagger-router-controller: AuthController
+    x-typeorm-repository-name: User
+    post:
+      x-security-privilege: 'login'
+      operationId: login
+      description: login to account
+      tags:
+        - user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            properties: 
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+      responses:
+        '200':
+          description: Login successful
+        '400':
+          description: Wrong request
+        '401':
+          description: Wrong credentials
+    #---------------Print Information--------------
+  /information/{id}:
+    x-swagger-router-controller: InformationController
+    x-typeorm-repository-name: Information
+    get:
+      x-security-privilege: 'information:read'
+      operationId: readInformation
+      description: Find information by id and print
+      tags:
+        - information
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: information successfull
+          schema:
+            $ref: '#/definitions/SuccessfulInformation'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//Print Information--------------
+    #-------------update Information--------------
+    put:
+      x-security-privilege: 'information:modify'
+      operationId: updateInformation
+      description: Update information
+      tags:
+        - information
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: information
+          description: information object
+          in: body
+          schema:
+            $ref: '#/definitions/Information'
+      responses:
+        '200':
+          description: Information update successful
+          schema:
+            $ref: '#/definitions/InformationResponse'
+        '404':
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /staff/pages:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaffPages
+      description: consult staff
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              page:
+                type: number
+              pageSize:
+                type: number
+              staffCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-----------//update Information--------------
+  /staff/{id}:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    #-------------update personel information--------------
+    put:
+      x-security-privilege: 'staff:modify'
+      operationId: updateStaff
+      description: Update staff
+      tags:
+        - staff
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: staff
+          description: staff object
+          in: body
+          schema:
+            type: object
+            properties:
+              departmentId:
+                description: 'ID of the department of the staff'
+                type: string
+                format: uuid
+              name:
+                type: string
+                description: 'Name of the staff'
+              email:
+                type: string 
+                description: 'Email of the staff'
+      responses:
+        '200':
+          description: Staff Information update successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-----------//update staff information--------------    
+  /material:
+    x-swagger-router-controller: MaterialController
+    x-typeorm-repository-name: Material
+    #-------Create new material-----
+    post:
+      x-security-privilege: 'material:write'
+      operationId: createMaterial
+      description: Create  new material
+      tags:
+        - material
+      parameters:
+        - name: material
+          description: material
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: 'Name of the material'
+              link:
+                type: string 
+                description: 'Link of the material'
+      responses:
+        '201':
+          description: Material successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '400':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+            #-----------//Create new material-------------  
+    get:
+      x-security-privilege: 'material:read'
+      operationId: consultMaterial
+      description: consult material by pagination
+      tags:
+        - material
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /material/pages:
+    x-swagger-router-controller: MaterialController
+    x-typeorm-repository-name: Material
+    get:
+      x-security-privilege: 'material:read'
+      operationId: consultMaterialPages
+      description: consult material
+      tags:
+        - material
+      parameters:
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              materialsCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /material/{id}:
+    x-swagger-router-controller: MaterialController
+    x-typeorm-repository-name: Material
+    #----------------Delete material---------------
+    delete:
+      x-security-privilege: 'material:delete'
+      operationId: deleteMaterial
+      description: Delete an Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Material deleted successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//Delete material------------------- 
+     #-------update material-------------------  
+    put:
+      x-security-privilege: 'material:modify'
+      operationId: updateMaterial
+      description: Modify Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: material
+          description: material object
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: 'title of the material'
+              link:
+                type: string 
+                description: 'link of the material'
+      responses:
+        '200':
+          description: Material edited successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//update material-------------------  
+     #-------//read material-------------------   
+    get:
+      x-security-privilege: 'material:read'
+      operationId: readMaterial
+      description: read  Material by Id
+      tags:
+        - material
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Material read successful
+          schema:
+            $ref: '#/definitions/MaterialResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /department:
+    x-swagger-router-controller: DepartmentController
+    x-typeorm-repository-name: Department
+    #----------------consult departments---------------
+    get:
+      x-security-privilege: 'department:read'
+      operationId: consultDepartment
+      description: consult departments
+      tags:
+        - department
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/DepartmentResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /collaborator:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator
+    put:
+      x-security-privilege: 'collaborator:write'
+      operationId: createCollaborator
+      description: create new collaborator
+      tags:
+        - collaborator
+      parameters:
+        - name: collaborator
+          in: body
+          required: true
+          description: The collaborator to create.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              srcimg:
+                type: string 
+              institution:
+                type: string
+              sectionId:
+                type: string
+                format: uuid
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /collaborator/{id}:
+    x-swagger-router-controller: CollaboratorController
+    x-typeorm-repository-name: Collaborator   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultCollaborator
+      description: consult collaborator by id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------update collaborator-------------------           
+    put:
+      x-security-privilege: 'collaborator:modify'
+      operationId: updateCollaborator
+      description: Modify Collaborator by Id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: collaborator
+          description: collaborator object
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              srcimg:
+                type: string 
+              institution:
+                type: string
+              section:
+                type: string
+                format: uuid
+      responses:
+        '200':
+          description: Collaborator edited successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+     #-------//update collaborator-------------------
+     #-------delete collaborator------------------
+    delete:
+      x-security-privilege: 'collaborator:delete'
+      operationId: deleteCollaborator
+      description: Delete  collaborator by id
+      tags:
+        - collaborator
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Collaborator successful
+          schema:
+            $ref: '#/definitions/CollaboratorResponse'
+        '404':
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Collaborator unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+   #-------//delete collaborator------------------ 
+  /sectioncount/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultSectionPagination
+      description: consult section with number of collaborators
+      tags:
+        - section
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionCount:
+                type: number
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+#----------------------Section--------------------
+  /section:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSections
+      description: consult sections (3 sections total) with number of collaborators and pagination based on page size
+      tags:
+        - section
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionName:
+                type: string
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  /section/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: collaborator   
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSectionPage
+      description: return page of collaborators of selected section (3 sections)
+      tags:
+        - section
+      parameters:
+        - name: id
+          description: id of the section
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+        - $ref: '#/parameters/pageParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              sectionCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse' 
+#---------------definitions------------------
 definitions:
   ErrorResponse:
     required:
@@ -170,3 +1035,109 @@ definitions:
             type: string
             format: uuid
       - $ref: '#/definitions/ExampleUser'
+  Information:
+    type: object
+    properties:
+        mision:
+          type: string
+        instalation:
+          type: string
+        team:
+          type: string
+  InformationResponse:
+    allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+      - $ref: '#/definitions/Information'
+  SuccessfulMail:
+    type: object
+    properties:
+        id_post:
+          type: string
+          format: uuid
+        staffId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string  
+        phone:
+          type: string  
+        description:
+          type: string 
+        date:
+          type: string  
+  SuccessfulStaff:
+    type: object
+    properties:
+        StaffId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string 
+  SuccessfulUser:
+    type: object
+    properties:
+        userId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string  
+  SuccessfulInformation:
+    type: object
+    properties:
+        InformationId:
+          type: string
+          format: uuid
+        mission:
+          type: string
+        instalation:
+          type: string  
+        team:
+          type: string
+  MaterialResponse:  
+    type: object
+    properties:
+        materialId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        link:
+          type: string  
+  DepartmentResponse:  
+    type: object
+    properties:
+        departmentId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string 
+  CollaboratorResponse:  
+    type: object
+    properties:
+        collaboratorId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string  
+        srcimg:
+          type: string 
+        institution:
+          type: string
+        sectionId:
+          type: string
+          format: uuid 
