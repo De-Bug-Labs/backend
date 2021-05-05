@@ -15,6 +15,18 @@ process.on('unhandledRejection', (reason, p) => {
 	console.error(`Unhandled rejection at: ${util.inspect(p)} reason: ${reason}`);
 });
 
+const corsOptions = {
+	origin: (origin, cb) => {
+		console.log(origin);
+		console.log(config.corsWhiteList);
+		
+		if (config.corsWhiteList.indexOf(origin) !== -1) cb(null, true);
+		else cb(new Error('Not allowed by CORS'));
+	},
+	maxAge: process.env.CORS_MAX_AGE || 3600,
+};
+app.use(cors(corsOptions));
+app.options('*', cors());
 app.use(bodyParser.json.apply({ limit: 100_000_000, type: 'application/json' }));
 app.use(cookieParser());
 
