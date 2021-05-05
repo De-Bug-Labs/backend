@@ -5,6 +5,6 @@ export default {
     guestPermissions: [
         'login',
     ],
-    corsWhiteList: (process.env.CORS_WHITELIST || '').split(',');
+    corsWhiteList: (process.env.CORS_WHITELIST || '').split(','),
 }
 
