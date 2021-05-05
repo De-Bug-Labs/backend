@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+import config from '../../config/config';
 
 export const checkJwt = (req: Request, res: Response): boolean => {
 	let token = <string>req.headers.authorization;
@@ -8,7 +9,7 @@ export const checkJwt = (req: Request, res: Response): boolean => {
 
 	if (token) {
 		try {
-			token = token.replace('Bearer ','');
+			token = token.replace('Bearer ', '');
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const jwtPayload: any = jwt.verify(token, jwtSecret);
 			res.locals.jwtPayload = jwtPayload;
@@ -22,11 +23,8 @@ export const checkJwt = (req: Request, res: Response): boolean => {
 		}
 	} else {
 		res.locals.jwtPayload = {
-			permissions: [
-				'login',
-			],
+			permissions: config.guestPermissions,
 		};
 	}
 	return true;
 };
-
