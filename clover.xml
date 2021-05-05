@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1620173197356" clover="3.2.0">
-  <project timestamp="1620173197356" name="All files">
-    <metrics statements="481" coveredstatements="131" conditionals="46" coveredconditionals="0" methods="102" coveredmethods="21" elements="629" coveredelements="152" complexity="0" loc="481" ncloc="481" packages="5" files="31" classes="31"/>
+<coverage generated="1620175084647" clover="3.2.0">
+  <project timestamp="1620175084647" name="All files">
+    <metrics statements="482" coveredstatements="131" conditionals="46" coveredconditionals="0" methods="102" coveredmethods="21" elements="630" coveredelements="152" complexity="0" loc="482" ncloc="482" packages="5" files="31" classes="31"/>
     <package name="src">
       <metrics statements="36" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -376,27 +376,28 @@
       </file>
     </package>
     <package name="src.middleware">
-      <metrics statements="24" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="25" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="checkJwt.ts" path="/home/runner/work/backend/backend/src/middleware/checkJwt.ts">
-        <metrics statements="18" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="19" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="10" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
       </file>
       <file name="checkRoles.ts" path="/home/runner/work/backend/backend/src/middleware/checkRoles.ts">
         <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
