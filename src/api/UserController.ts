@@ -33,7 +33,7 @@ export const getAllUsers = async (req, res): Promise<void> => {
 };
 
 export const deleteUser = async (req, res): Promise<void> => {
-	res.status(501);
+	res.status(501).send();
 };
 
 export const getUserPermissions = async (id: string): Promise<string[]> => {

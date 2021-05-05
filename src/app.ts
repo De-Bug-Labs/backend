@@ -1,6 +1,4 @@
 import 'reflect-metadata';
-// import { createConnection, FileLogger } from 'typeorm';
-// import { ExampleUser } from './orm/entities';
 import * as YAML from 'yamljs';
 import express from 'express';
 import * as SwaggerExpress from 'swagger-express-mw';
@@ -17,6 +15,7 @@ const config = {
 	swaggerSecurityHandlers: {
 		JWT: async function securityHandler(req, res, cb) {
 			if (checkJwt(req, res)) checkRoles(req, res, cb);
+			// cb(); // ? uncomment to skip role checking
 		},
 	},
 };
