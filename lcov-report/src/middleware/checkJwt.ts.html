@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -80,7 +80,13 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -91,6 +97,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -102,29 +111,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from 'express';
 <span class="cstat-no" title="statement not covered" >import * as jwt from 'jsonwebtoken';</span>
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >checkJwt = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>r</span>eq: Request, res: Response) =&gt; {</span>
-	const token = &lt;string&gt;<span class="cstat-no" title="statement not covered" >req.body.auth;</span>
+export const <span class="cstat-no" title="statement not covered" >checkJwt = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>r</span>eq: Request, res: Response): boolean =&gt; {</span>
+	let token = &lt;string&gt;<span class="cstat-no" title="statement not covered" >req.headers.authorization;</span>
 	const jwtSecret = <span class="cstat-no" title="statement not covered" >process.env.JWT_SECRET || '';</span>
-	const jwtExpire = <span class="cstat-no" title="statement not covered" >process.env.JWT_EXPIRE || '30m';</span>
+	const jwtExpire = <span class="cstat-no" title="statement not covered" >process.env.JWT_EXPIRE || '5m';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >	if (token) {</span>
 <span class="cstat-no" title="statement not covered" >		try {</span>
-			const jwtPayload = <span class="cstat-no" title="statement not covered" >jwt.verify(token, jwtSecret);</span>
+<span class="cstat-no" title="statement not covered" >			token = token.replace('Bearer ', '');</span>
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const jwtPayload: any = <span class="cstat-no" title="statement not covered" >jwt.verify(token, jwtSecret);</span>
 <span class="cstat-no" title="statement not covered" >			res.locals.jwtPayload = jwtPayload;</span>
-			const newToken = <span class="cstat-no" title="statement not covered" >jwt.sign(jwtPayload, jwtSecret, { expiresIn: jwtExpire });</span>
+			const { id, email, permissions } = <span class="cstat-no" title="statement not covered" >jwtPayload;</span>
+			const newToken = <span class="cstat-no" title="statement not covered" >jwt.sign({ id, email, permissions }, jwtSecret, { expiresIn: jwtExpire });</span>
 <span class="cstat-no" title="statement not covered" >			res.setHeader('token', newToken);</span>
 <span class="cstat-no" title="statement not covered" >			res.cookie('token', newToken);</span>
 		} catch (e) {
-<span class="cstat-no" title="statement not covered" >			res.status(401).send();</span>
-<span class="cstat-no" title="statement not covered" >			return;</span>
+<span class="cstat-no" title="statement not covered" >			res.status(401).json(e).send();</span>
+<span class="cstat-no" title="statement not covered" >			return false;</span>
 		}
 	} else {
-<span class="cstat-no" title="statement not covered" >		res.locals.jwtPayload = { permissions: [] };</span>
+<span class="cstat-no" title="statement not covered" >		res.locals.jwtPayload = {</span>
+			permissions: ['login'],
+		};
 	}
+<span class="cstat-no" title="statement not covered" >	return true;</span>
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -133,7 +151,7 @@ export const <span class="cstat-no" title="statement not covered" >checkJwt = <s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue May 04 2021 21:51:43 GMT+0000 (Coordinated Universal Time)
+                at Wed May 05 2021 00:06:37 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
