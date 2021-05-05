@@ -39,6 +39,13 @@ export const login = async (req: Request, res: Response) => {
 	const token = jwt.sign(payload, jwtSecret, {
 		expiresIn: jwtExpire,
 	});
+	
+	res.setHeader('token', token);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const { exp } = <any>jwt.decode(token); 
+	const d = new Date(0);
+	d.setUTCSeconds(exp); // The 0 there is the key, which sets the date to the epoch
+	res.cookie('token', token, { expires: d, secure: false, sameSite: false });
 
 	res.send({ payload, token });
 };
