@@ -337,6 +337,27 @@ paths:
           schema:
             $ref: '#/definitions/SuccessfulUser'
     #-------------//create new user----------
+    #-------------get all users----------
+    get:
+      x-security-privilege: 'user:get'
+      operationId: getAllUsers
+      description: Fetch all user
+      tags:
+        - user
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    #-------------//get all users----------
     #---------------Delete user--------------
     delete:
       x-security-privilege: 'user:delete'
