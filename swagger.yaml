@@ -299,6 +299,7 @@ paths:
     x-swagger-router-controller: UserController
     x-typeorm-repository-name: User
     post:
+      x-security-privilege: user:create
       operationId: createUser
       description: Create a new user
       tags:
@@ -373,7 +374,7 @@ paths:
     x-swagger-router-controller: AuthController
     x-typeorm-repository-name: User
     post:
-      x-security-privilege: 
+      x-security-privilege: 'login'
       operationId: login
       description: login to account
       tags:
