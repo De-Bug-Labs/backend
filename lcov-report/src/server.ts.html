@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/25</span>
             </div>
         
             
@@ -84,7 +84,20 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -101,6 +114,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,6 +139,8 @@
 <span class="cstat-no" title="statement not covered" >import { createConnection } from 'typeorm';</span>
 <span class="cstat-no" title="statement not covered" >import * as util from 'util';</span>
 <span class="cstat-no" title="statement not covered" >import { app } from './app';</span>
+<span class="cstat-no" title="statement not covered" >import cors from 'cors';</span>
+<span class="cstat-no" title="statement not covered" >import config from '../config/config';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >dotenv.config();</span>
 &nbsp;
@@ -128,13 +152,22 @@
 <span class="cstat-no" title="statement not covered" >	console.error(`Unhandled rejection at: ${util.inspect(p)} reason: ${reason}`);</span>
 });
 &nbsp;
+const corsOptions = <span class="cstat-no" title="statement not covered" >{</span>
+	origin: <span class="fstat-no" title="function not covered" >(o</span>rigin, cb) =&gt; {
+<span class="cstat-no" title="statement not covered" >		if (config.corsWhiteList.indexOf(origin) !== -1) <span class="cstat-no" title="statement not covered" >cb(null, true);</span></span>
+		else <span class="cstat-no" title="statement not covered" >cb(new Error('Not allowed by CORS'));</span>
+	},
+	maxAge: process.env.CORS_MAX_AGE || 3600,
+};
+<span class="cstat-no" title="statement not covered" >app.use(cors(corsOptions));</span>
+<span class="cstat-no" title="statement not covered" >app.options('*', cors());</span>
 <span class="cstat-no" title="statement not covered" >app.use(bodyParser.json.apply({ limit: 100_000_000, type: 'application/json' }));</span>
 <span class="cstat-no" title="statement not covered" >app.use(cookieParser());</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >createConnection()</span>
 	.then(<span class="fstat-no" title="function not covered" >async () =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >		app.listen(process.env.APP_PORT, <span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			console.info('App is running at http://localhost:%d', process.env.APP_PORT);</span>
+<span class="cstat-no" title="statement not covered" >		app.listen(process.env.APP_PORT || 5000, <span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+<span class="cstat-no" title="statement not covered" >			console.info('App is running at http://localhost:%d', process.env.APP_PORT || 5000);</span>
 		});
 	})
 	.catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >console.error('TypeORM connection error: ', error))</span>;
@@ -145,7 +178,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed May 05 2021 00:38:04 GMT+0000 (Coordinated Universal Time)
+                at Wed May 05 2021 02:28:32 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
