@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>0/56</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/39</span>
+                <span class='fraction'>0/45</span>
             </div>
         
             
@@ -121,7 +121,16 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -175,13 +184,22 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,17 +254,26 @@ export const <span class="cstat-no" title="statement not covered" >consultStaff 
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >consultStaffPages = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		const page = <span class="cstat-no" title="statement not covered" >req.swagger.params.page.raw;</span>
 		const pageSize = <span class="cstat-no" title="statement not covered" >req.swagger.params.pageSize.raw;</span>
 		const staffs = <span class="cstat-no" title="statement not covered" >await staffRepo.count();</span>
 <span class="cstat-no" title="statement not covered" >		res.status(200).json({</span>
-			page: page,
 			pageSize: pageSize,
 			staffsCount: staffs,
 			pageCount: Math.ceil(staffs / pageSize),
 		});
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		res.status(400).json(e);</span>
+	}
+};
+&nbsp;
+export const <span class="cstat-no" title="statement not covered" >updateStaff = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
+<span class="cstat-no" title="statement not covered" >	try {</span>
+<span class="cstat-no" title="statement not covered" >		await staffRepo.update(req.swagger.params.id.raw, req.swagger.params.staff.raw);</span>
+		const staff = <span class="cstat-no" title="statement not covered" >await staffRepo.findOneOrFail(req.swagger.params.id.raw);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(200).json(staff);</span>
+	} catch (e) {
+<span class="cstat-no" title="statement not covered" >		console.info(e);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(404).json(e);</span>
 	}
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -256,7 +283,7 @@ export const <span class="cstat-no" title="statement not covered" >consultStaffP
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed May 05 2021 15:59:54 GMT+0000 (Coordinated Universal Time)
+                at Thu May 06 2021 18:40:11 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
