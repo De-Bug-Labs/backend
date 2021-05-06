@@ -37,8 +37,13 @@ export const consultSectionPage = async (req, res): Promise<void> => {
 export const consultSectionPagination = async (req, res): Promise<void> => {
 	try {
 		const sectionId = req.swagger.params.id.raw;
+		const pageSize = req.swagger.params.pageSize.raw;
 		const sectionCount = await collaboratorRepo.count({ where: { section: sectionId }, relations: ['section'] });
-		res.status(200).json(sectionCount);
+		res.status(200).json({
+			sectionId: sectionId,
+			sectionCount: sectionCount,
+			sectionPages: sectionCount / pageSize 
+		});
 	} catch (e) {
 		console.info(e);
 		res.status(400).json(e);
