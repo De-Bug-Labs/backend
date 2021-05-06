@@ -71,3 +71,4 @@ export const readMaterial = async (req, res): Promise<void> => {
 		res.status(404).json(e);
 	}
 };
+

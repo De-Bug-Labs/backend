@@ -32,6 +32,8 @@ parameters:
     required: false
     type: integer
 paths:
+
+  #---------Swagger-----------------------------
   /swagger:
     x-swagger-pipe: swagger_raw 
   #---------Example Endpoints-------------------
@@ -147,21 +149,21 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
    #-------//end example endpoints-------------------
-   #-------register email form-----------------------
+   #------------------Email--------------------------
   /mail:
     x-swagger-router-controller: EmailController
     x-typeorm-repository-name: Staff
     post:
       x-security-privilege: 'mail:write'
       operationId: createRegisterEmail
-      description: Test the example endpoint
+      description: register email in database with information from user and sends mail to user and staff
       tags:
         - mail
       parameters:
         - name: postRegister
           in: body
           required: true
-          description: The user to create.
+          description: Entity of database that will hold the mail information.
           schema:
             type: object
             properties:
@@ -183,33 +185,33 @@ paths:
                 description: 'Description of the email'
       responses:
         '201':
-          description: Test successful
+          description: succcesfull registration of mail content and mail sent to CC's
           schema:
             $ref: '#/definitions/SuccessfulMail'
         '404':
-          description: Test unsuccessful
+          description: Couldn't register mail in database
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: TCouldn't register mail in database
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #----------//register email form------------
-    #----------Create new staff member----------
+    #----------------//Email----------------------
+    #----------------Staff----------------------
   /staff:
     x-swagger-router-controller: StaffController
     x-typeorm-repository-name: Staff
     post:
       x-security-privilege: 'staff:write'
       operationId: createStaff
-      description: Test the example endpoint
+      description: Creates a new staff member for the postregister entity relation and register the staff information in the database
       tags:
         - staff
       parameters:
         - name: staff
           in: body
           required: true
-          description: The staff to create.
+          description: The staff entity to create.
           schema:
             type: object
             properties:
@@ -221,27 +223,27 @@ paths:
                   format: uuid
               name:
                 type: string
-                description: 'Name of the staff'
+                description: 'Name of the staff member to create e.g Carlos Santana'
               email:
                 type: string 
-                description: 'Email of the staff'
+                description: 'Email of the staff member to create e.g csantana@gmail.com'
       responses:
         '201':
-          description: Test successful
+          description: staff member succesfully created and registered in database
           schema:
             $ref: '#/definitions/SuccessfulStaff'
         '404':
-          description: Test unsuccessful
+          description: could not create staff member
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: could not create staff member
           schema:
             $ref: '#/definitions/ErrorResponse'
     get:
       x-security-privilege: 'staff:read'
       operationId: consultStaff
-      description: consult staff by pagination
+      description: consult staff members list with pagination, the pagination is defined with the maximum page size and the current page index
       tags:
         - staff
       parameters:
@@ -249,59 +251,57 @@ paths:
         - $ref: '#/parameters/pageSizeParam'
       responses:
         '200':
-          description: successful consult
+          description: successful consult of staff members
           schema:
             $ref: '#/definitions/SuccessfulStaff'
         '404':
-          description:  unsuccessful
+          description:  could not visualize staff members
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description:  unsuccessful
+          description:  could not visualize staff members
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-------------//create new staff member----------
-    #---------------Delete staff member--------------
     delete:
       x-security-privilege: 'staff:delete'
       operationId: deleteStaff
-      description: Delete an staff member by id
+      description: Delete an staff member fromn the database, id of staff must be provided
       tags:
         - staff
       parameters:
         - name: staff
           in: body
           required: true
-          description: The staff to delete.
+          description: The staff member to be deleted to delete.
           schema:
             type: object
             properties:
               staffId:
                 type: string
                 format: uuid
-                description: 'id of the staff member'
+                description: 'id of the staff member to be deleted'
       responses:
         '201':
-          description: staff successful
+          description: staff member succesfully deleted
           schema:
             $ref: '#/definitions/SuccessfulStaff'
         '404':
-          description: staff unsuccessful
+          description: could not delete staff member
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: staff unsuccessful
+          description: could not delete staff member
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-------------//Delete staff member--------------
-    #----------Create new user----------
+    #-----------------//Staff------------------------
+    #------------------User----------------------
   /user:
     x-swagger-router-controller: UserController
     x-typeorm-repository-name: User
     post:
       x-security-privilege: user:create
       operationId: createUser
-      description: Create a new user
+      description: Create a new user member and register in database
       tags:
         - user
       parameters:
@@ -333,36 +333,13 @@ paths:
                 description: 'Password of the user'
       responses:
         '201':
-          description: Test successful
+          description: User created successfully 
           schema:
             $ref: '#/definitions/SuccessfulUser'
-    #-------------//create new user----------
-    #-------------get all users----------
-    get:
-      x-security-privilege: 'user:get'
-      operationId: getAllUsers
-      description: Fetch all user
-      tags:
-        - user
-      responses:
-        '200':
-          description: Test successful
-          schema:
-            $ref: '#/definitions/SuccessfulUser'
-        '404':
-          description: Test unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description: Test unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-    #-------------//get all users----------
-    #---------------Delete user--------------
     delete:
       x-security-privilege: 'user:delete'
       operationId: deleteUser
-      description: Delete a user by id
+      description: Delete a user from database, id must be provided
       tags:
         - user
       parameters:
@@ -379,25 +356,26 @@ paths:
                 description: 'id of the user'
       responses:
         '201':
-          description: Test successful
+          description: user delete successful
           schema:
             $ref: '#/definitions/SuccessfulUser'
         '404':
-          description: Test unsuccessful
+          description: user delete unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: user delete
           schema:
             $ref: '#/definitions/ErrorResponse'    
-    #-------------//Delete user--------------
+    #-------------//User---------------------
+    #-------------Login----------------------
   /login:
     x-swagger-router-controller: AuthController
     x-typeorm-repository-name: User
     post:
       x-security-privilege: 'login'
       operationId: login
-      description: login to account
+      description: login to existing user account
       tags:
         - user
       parameters:
@@ -418,37 +396,33 @@ paths:
           description: Wrong request
         '401':
           description: Wrong credentials
-    #---------------Print Information--------------
-  /information/{id}:
+    #---------------//Login---------------
+    #---------------Information-----------
+  /information:
     x-swagger-router-controller: InformationController
     x-typeorm-repository-name: Information
     get:
       x-security-privilege: 'information:read'
       operationId: readInformation
-      description: Find information by id and print
+      description: prints information from database, 
       tags:
         - information
-      parameters:
-        - name: id
-          type: string
-          format: uuid
-          in: path
-          required: true
       responses:
         '200':
           description: information successfull
           schema:
             $ref: '#/definitions/SuccessfulInformation'
         '404':
-          description: Test unsuccessful
+          description: information unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Information unsuccessful
+          description: information unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-------------//Print Information--------------
-    #-------------update Information--------------
+  /information/{id}:
+    x-swagger-router-controller: InformationController
+    x-typeorm-repository-name: Information
     put:
       x-security-privilege: 'information:modify'
       operationId: updateInformation
@@ -479,17 +453,17 @@ paths:
           description: Information update unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+  #------------------Staff----------------------
   /staff/pages:
     x-swagger-router-controller: StaffController
     x-typeorm-repository-name: Staff
     get:
       x-security-privilege: 'staff:read'
       operationId: consultStaffPages
-      description: consult staff
+      description: consult count of staff members and number of pages required for pagination based on pagesize
       tags:
         - staff
       parameters:
-        - $ref: '#/parameters/pageParam'
         - $ref: '#/parameters/pageSizeParam'
       responses:
         '200':
@@ -497,8 +471,6 @@ paths:
           schema:
             type: object
             properties:
-              page:
-                type: number
               pageSize:
                 type: number
               staffCount: 
@@ -513,15 +485,13 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-----------//update Information--------------
   /staff/{id}:
     x-swagger-router-controller: StaffController
     x-typeorm-repository-name: Staff
-    #-------------update personel information--------------
     put:
       x-security-privilege: 'staff:modify'
       operationId: updateStaff
-      description: Update staff
+      description: Update staff member, id must be provided
       tags:
         - staff
       parameters:
@@ -559,20 +529,20 @@ paths:
           description: Information update unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-----------//update staff information--------------    
+    #-----------//Staff--------------------
+    #-----------Material-------------------    
   /material:
     x-swagger-router-controller: MaterialController
     x-typeorm-repository-name: Material
-    #-------Create new material-----
     post:
       x-security-privilege: 'material:write'
       operationId: createMaterial
-      description: Create  new material
+      description: Create new material and register in database
       tags:
         - material
       parameters:
         - name: material
-          description: material
+          description: material entity to be created
           in: body
           schema:
             type: object
@@ -585,22 +555,21 @@ paths:
                 description: 'Link of the material'
       responses:
         '201':
-          description: Material successful
+          description: Material creation successful
           schema:
             $ref: '#/definitions/MaterialResponse'
         '400':
-          description: Test unsuccessful
+          description: Material creation unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: Material creation unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-            #-----------//Create new material-------------  
     get:
       x-security-privilege: 'material:read'
       operationId: consultMaterial
-      description: consult material by pagination
+      description: consult material list by pagination
       tags:
         - material
       parameters:
@@ -612,11 +581,11 @@ paths:
           schema:
             $ref: '#/definitions/MaterialResponse'
         '404':
-          description:  unsuccessful
+          description:  unsuccessful consult
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description:  unsuccessful
+          description:  unsuccessful consult
           schema:
             $ref: '#/definitions/ErrorResponse'
   /material/pages:
@@ -625,7 +594,7 @@ paths:
     get:
       x-security-privilege: 'material:read'
       operationId: consultMaterialPages
-      description: consult material
+      description: consult count of materials and pages needed based on pagesize 
       tags:
         - material
       parameters:
@@ -653,11 +622,10 @@ paths:
   /material/{id}:
     x-swagger-router-controller: MaterialController
     x-typeorm-repository-name: Material
-    #----------------Delete material---------------
     delete:
       x-security-privilege: 'material:delete'
       operationId: deleteMaterial
-      description: Delete an Material by Id
+      description: Delete a Material, Id must be provided
       tags:
         - material
       parameters:
@@ -672,19 +640,17 @@ paths:
           schema:
             $ref: '#/definitions/MaterialResponse'
         '404':
-          description: Test unsuccessful
+          description: Material deleted unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: Material deleted unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//Delete material------------------- 
-     #-------update material-------------------  
     put:
       x-security-privilege: 'material:modify'
       operationId: updateMaterial
-      description: Modify Material by Id
+      description: Modify Material, Id must be provided
       tags:
         - material
       parameters:
@@ -707,23 +673,21 @@ paths:
                 description: 'link of the material'
       responses:
         '200':
-          description: Material edited successful
+          description: Material updated successful
           schema:
             $ref: '#/definitions/MaterialResponse'
         '404':
-          description: Test unsuccessful
+          description: Material updated unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: Material updated unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//update material-------------------  
-     #-------//read material-------------------   
     get:
       x-security-privilege: 'material:read'
       operationId: readMaterial
-      description: read  Material by Id
+      description: read Material by Id
       tags:
         - material
       parameters:
@@ -745,14 +709,14 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+  #------------------department---------------------
   /department:
     x-swagger-router-controller: DepartmentController
     x-typeorm-repository-name: Department
-    #----------------consult departments---------------
     get:
       x-security-privilege: 'department:read'
       operationId: consultDepartment
-      description: consult departments
+      description: consult department list
       tags:
         - department
       responses:
@@ -768,6 +732,8 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+  #---------------------//Department----------------
+  #---------------------Collaborator----------------
   /collaborator:
     x-swagger-router-controller: CollaboratorController
     x-typeorm-repository-name: Collaborator
@@ -802,11 +768,11 @@ paths:
           schema:
             $ref: '#/definitions/CollaboratorResponse'
         '404':
-          description: Test unsuccessful
+          description: unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
-          description: Test unsuccessful
+          description: unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'  
   /collaborator/{id}:
@@ -837,7 +803,6 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-------update collaborator-------------------           
     put:
       x-security-privilege: 'collaborator:modify'
       operationId: updateCollaborator
@@ -880,12 +845,10 @@ paths:
           description: Collaborator unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-     #-------//update collaborator-------------------
-     #-------delete collaborator------------------
     delete:
       x-security-privilege: 'collaborator:delete'
       operationId: deleteCollaborator
-      description: Delete  collaborator by id
+      description: Delete collaborator by id
       tags:
         - collaborator
       parameters:
@@ -907,42 +870,7 @@ paths:
           description: Collaborator unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-   #-------//delete collaborator------------------ 
-  /sectioncount/{id}:
-    x-swagger-router-controller: SectionController
-    x-typeorm-repository-name: Section   
-    get:
-      x-security-privilege: 'collaborator:read'
-      operationId: consultSectionPagination
-      description: consult section with number of collaborators
-      tags:
-        - section
-      parameters:
-        - name: id
-          type: string
-          format: uuid
-          in: path
-          required: true
-        - $ref: '#/parameters/pageSizeParam'
-      responses:
-        '200':
-          description: successful consult
-          schema:
-            type: object
-            properties:
-              sectionId:
-                type: string
-                format: uuid
-              sectionCount:
-                type: number
-        '404':
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+#----------------------//Collaborator-------------
 #----------------------Section--------------------
   /section:
     x-swagger-router-controller: SectionController
@@ -978,7 +906,7 @@ paths:
     get:
       x-security-privilege: 'section:read'
       operationId: consultSectionPage
-      description: return page of collaborators of selected section (3 sections)
+      description: return the page of collaborators of selected section (3 sections)
       tags:
         - section
       parameters:
@@ -1010,6 +938,45 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse' 
+  /sectioncount/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: Section   
+    get:
+      x-security-privilege: 'collaborator:read'
+      operationId: consultSectionPagination
+      description: consult section with number of collaborators on that section and number of pages needed based on pagesize
+      tags:
+        - section
+      parameters:
+        - name: id
+          description: Id of the section to consult
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              sectionId:
+                type: string
+                format: uuid
+              sectionCount:
+                type: number
+              sectionPages:
+                type: number
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+#---------------//Section--------------------
 #---------------definitions------------------
 definitions:
   ErrorResponse:
