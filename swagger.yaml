@@ -156,14 +156,14 @@ paths:
     post:
       x-security-privilege: 'mail:write'
       operationId: createRegisterEmail
-      description: Test the example endpoint
+      description: register email in database with information from user and sends mail to user and staff
       tags:
         - mail
       parameters:
         - name: postRegister
           in: body
           required: true
-          description: The user to create.
+          description: Entity of database that will hold the mail information.
           schema:
             type: object
             properties:
@@ -262,7 +262,6 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-    #-----------------//Staff------------------------
     delete:
       x-security-privilege: 'staff:delete'
       operationId: deleteStaff
@@ -294,6 +293,7 @@ paths:
           description: staff unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    #-----------------//Staff------------------------
     #------------------User----------------------
   /user:
     x-swagger-router-controller: UserController
