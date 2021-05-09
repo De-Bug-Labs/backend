@@ -49,16 +49,25 @@ export const consultStaff = async (req, res): Promise<void> => {
 
 export const consultStaffPages = async (req, res): Promise<void> => {
 	try {
-		const page = req.swagger.params.page.raw;
 		const pageSize = req.swagger.params.pageSize.raw;
 		const staffs = await staffRepo.count();
 		res.status(200).json({
-			page: page,
 			pageSize: pageSize,
 			staffsCount: staffs,
 			pageCount: Math.ceil(staffs / pageSize),
 		});
 	} catch (e) {
 		res.status(400).json(e);
+	}
+};
+
+export const updateStaff = async (req, res): Promise<void> => {
+	try {
+		await staffRepo.update(req.swagger.params.id.raw, req.swagger.params.staff.raw);
+		const staff = await staffRepo.findOneOrFail(req.swagger.params.id.raw);
+		res.status(200).json(staff);
+	} catch (e) {
+		console.info(e);
+		res.status(404).json(e);
 	}
 };
