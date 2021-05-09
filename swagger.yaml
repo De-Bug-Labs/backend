@@ -373,7 +373,7 @@ paths:
           schema:
             type: object
             properties:
-              userId:
+              id:
                 type: string
                 format: uuid
                 description: 'id of the user'

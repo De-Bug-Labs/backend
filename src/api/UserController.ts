@@ -33,7 +33,16 @@ export const getAllUsers = async (req, res): Promise<void> => {
 };
 
 export const deleteUser = async (req, res): Promise<void> => {
-	res.status(501).send();
+	const userRepo = getRepository(User);
+	try {
+		const id = req.swagger.params.user.raw.id;
+		const usr = await userRepo.findOneOrFail(id);
+		await userRepo.delete(id);
+		res.status(200).json(usr);
+	} catch (e) {
+		console.log(e);
+		res.status(410).json(e);
+	}
 };
 
 export const getUserPermissions = async (id: string): Promise<string[]> => {
