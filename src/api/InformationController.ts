@@ -8,7 +8,7 @@ const informationRepo = getManager().getRepository(Information);
 
 export const readInformation = async (req, res): Promise<void> => {
 	try {
-		const information = await informationRepo.find();
+		const information = await informationRepo.findOne();
 		res.status(200).json(information);
 	} catch (e) {
 		res.status(404).json(e);

@@ -8,6 +8,11 @@ wl.push(null);
 export default {
     guestPermissions: [
         'login',
+        'information:read',
+        'material:read',
+        'collaborator:read',
+        'section:read',
+        'collaborator:read',
     ],
     corsWhiteList: wl,
 }

@@ -65,6 +65,21 @@ export const getUser = async (id: string): Promise<User | undefined> => {
 	return user;
 };
 
+export const checkEmail = async (req, res): Promise<void> => {
+	
+	/* const userRepo = getRepository(User);
+	const usr = await userRepo.findOneOrFail(email); */
+	try {
+		const usr = await getRepository(User).findOne({
+			where: { email: req.swagger.params.email.raw }
+		});
+		res.status(200).json(!!usr);
+	} catch (error) {
+		console.error(error);
+		res.status(400).send();
+	}
+};
+
 export const hashPassword = async (pwd: string) => await bcrypt.hash(pwd, 10);
 export const checkIfPasswordIsValid = async (usr: User, unencryptedPassword: string): Promise<boolean> => {
 	const res = await bcrypt.compare(unencryptedPassword, usr.password);
