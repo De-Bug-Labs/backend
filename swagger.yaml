@@ -350,7 +350,7 @@ paths:
           schema:
             type: object
             properties:
-              userId:
+              id:
                 type: string
                 format: uuid
                 description: 'id of the user'
@@ -366,7 +366,54 @@ paths:
         default:
           description: user delete
           schema:
-            $ref: '#/definitions/ErrorResponse'    
+            $ref: '#/definitions/ErrorResponse' 
+    get:
+      x-security-privilege: 'user:getAll'
+      operationId: getAllUsers
+      description: Fetch all user
+      tags:
+        - user
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /user/{email}:
+    x-swagger-router-controller: UserController
+    x-typeorm-repository-name: User
+    get:
+      x-security-privilege: 'user:getMail'
+      operationId: checkEmail
+      description: check if there exists an Email
+      tags:
+        - user
+      parameters:
+        - name: email
+          type: string
+          format: email
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/SuccessfulUser'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     #-------------//User---------------------
     #-------------Login----------------------
   /login:

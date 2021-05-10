@@ -33,7 +33,16 @@ export const getAllUsers = async (req, res): Promise<void> => {
 };
 
 export const deleteUser = async (req, res): Promise<void> => {
-	res.status(501).send();
+	const userRepo = getRepository(User);
+	try {
+		const id = req.swagger.params.user.raw.id;
+		const usr = await userRepo.findOneOrFail(id);
+		await userRepo.delete(id);
+		res.status(200).json(usr);
+	} catch (e) {
+		console.log(e);
+		res.status(410).json(e);
+	}
 };
 
 export const getUserPermissions = async (id: string): Promise<string[]> => {
@@ -54,6 +63,21 @@ export const getUserPermissions = async (id: string): Promise<string[]> => {
 export const getUser = async (id: string): Promise<User | undefined> => {
 	const user = await getRepository(User).findOne(id);
 	return user;
+};
+
+export const checkEmail = async (req, res): Promise<void> => {
+	
+	/* const userRepo = getRepository(User);
+	const usr = await userRepo.findOneOrFail(email); */
+	try {
+		const usr = await getRepository(User).findOne({
+			where: { email: req.swagger.params.email.raw }
+		});
+		res.status(200).json(!!usr);
+	} catch (error) {
+		console.error(error);
+		res.status(400).send();
+	}
 };
 
 export const hashPassword = async (pwd: string) => await bcrypt.hash(pwd, 10);

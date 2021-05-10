@@ -42,7 +42,7 @@ export const consultSectionPagination = async (req, res): Promise<void> => {
 		res.status(200).json({
 			sectionId: sectionId,
 			sectionCount: sectionCount,
-			sectionPages: sectionCount / pageSize 
+			sectionPages: sectionCount / pageSize,
 		});
 	} catch (e) {
 		console.info(e);

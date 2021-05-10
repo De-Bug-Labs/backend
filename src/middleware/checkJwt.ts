@@ -3,9 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import config from '../../config/config';
 
 export const checkJwt = (req: Request, res: Response): boolean => {
-	let token = <string>req.headers.authorization ||
-				<string>req.cookies.token ||
-				<string>req.headers.token;
+	let token = <string>req.headers.authorization || <string>req.cookies.token || <string>req.headers.token;
 	const jwtSecret = process.env.JWT_SECRET || '';
 	const jwtExpire = process.env.JWT_EXPIRE || '5m';
 

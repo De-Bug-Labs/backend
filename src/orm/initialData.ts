@@ -45,6 +45,9 @@ connection
 			{ name: 'colaborator:read', description: '' },
 			{ name: 'section:read', description: '' },
 			{ name: 'user:create', description: '' },
+			{ name: 'user:getAll', description: '' },
+			{ name: 'user:getMail', description: '' },
+			{ name: 'user:delete', description: '' },
 		];
 
 		await con.getRepository(Permission).save(swaggerPermissions);

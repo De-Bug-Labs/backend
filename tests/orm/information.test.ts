@@ -12,9 +12,10 @@ afterAll(async () => {
 
 test('Register institutional information', async () => {
 	const information = new Information();
-	information.mision = 'mi mision';
-	information.instalation = 'mi instalacion';
-	information.team = 'mi equipo';
+	information.mision =
+		'Brindar a nuestros beneficiarios un servicio integral humano, personalizado y de calidad, con una metodología activa, buscando la integración y la participación del adulto mayor con sus familiares fortaleciendo la relación, generando redes de comunicación y solidaridad.';
+	information.instalation = 'COMPUTADORAS, IMPRESORA, COPIADORA, TABLETS';
+	information.team = 'Contamos con un equipo altamente capacitado, conformado por especialistas, compañías y voluntarios.';
 	const res = await getRepository(Information).save(information);
 	const checkInformation = await getRepository(Information).findOne({
 		where: {
