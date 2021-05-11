@@ -1066,6 +1066,52 @@ paths:
           description: unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'  
+    get:
+      x-security-privilege: 'calendar:read'
+      operationId: consultCalendar
+      description: consult calendar with pagination
+      tags:
+        - calendar
+      parameters:
+        - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/CalendarResponse'
+        '404':
+          description: unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'            
+  /calendar/pages:
+    x-swagger-router-controller: CalendarController
+    x-typeorm-repository-name: Calendar
+    get:
+      x-security-privilege: 'calendar:read'
+      operationId: consultCalendarPages
+      description: consult calendar with pagination
+      tags:
+        - calendar
+      parameters:
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful
+          schema:
+            $ref: '#/definitions/CalendarResponse'
+        '404':
+          description: unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'            
   
 #---------------//Calendar--------------------
 #---------------definitions------------------
