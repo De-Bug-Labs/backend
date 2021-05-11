@@ -1024,6 +1024,50 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
 #---------------//Section--------------------
+#---------------Callendar--------------------
+  /calendar:
+    x-swagger-router-controller: CalendarController
+    x-typeorm-repository-name: Calendar
+    post:
+      x-security-privilege: 'calendar:create'
+      operationId: createCalendar
+      description: create new event in calendar
+      tags:
+        - calendar
+      parameters:
+        - name: calendar
+          in: body
+          required: true
+          description: the event to create
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              srcimg:
+                type: string
+              description:
+                type: string 
+              address:
+                type: string
+              title:
+                type: string
+      responses:
+        '201':
+          description: successful
+          schema:
+            $ref: '#/definitions/CalendarResponse'
+        '404':
+          description: unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'  
+  
+#---------------//Calendar--------------------
 #---------------definitions------------------
 definitions:
   ErrorResponse:
@@ -1154,4 +1198,20 @@ definitions:
           type: string
         sectionId:
           type: string
-          format: uuid 
+          format: uuid
+  CalendarResponse:  
+    type: object
+    properties:
+        calendarId:
+          type: string
+          format: uuid
+        date:
+          type: string
+        srcimg:
+           type: string
+        description:
+           type: string 
+        address:
+           type: string
+        title:
+           type: string

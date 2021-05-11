@@ -48,6 +48,10 @@ connection
 			{ name: 'user:getAll', description: '' },
 			{ name: 'user:getMail', description: '' },
 			{ name: 'user:delete', description: '' },
+			{ name: 'calendar:read', description: '' },
+			{ name: 'calendar:write', description: '' },
+			{ name: 'calendar:delete', description: '' },
+			{ name: 'calendar:modify', description: '' },
 		];
 
 		await con.getRepository(Permission).save(swaggerPermissions);

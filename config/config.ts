@@ -13,7 +13,14 @@ export default {
         'collaborator:read',
         'section:read',
         'collaborator:read',
+        'calendar:read',
     ],
     corsWhiteList: wl,
 }
+
+
+
+
+
+
 
