@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1620694476690" clover="3.2.0">
-  <project timestamp="1620694476690" name="All files">
-    <metrics statements="537" coveredstatements="131" conditionals="59" coveredconditionals="0" methods="111" coveredmethods="21" elements="707" coveredelements="152" complexity="0" loc="537" ncloc="537" packages="5" files="32" classes="32"/>
+<coverage generated="1620695926217" clover="3.2.0">
+  <project timestamp="1620695926217" name="All files">
+    <metrics statements="551" coveredstatements="131" conditionals="61" coveredconditionals="0" methods="115" coveredmethods="21" elements="727" coveredelements="152" complexity="0" loc="551" ncloc="551" packages="5" files="32" classes="32"/>
     <package name="src">
       <metrics statements="43" coveredstatements="2" conditionals="16" coveredconditionals="0" methods="10" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -58,7 +58,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="337" coveredstatements="0" conditionals="28" coveredconditionals="0" methods="78" coveredmethods="0"/>
+      <metrics statements="351" coveredstatements="0" conditionals="30" coveredconditionals="0" methods="82" coveredmethods="0"/>
       <file name="AuthController.ts" path="/home/runner/work/backend/backend/src/api/AuthController.ts">
         <metrics statements="45" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
@@ -108,7 +108,7 @@
         <line num="84" count="0" type="stmt"/>
       </file>
       <file name="CalendarController.ts" path="/home/runner/work/backend/backend/src/api/CalendarController.ts">
-        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="28" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -123,6 +123,20 @@
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
       </file>
       <file name="CollaboratorController.ts" path="/home/runner/work/backend/backend/src/api/CollaboratorController.ts">
         <metrics statements="42" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
