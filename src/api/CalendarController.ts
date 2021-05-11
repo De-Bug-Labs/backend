@@ -8,7 +8,7 @@ const calendarRepo = getManager().getRepository(Calendar);
 
 export const createCalendar = async (req, res): Promise<void> => {
 	try {
-		let festival = new Calendar();
+		const festival = new Calendar();
 		festival.date = req.swagger.params.calendar.raw.date;
         festival.srcimg = req.swagger.params.calendar.raw.srcimg;
         festival.description = req.swagger.params.calendar.raw.description;
