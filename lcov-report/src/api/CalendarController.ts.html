@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/api/InformationController.ts</title>
+    <title>Code coverage report for src/api/CalendarController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/api</a> InformationController.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/api</a> CalendarController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -79,12 +79,7 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -96,46 +91,36 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { getManager } from 'typeorm';</span>
-<span class="cstat-no" title="statement not covered" >import { Information } from '../orm/entities';</span>
+<span class="cstat-no" title="statement not covered" >import { Calendar } from '../orm/entities';</span>
 &nbsp;
-const informationRepo = <span class="cstat-no" title="statement not covered" >getManager().getRepository(Information);</span>
+const calendarRepo = <span class="cstat-no" title="statement not covered" >getManager().getRepository(Calendar);</span>
 &nbsp;
 //Example of CRUD (Create, Read, Update, Delete)
 //implementation of an example entity in TypeORM with swagger
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >readInformation = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
+export const <span class="cstat-no" title="statement not covered" >createCalendar = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		const information = <span class="cstat-no" title="statement not covered" >await informationRepo.findOne();</span>
-<span class="cstat-no" title="statement not covered" >		res.status(200).json(information);</span>
+		const festival = <span class="cstat-no" title="statement not covered" >new Calendar();</span>
+<span class="cstat-no" title="statement not covered" >		festival.date = req.swagger.params.calendar.raw.date;</span>
+<span class="cstat-no" title="statement not covered" >		festival.srcimg = req.swagger.params.calendar.raw.srcimg;</span>
+<span class="cstat-no" title="statement not covered" >		festival.description = req.swagger.params.calendar.raw.description;</span>
+<span class="cstat-no" title="statement not covered" >		festival.address = req.swagger.params.calendar.raw.address;</span>
+<span class="cstat-no" title="statement not covered" >		festival.title = req.swagger.params.calendar.raw.title;</span>
+		const insert = <span class="cstat-no" title="statement not covered" >await calendarRepo.save(festival);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(201).json(insert);</span>
 	} catch (e) {
-<span class="cstat-no" title="statement not covered" >		res.status(404).json(e);</span>
-	}
-};
-&nbsp;
-export const <span class="cstat-no" title="statement not covered" >updateInformation = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
-<span class="cstat-no" title="statement not covered" >	try {</span>
-<span class="cstat-no" title="statement not covered" >		await informationRepo.update(req.swagger.params.id.raw, req.swagger.params.information.raw);</span>
-		const information = <span class="cstat-no" title="statement not covered" >await informationRepo.findOneOrFail(req.swagger.params.id.raw);</span>
-<span class="cstat-no" title="statement not covered" >		res.status(200).json(information);</span>
-	} catch (e) {
-<span class="cstat-no" title="statement not covered" >		console.info(e);</span>
-<span class="cstat-no" title="statement not covered" >		res.status(404).json(e);</span>
+<span class="cstat-no" title="statement not covered" >		res.status(400).json(e);</span>
 	}
 };
 &nbsp;</pre></td></tr></table></pre>
