@@ -1,5 +1,5 @@
 import { getManager } from 'typeorm';
-import { Department, PostRegister, Staff} from '../orm/entities';
+import { Department, PostRegister} from '../orm/entities';
 
 const departmentRepo = getManager().getRepository(Department);
 const registerRepo = getManager().getRepository(PostRegister);
@@ -13,7 +13,7 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		email = req.swagger.params.postRegister.raw;
 		const department = req.swagger.params.postRegister.raw.departmentId;
 		const message = req.swagger.params.postRegister.raw.description;
-		var userMail = req.swagger.params.postRegister.raw.email;
+		const userMail = req.swagger.params.postRegister.raw.email;
 		const staff = (
 			await departmentRepo.findOneOrFail({
 				relations: ['staff'],
@@ -25,7 +25,7 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		email.staff = staff[0];
 		email.date = new Date();
 		const insert = await registerRepo.save(email);
-		var staffMail = staff.map(t=>t.email);
+		const staffMail = staff.map(t=>t.email);
 
 		res.status(201).json(insert);
 
@@ -39,7 +39,7 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 			},
 		});
 
-		var maillist = [
+		const maillist = [
 			staffMail,
 			userMail,
 		  ];
