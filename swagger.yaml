@@ -31,6 +31,11 @@ parameters:
     description: Max numer of elements per page
     required: false
     type: integer
+  nameParam:
+    name: name
+    in: query
+    description: name of the collaborator
+    type: string
 paths:
 
   #---------Swagger-----------------------------
@@ -965,6 +970,7 @@ paths:
           required: true
         - $ref: '#/parameters/pageSizeParam'
         - $ref: '#/parameters/pageParam'
+        - $ref: '#/parameters/nameParam'
       responses:
         '200':
           description: successful consult
@@ -1114,6 +1120,43 @@ paths:
             $ref: '#/definitions/ErrorResponse'            
   
 #---------------//Calendar--------------------
+  /sectionName/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: collaborator     
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSectionPageName
+      description: return the page of collaborators of selected section (3 sections)
+      tags:
+        - section
+      parameters:
+        - name: id
+          description: id of the section
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/nameParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              sectionCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 #---------------definitions------------------
 definitions:
   ErrorResponse:
