@@ -23,7 +23,7 @@ export const consultSectionPage = async (req, res): Promise<void> => {
 		const sectionId = req.swagger.params.id.raw;
 		const name = req.swagger.params.name.raw;
 		const collaborators = await collaboratorRepo.find({
-			where: { section: sectionId ,name: Like(`${name}%`)}, 
+			where: { section: sectionId ,name: Like(`${name}%`)},  
 			take: pageSize,
 			skip: (page - 1) * pageSize,
 			relations: ['section'],
@@ -57,7 +57,6 @@ export const consultSectionPageName = async (req, res): Promise<void> => {
 		
 		const sectionId = req.swagger.params.id.raw;
 		const name = req.swagger.params.name.raw;
-		
 		const collaborators = await collaboratorRepo.find({
 			where: { section: sectionId,name: Like(`${name}%`)},
 			
