@@ -66,12 +66,11 @@ export const getUser = async (id: string): Promise<User | undefined> => {
 };
 
 export const checkEmail = async (req, res): Promise<void> => {
-	
 	/* const userRepo = getRepository(User);
 	const usr = await userRepo.findOneOrFail(email); */
 	try {
 		const usr = await getRepository(User).findOne({
-			where: { email: req.swagger.params.email.raw }
+			where: { email: req.swagger.params.email.raw },
 		});
 		res.status(200).json(!!usr);
 	} catch (error) {
