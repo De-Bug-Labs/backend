@@ -1,5 +1,5 @@
 import { getManager } from 'typeorm';
-import { Department, PostRegister } from '../orm/entities';
+import { Department, PostRegister} from '../orm/entities';
 
 const departmentRepo = getManager().getRepository(Department);
 const registerRepo = getManager().getRepository(PostRegister);
@@ -13,6 +13,7 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		email = req.swagger.params.postRegister.raw;
 		const department = req.swagger.params.postRegister.raw.departmentId;
 		const message = req.swagger.params.postRegister.raw.description;
+		const userMail = req.swagger.params.postRegister.raw.email;
 		const staff = (
 			await departmentRepo.findOneOrFail({
 				relations: ['staff'],
@@ -24,6 +25,8 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		email.staff = staff[0];
 		email.date = new Date();
 		const insert = await registerRepo.save(email);
+		const staffMail = staff.map(t=>t.email);
+
 		res.status(201).json(insert);
 
 		const nodemailer = require('nodemailer');
@@ -31,16 +34,21 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
 			auth: {
-				user: 'user@mail.com',
-				pass: 'pass@pass',
+				user: 'postregistergaap@gmail.com',
+				pass: 'd3@BUG@l4bs',
 			},
 		});
 
+		const maillist = [
+			staffMail,
+			userMail,
+		  ];
+
 		const mailOptions = {
-			from: 'user@mail.com',
-			to: 'userreceiver@mail.com', //buscar una forma de poner el staff aqui
-			subject: 'Sending Email using Node.js',
-			text: message, //esto ya esta resuelto
+			from: 'postregistergaap@gmail.com',
+			to: maillist,  //buscar una forma de poner el staff aqui
+			subject: 'Solicitud de ayuda GAAP I.A.P',
+			text: `${message}  \n\n de parte de: ${email.name} \n telefono: ${email.phone}`, //esto ya esta resuelto
 		};
 
 		transporter.sendMail(mailOptions);
