@@ -18,7 +18,7 @@ test('create a new register of post register', async () => {
 	postRegister.phone = '4272265540';
 	postRegister.staff = await getRepository(Staff).findOneOrFail({
 		where: {
-			email: 'jisus3000@gmail.com',
+			email: 'a01704584@itesm.mx',
 		},
 	});
 	const res = await getRepository(PostRegister).save(postRegister);
