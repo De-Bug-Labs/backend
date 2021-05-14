@@ -1,5 +1,5 @@
 import { getManager } from 'typeorm';
-import { Department, PostRegister} from '../orm/entities';
+import { Department, PostRegister } from '../orm/entities';
 
 const departmentRepo = getManager().getRepository(Department);
 const registerRepo = getManager().getRepository(PostRegister);
@@ -25,7 +25,7 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 		email.staff = staff[0];
 		email.date = new Date();
 		const insert = await registerRepo.save(email);
-		const staffMail = staff.map(t=>t.email);
+		const staffMail = staff.map((t) => t.email);
 
 		res.status(201).json(insert);
 
@@ -39,14 +39,11 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 			},
 		});
 
-		const maillist = [
-			staffMail,
-			userMail,
-		  ];
+		const maillist = [staffMail, userMail];
 
 		const mailOptions = {
 			from: 'postregistergaap@gmail.com',
-			to: maillist,  //buscar una forma de poner el staff aqui
+			to: maillist, //buscar una forma de poner el staff aqui
 			subject: 'Solicitud de ayuda GAAP I.A.P',
 			text: `${message}  \n\n de parte de: ${email.name} \n telefono: ${email.phone}`, //esto ya esta resuelto
 		};
