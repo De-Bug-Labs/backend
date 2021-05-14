@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -126,7 +126,10 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,25 +159,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,6 +174,22 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,7 +201,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { getManager, Like } from 'typeorm';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { getManager, ILike, Like } from 'typeorm';</span>
 <span class="cstat-no" title="statement not covered" >import { Collaborator } from '../orm/entity/collaborator';</span>
 <span class="cstat-no" title="statement not covered" >import { Section } from '../orm/entity/section';</span>
 &nbsp;
@@ -215,18 +221,21 @@ export const <span class="cstat-no" title="statement not covered" >consultSectio
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >consultSectionPage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>eq, res): Promise&lt;void&gt; =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span></span>
 <span class="cstat-no" title="statement not covered" >	try {</span>
-		const pageSize = <span class="cstat-no" title="statement not covered" >req.swagger.params.pageSize.raw;</span>
-		const page = <span class="cstat-no" title="statement not covered" >req.swagger.params.page.raw;</span>
+		const pageSize = <span class="cstat-no" title="statement not covered" >req.swagger.params.pageSize.raw || 5;</span>
+		const page = <span class="cstat-no" title="statement not covered" >req.swagger.params.page.raw || 1;</span>
 		const sectionId = <span class="cstat-no" title="statement not covered" >req.swagger.params.id.raw;</span>
-		const name = <span class="cstat-no" title="statement not covered" >req.swagger.params.name.raw;</span>
+		const name = <span class="cstat-no" title="statement not covered" >req.swagger.params.name.raw || '';</span>
 		const collaborators = <span class="cstat-no" title="statement not covered" >await collaboratorRepo.find({</span>
-			where: { section: sectionId, name: Like(`${name}%`) },
+			where: {
+				section: sectionId,
+				name: ILike(`%${name}%`),
+			},
 			take: pageSize,
 			skip: (page - 1) * pageSize,
 			relations: ['section'],
 		});
 <span class="cstat-no" title="statement not covered" >		if (collaborators.length) <span class="cstat-no" title="statement not covered" >res.status(200).json(collaborators);</span></span>
-		else <span class="cstat-no" title="statement not covered" >res.status(404).json({ message: 'index out of bound' });</span>
+		else <span class="cstat-no" title="statement not covered" >res.status(404).json({ message: 'No Collaborators to display' });</span>
 	} catch (e) {
 <span class="cstat-no" title="statement not covered" >		res.status(400).json(e);</span>
 	}
@@ -271,7 +280,7 @@ export const <span class="cstat-no" title="statement not covered" >consultSectio
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri May 14 2021 22:41:13 GMT+0000 (Coordinated Universal Time)
+                at Fri May 14 2021 23:28:36 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
