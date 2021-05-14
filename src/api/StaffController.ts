@@ -27,8 +27,19 @@ export const createStaff = async (req, res): Promise<void> => {
 
 export const deleteStaff = async (req, res): Promise<void> => {
 	try {
-		const staff = await staffRepo.findOneOrFail(req.swagger.params.staff.raw.staffId);
-		await staffRepo.delete(req.swagger.params.staff.raw.staffId);
+		const id = req.swagger.params.id.raw;
+		const staff = await staffRepo.findOneOrFail(id);
+		await staffRepo.delete(id);
+		res.status(200).json(staff);
+	} catch (e) {
+		res.status(410).json(e);
+	}
+};
+
+export const getStaffbyId = async (req, res): Promise<void> => {
+	try {
+		const id = req.swagger.params.id.raw;
+		const staff = await staffRepo.findOneOrFail(id);
 		res.status(200).json(staff);
 	} catch (e) {
 		res.status(410).json(e);
