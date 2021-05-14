@@ -202,6 +202,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     #----------------//Email----------------------
+
     #----------------Staff----------------------
   /staff:
     x-swagger-router-controller: StaffController
@@ -267,6 +268,34 @@ paths:
           description:  could not visualize staff members
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /staff/{id}:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: getStaffbyId
+      description: consult staff member
+      tags:
+        - staff
+      parameters:
+        - name: id
+          in: path
+          type: string
+          format: uuid
+          required: true
+      responses:
+        '200':
+          description: successful consult of staff members
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description:  staff member not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  could not visualize staff members
+          schema:
+            $ref: '#/definitions/ErrorResponse'
     delete:
       x-security-privilege: 'staff:delete'
       operationId: deleteStaff
@@ -274,28 +303,94 @@ paths:
       tags:
         - staff
       parameters:
-        - name: staff
-          in: body
+        - name: id
+          in: path
+          type: string
+          format: uuid
           required: true
-          description: The staff member to be deleted to delete.
-          schema:
-            type: object
-            properties:
-              staffId:
-                type: string
-                format: uuid
-                description: 'id of the staff member to be deleted'
       responses:
-        '201':
+        '200':
           description: staff member succesfully deleted
           schema:
             $ref: '#/definitions/SuccessfulStaff'
         '404':
-          description: could not delete staff member
+          description: staff member not found
           schema:
             $ref: '#/definitions/ErrorResponse'
         default:
           description: could not delete staff member
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    put:
+      x-security-privilege: 'staff:modify'
+      operationId: updateStaff
+      description: Update staff member, id must be provided
+      tags:
+        - staff
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: staff
+          description: staff object
+          in: body
+          schema:
+            type: object
+            properties:
+              departmentId:
+                description: 'ID of the department of the staff'
+                type: string
+                format: uuid
+              name:
+                type: string
+                description: 'Name of the staff'
+              email:
+                type: string 
+                description: 'Email of the staff'
+      responses:
+        '200':
+          description: Staff Information update successful
+          schema:
+            $ref: '#/definitions/SuccessfulStaff'
+        '404':
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Information update unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /staff/pages:
+    x-swagger-router-controller: StaffController
+    x-typeorm-repository-name: Staff
+    get:
+      x-security-privilege: 'staff:read'
+      operationId: consultStaffPages
+      description: consult count of staff members and number of pages required for pagination based on pagesize
+      tags:
+        - staff
+      parameters:
+        - $ref: '#/parameters/pageSizeParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              staffCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
     #-----------------//Staff------------------------
@@ -505,83 +600,6 @@ paths:
           description: Information update unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-  #------------------Staff----------------------
-  /staff/pages:
-    x-swagger-router-controller: StaffController
-    x-typeorm-repository-name: Staff
-    get:
-      x-security-privilege: 'staff:read'
-      operationId: consultStaffPages
-      description: consult count of staff members and number of pages required for pagination based on pagesize
-      tags:
-        - staff
-      parameters:
-        - $ref: '#/parameters/pageSizeParam'
-      responses:
-        '200':
-          description: successful consult
-          schema:
-            type: object
-            properties:
-              pageSize:
-                type: number
-              staffCount: 
-                type: number
-              pageCount:
-                type: number 
-        '404':
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-  /staff/{id}:
-    x-swagger-router-controller: StaffController
-    x-typeorm-repository-name: Staff
-    put:
-      x-security-privilege: 'staff:modify'
-      operationId: updateStaff
-      description: Update staff member, id must be provided
-      tags:
-        - staff
-      parameters:
-        - name: id
-          type: string
-          format: uuid
-          in: path
-          required: true
-        - name: staff
-          description: staff object
-          in: body
-          schema:
-            type: object
-            properties:
-              departmentId:
-                description: 'ID of the department of the staff'
-                type: string
-                format: uuid
-              name:
-                type: string
-                description: 'Name of the staff'
-              email:
-                type: string 
-                description: 'Email of the staff'
-      responses:
-        '200':
-          description: Staff Information update successful
-          schema:
-            $ref: '#/definitions/SuccessfulStaff'
-        '404':
-          description: Information update unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description: Information update unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-    #-----------//Staff--------------------
     #-----------Material-------------------    
   /material:
     x-swagger-router-controller: MaterialController
@@ -782,6 +800,34 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         default:
           description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /department/{id}:
+    x-swagger-router-controller: DepartmentController
+    x-typeorm-repository-name: Department   
+    get:
+      x-security-privilege: 'department:read'
+      operationId: cunsultStaffByDepartment
+      description: consult staff by department
+      tags:
+        - department
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/StaffResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
   #---------------------//Department----------------
@@ -990,7 +1036,44 @@ paths:
         default:
           description:  unsuccessful
           schema:
-            $ref: '#/definitions/ErrorResponse' 
+            $ref: '#/definitions/ErrorResponse'
+  /sectionName/{id}:
+    x-swagger-router-controller: SectionController
+    x-typeorm-repository-name: collaborator     
+    get:
+      x-security-privilege: 'section:read'
+      operationId: consultSectionPageName
+      description: return the page of collaborators of selected section (3 sections)
+      tags:
+        - section
+      parameters:
+        - name: id
+          description: id of the section
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - $ref: '#/parameters/nameParam'
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            type: object
+            properties:
+              pageSize:
+                type: number
+              sectionCount: 
+                type: number
+              pageCount:
+                type: number 
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /sectioncount/{id}:
     x-swagger-router-controller: SectionController
     x-typeorm-repository-name: Section   
@@ -1118,73 +1201,7 @@ paths:
           description: unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'            
-  
 #---------------//Calendar--------------------
-  /sectionName/{id}:
-    x-swagger-router-controller: SectionController
-    x-typeorm-repository-name: collaborator     
-    get:
-      x-security-privilege: 'section:read'
-      operationId: consultSectionPageName
-      description: return the page of collaborators of selected section (3 sections)
-      tags:
-        - section
-      parameters:
-        - name: id
-          description: id of the section
-          type: string
-          format: uuid
-          in: path
-          required: true
-        - $ref: '#/parameters/nameParam'
-      responses:
-        '200':
-          description: successful consult
-          schema:
-            type: object
-            properties:
-              pageSize:
-                type: number
-              sectionCount: 
-                type: number
-              pageCount:
-                type: number 
-        '404':
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-  /department/{id}:
-    x-swagger-router-controller: DepartmentController
-    x-typeorm-repository-name: Department   
-    get:
-      x-security-privilege: 'department:read'
-      operationId: cunsultStaffByDepartment
-      description: consult staff by department
-      tags:
-        - department
-      parameters:
-        - name: id
-          type: string
-          format: uuid
-          in: path
-          required: true
-      responses:
-        '200':
-          description: successful consult
-          schema:
-            $ref: '#/definitions/StaffResponse'
-        '404':
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        default:
-          description:  unsuccessful
-          schema:
-            $ref: '#/definitions/ErrorResponse'            
 #---------------definitions------------------
 definitions:
   ErrorResponse:
