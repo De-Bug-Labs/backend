@@ -19,13 +19,11 @@ export const consultDepartment = async (req, res): Promise<void> => {
 
 export const cunsultStaffByDepartment = async (req, res): Promise<void> => {
 	try {
-		const staffs = await departmentRepo.find(
-			{ 
-				relations: ["staff"] ,
-				where: {id: req.swagger.params.id.raw }
-			}
+		const dpt = await departmentRepo.findOne(
+			req.swagger.params.id.raw,
+			{ relations: ["staff"] }
 		);
-		if (staffs.length) res.status(200).json(staffs);
+		if (dpt) res.status(200).json(dpt.staff);
 		else res.status(404).json({ message: 'index out of bound' });
 	} catch (e) {
 		res.status(400).json(e);
