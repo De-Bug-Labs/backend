@@ -1157,6 +1157,34 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+  /department/{id}:
+    x-swagger-router-controller: DepartmentController
+    x-typeorm-repository-name: Department   
+    get:
+      x-security-privilege: 'department:read'
+      operationId: cunsultStaffByDepartment
+      description: consult staff by department
+      tags:
+        - department
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: successful consult
+          schema:
+            $ref: '#/definitions/StaffResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'            
 #---------------definitions------------------
 definitions:
   ErrorResponse:
@@ -1304,3 +1332,15 @@ definitions:
            type: string
         title:
            type: string
+  StaffResponse:
+    type: object
+    properties:
+        staffId:
+          type: string
+          format: uuid
+        email:
+          type: string
+        name:
+           type: string
+
+    
