@@ -31,16 +31,16 @@ export const consultCalendar = async (req, res): Promise<void> => {
 		if(week != -1){	
 			const initW = ('0' + ((7 * (week-1)) + 1)).slice(-2);
 			const endW = ('0' + (7 * (week) + 1)).slice(-2);
-			var currentDate = new Date();
-			var currentMonth = ('0' + (currentDate.getUTCMonth() + 1)).slice(-2); //months from 1-12
-			var currentYear = currentDate.getUTCFullYear();
+			const currentDate = new Date();
+			const currentMonth = ('0' + (currentDate.getUTCMonth() + 1)).slice(-2); //months from 1-12
+			const currentYear = currentDate.getUTCFullYear();
 			console.log(week);
 			console.log(currentMonth);
 			console.log(currentYear);
 			console.log(initW);
 			console.log(endW);
 			const events = await calendarRepo.find({
-			where: `date::text BETWEEN '${currentYear}-${currentMonth}-${initW}' AND '${currentYear}-${currentMonth}-${endW}'`,
+			where: `date::text BETWEEN '${currentYear}-${currentMonth}-${initW}' AND '${currentYear}-${currentMonth}-${endW}' ORDER BY date DESC`,
 			take: pageSize, 
 			skip: (page - 1) * pageSize 
 		});
@@ -49,7 +49,7 @@ export const consultCalendar = async (req, res): Promise<void> => {
 	}
 		else{
 			const events = await calendarRepo.find({
-				where: `date::text LIKE '${year}%-%${month}-%${day}%'`,
+				where: `date::text LIKE '${year}%-%${month}-%${day}%' ORDER BY date DESC`,
 				take: pageSize, 
 				skip: (page - 1) * pageSize 
 			});
