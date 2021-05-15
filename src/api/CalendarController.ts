@@ -22,11 +22,40 @@ export const createCalendar = async (req, res): Promise<void> => {
 };
 export const consultCalendar = async (req, res): Promise<void> => {
 	try {
-		const page = req.swagger.params.page.raw;
-		const pageSize = req.swagger.params.pageSize.raw;
-		const events = await calendarRepo.find({ take: pageSize, skip: (page - 1) * pageSize });
+		const page = req.swagger.params.page.raw || 1;
+		const pageSize = req.swagger.params.pageSize.raw || 5;
+		const day = req.swagger.params.day.raw || '';
+		const week = req.swagger.params.week.raw || -1;
+		const month = req.swagger.params.month.raw || '';
+		const year = req.swagger.params.year.raw || '';
+		if(week != -1){	
+			const initW = ('0' + ((7 * (week-1)) + 1)).slice(-2);
+			const endW = ('0' + (7 * (week) + 1)).slice(-2);
+			var currentDate = new Date();
+			var currentMonth = ('0' + (currentDate.getUTCMonth() + 1)).slice(-2); //months from 1-12
+			var currentYear = currentDate.getUTCFullYear();
+			console.log(week);
+			console.log(currentMonth);
+			console.log(currentYear);
+			console.log(initW);
+			console.log(endW);
+			const events = await calendarRepo.find({
+			where: `date::text BETWEEN '${currentYear}-${currentMonth}-${initW}' AND '${currentYear}-${currentMonth}-${endW}'`,
+			take: pageSize, 
+			skip: (page - 1) * pageSize 
+		});
 		if (events.length) res.status(200).json(events);
 		else res.status(404).json({ message: 'index out of bound' });
+	}
+		else{
+			const events = await calendarRepo.find({
+				where: `date::text LIKE '${year}%-%${month}-%${day}%'`,
+				take: pageSize, 
+				skip: (page - 1) * pageSize 
+			});
+			if (events.length) res.status(200).json(events);
+			else res.status(404).json({ message: 'index out of bound' });
+		}
 	} catch (e) {
 		res.status(400).json(e);
 	}
