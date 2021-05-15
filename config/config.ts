@@ -14,6 +14,7 @@ export default {
         'section:read',
         'collaborator:read',
         'calendar:read',
+        'mail:write',
     ],
     corsWhiteList: wl,
 }
