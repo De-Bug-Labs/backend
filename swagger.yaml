@@ -1118,7 +1118,7 @@ paths:
     x-swagger-router-controller: CalendarController
     x-typeorm-repository-name: Calendar
     post:
-      x-security-privilege: 'calendar:create'
+      x-security-privilege: 'calendar:write'
       operationId: createCalendar
       description: create new event in calendar
       tags:

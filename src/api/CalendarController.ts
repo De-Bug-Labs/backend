@@ -20,7 +20,6 @@ export const createCalendar = async (req, res): Promise<void> => {
 		res.status(400).json(e);
 	}
 };
-
 export const consultCalendar = async (req, res): Promise<void> => {
 	try {
 		const page = req.swagger.params.page.raw;

@@ -5,7 +5,7 @@ export class Calendar {
 	@PrimaryGeneratedColumn('uuid')
 	public id!: string;
 
-	@Column({ type: 'timestamptz', nullable: false })
+	@Column({ type: 'date', nullable: false, default: () => 'CURRENT_DATE' })
 	public date!: Date;
 
 	@Column({ type: 'varchar', nullable: true })

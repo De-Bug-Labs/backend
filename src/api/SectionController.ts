@@ -23,9 +23,9 @@ export const consultSectionPage = async (req, res): Promise<void> => {
 		const sectionId = req.swagger.params.id.raw;
 		const name = req.swagger.params.name.raw || '';
 		const collaborators = await collaboratorRepo.find({
-			where: { 
+			where: {
 				section: sectionId,
-				 name: ILike(`%${name}%`)
+				name: ILike(`%${name}%`),
 			},
 			take: pageSize,
 			skip: (page - 1) * pageSize,
