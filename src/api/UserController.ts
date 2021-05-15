@@ -40,7 +40,6 @@ export const deleteUser = async (req, res): Promise<void> => {
 		await userRepo.delete(id);
 		res.status(200).json(usr);
 	} catch (e) {
-		console.log(e);
 		res.status(410).json(e);
 	}
 };
