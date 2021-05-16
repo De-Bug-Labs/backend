@@ -18,10 +18,11 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 const corsOptions = {
-	origin: (origin, cb) => {
-		if (config.corsWhiteList.indexOf(origin) !== -1) cb(null, true);
-		else cb(new Error('Not allowed by CORS'));
-	},
+	// origin: (origin, cb) => {
+	// 	if (config.corsWhiteList.indexOf(origin) !== -1) cb(null, true);
+	// 	else cb(new Error('Not allowed by CORS'));
+	// },
+	origin: config.corsWhiteList,
 	maxAge: process.env.CORS_MAX_AGE || 3600,
 };
 app.use(cors(corsOptions));
