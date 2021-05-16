@@ -31,7 +31,8 @@ app.use(cookieParser());
 
 createConnection()
 	.then(async () => {
-		app.listen(process.env.APP_PORT || 5000, () => {
+		const prt = process.env.PORT || process.env.APP_PORT || 5000;
+		app.listen(prt, () => {
 			console.info('App is running at http://localhost:%d', process.env.APP_PORT || 5000);
 		});
 	})
