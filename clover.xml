@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1621124781525" clover="3.2.0">
-  <project timestamp="1621124781525" name="All files">
-    <metrics statements="590" coveredstatements="131" conditionals="88" coveredconditionals="0" methods="122" coveredmethods="21" elements="800" coveredelements="152" complexity="0" loc="590" ncloc="590" packages="5" files="32" classes="32"/>
+<coverage generated="1621132455430" clover="3.2.0">
+  <project timestamp="1621132455430" name="All files">
+    <metrics statements="588" coveredstatements="131" conditionals="86" coveredconditionals="0" methods="121" coveredmethods="21" elements="795" coveredelements="152" complexity="0" loc="588" ncloc="588" packages="5" files="32" classes="32"/>
     <package name="src">
-      <metrics statements="44" coveredstatements="2" conditionals="17" coveredconditionals="0" methods="10" coveredmethods="1"/>
+      <metrics statements="42" coveredstatements="2" conditionals="15" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
         <metrics statements="16" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -29,7 +29,7 @@
         <line num="5" count="1" type="stmt"/>
       </file>
       <file name="server.ts" path="/home/runner/work/backend/backend/src/server.ts">
-        <metrics statements="26" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="24" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -44,18 +44,16 @@
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="39" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.api">
