@@ -7,9 +7,8 @@ import { checkIfPasswordIsValid, getUserPermissions } from './UserController';
 export const login = async (req: Request, res: Response) => {
 	const { email, password } = req.body;
 	if (!(email && password)) {
-		res.status(200).send();
+		res.status(400).send();
 	}
-
 	const userRepo = getRepository(User);
 	let user: User;
 	let permissions = Array<string>();
@@ -46,7 +45,8 @@ export const login = async (req: Request, res: Response) => {
 	const d = new Date(0);
 	d.setUTCSeconds(exp); // The 0 there is the key, which sets the date to the epoch
 	res.cookie('token', token, { expires: d, secure: false, sameSite: false });
-
+	res.setHeader('Access-Control-Allow-Origin', req.headers.origin as string || '*');
+	console.log(req.headers.origin as string);
 	res.send({ payload, token });
 };
 

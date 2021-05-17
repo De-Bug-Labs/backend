@@ -37,7 +37,6 @@ parameters:
     description: name of the collaborator
     type: string
 paths:
-
   #---------Swagger-----------------------------
   /swagger:
     x-swagger-pipe: swagger_raw 
