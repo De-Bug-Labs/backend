@@ -68,3 +68,13 @@ export const consultCalendarPages = async (req, res): Promise<void> => {
 		res.status(400).json(e);
 	}
 };
+
+export const updateCalendarEvent = async (req, res): Promise<void> => {
+	try {
+		await calendarRepo.update(req.swagger.params.id.raw, req.swagger.params.event.raw);
+		const event = await calendarRepo.findOneOrFail(req.swagger.params.id.raw);
+		res.status(200).json(event);
+	} catch (e) {
+		res.status(404).json(e);
+	}
+};
