@@ -1226,6 +1226,51 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'            
 #---------------//Calendar--------------------
+  /calendar/{id}:
+    x-swagger-router-controller: CalendarController
+    x-typeorm-repository-name: Calendar
+    put:
+      x-security-privilege: 'calendar:modify'
+      operationId: updateCalendarEvent
+      description: Update an event by id
+      tags:
+        - calendar
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: event
+          description: user
+          in: body
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              srcimg:
+                 type: string
+              description:
+                 type: string 
+              address:
+                 type: string
+              title:
+                 type: string
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/CalendarResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 #---------------definitions------------------
 definitions:
   ErrorResponse:

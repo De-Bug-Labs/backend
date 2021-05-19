@@ -24,7 +24,7 @@ export const consultCalendar = async (req, res): Promise<void> => {
 	try {
 		const page = req.swagger.params.page.raw || 1;
 		const pageSize = req.swagger.params.pageSize.raw || 5;
-		const day = req.swagger.params.day.raw || '';
+		const day = req.swagger.params.day.raw  || '';
 		const week = req.swagger.params.week.raw || -1;
 		const month = req.swagger.params.month.raw || '';
 		const year = req.swagger.params.year.raw || '';
@@ -66,5 +66,15 @@ export const consultCalendarPages = async (req, res): Promise<void> => {
 		});
 	} catch (e) {
 		res.status(400).json(e);
+	}
+};
+
+export const updateCalendarEvent = async (req, res): Promise<void> => {
+	try {
+		await calendarRepo.update(req.swagger.params.id.raw, req.swagger.params.event.raw);
+		const event = await calendarRepo.findOneOrFail(req.swagger.params.id.raw);
+		res.status(200).json(event);
+	} catch (e) {
+		res.status(404).json(e);
 	}
 };
