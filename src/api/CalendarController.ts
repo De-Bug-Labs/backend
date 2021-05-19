@@ -24,7 +24,7 @@ export const consultCalendar = async (req, res): Promise<void> => {
 	try {
 		const page = req.swagger.params.page.raw || 1;
 		const pageSize = req.swagger.params.pageSize.raw || 5;
-		const day = req.swagger.params.day.raw || '';
+		const day = req.swagger.params.day.raw  || '';
 		const week = req.swagger.params.week.raw || -1;
 		const month = req.swagger.params.month.raw || '';
 		const year = req.swagger.params.year.raw || '';
