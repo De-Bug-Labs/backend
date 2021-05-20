@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1621535621333" clover="3.2.0">
-  <project timestamp="1621535621334" name="All files">
-    <metrics statements="602" coveredstatements="131" conditionals="86" coveredconditionals="0" methods="124" coveredmethods="21" elements="812" coveredelements="152" complexity="0" loc="602" ncloc="602" packages="5" files="32" classes="32"/>
+<coverage generated="1621537615158" clover="3.2.0">
+  <project timestamp="1621537615158" name="All files">
+    <metrics statements="604" coveredstatements="131" conditionals="88" coveredconditionals="0" methods="124" coveredmethods="21" elements="816" coveredelements="152" complexity="0" loc="604" ncloc="604" packages="5" files="32" classes="32"/>
     <package name="src">
-      <metrics statements="49" coveredstatements="2" conditionals="13" coveredconditionals="0" methods="10" coveredmethods="1"/>
+      <metrics statements="51" coveredstatements="2" conditionals="15" coveredconditionals="0" methods="10" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
-        <metrics statements="14" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="16" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
