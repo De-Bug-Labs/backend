@@ -1,8 +1,7 @@
 import { getManager } from 'typeorm';
-import { Department, Staff } from '../orm/entities';
+import { Department } from '../orm/entities';
 
 const departmentRepo = getManager().getRepository(Department);
-const staffRepo = getManager().getRepository(Staff);
 //Example of CRUD (Create, Read, Update, Delete)
 //implementation of an example entity in TypeORM with swagger
 
