@@ -45,8 +45,8 @@ export const login = async (req: Request, res: Response) => {
 	const d = new Date(0);
 	d.setUTCSeconds(exp); // The 0 there is the key, which sets the date to the epoch
 	res.cookie('token', token, { expires: d, secure: false, sameSite: false });
-	res.setHeader('Access-Control-Allow-Origin', req.headers.origin as string || '*');
-	console.log(req.headers.origin as string);
+	res.setHeader('Access-Control-Allow-Origin', (req.headers.origin as string) || '*');
+	//console.log(req.headers.origin as string);
 	res.send({ payload, token });
 };
 

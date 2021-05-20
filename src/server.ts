@@ -5,7 +5,7 @@ import { createConnection } from 'typeorm';
 import * as util from 'util';
 import { app } from './app';
 import { toInteger } from 'lodash';
-const createMiddleware = require('@apidevtools/swagger-express-middleware');
+//const createMiddleware = require('@apidevtools/swagger-express-middleware');
 
 dotenv.config();
 
