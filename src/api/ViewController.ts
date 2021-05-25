@@ -17,9 +17,9 @@ export const getView = async (req, res): Promise<void> => {
 
 export const updateView = async (req, res): Promise<void> => {
 	try {
-		await viewRepo.update(req.swagger.params.view.raw.viewId, req.swagger.params.view.raw);
-		const usr = await viewRepo.findOneOrFail(req.swagger.params.id.raw);
-		res.status(200).json(usr);
+		await viewRepo.update(req.swagger.params.view.raw.id, req.swagger.params.view.raw);
+		const view = await viewRepo.findOneOrFail(req.swagger.params.view.raw.id);
+		res.status(200).json(view);
 	} catch (e) {
 		res.status(404).json(e);
 	}

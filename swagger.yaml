@@ -3,7 +3,7 @@ info:
   version: 0.0.1
   title: GAAP API
 host: 'localhost:5000'
-basePath: /
+basePath: /api
 schemes:
   - http
   - https
@@ -1229,7 +1229,7 @@ paths:
           description: unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'            
-#---------------//Calendar--------------------
+
   /calendar/{id}:
     x-swagger-router-controller: CalendarController
     x-typeorm-repository-name: Calendar
@@ -1275,7 +1275,8 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-            
+     #---------------//Calendar--------------------
+      #---------------View--------------------       
   /view:
     x-swagger-router-controller: ViewController
     x-typeorm-repository-name: View
@@ -1305,7 +1306,21 @@ paths:
       tags:
         - view
       parameters:
-        - $ref: '#/parameters/viewParam'
+        - name: view
+          description: status of the view
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                description: 'ID of the the view'
+                type: string
+                format: uuid
+              name:
+                type: string
+              status:
+                description: 'true or false'
+                type: boolean    
       responses:
         '200':
           description: successful consult
@@ -1319,7 +1334,7 @@ paths:
           description:  unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-            
+  #---------------//View--------------------              
 #---------------definitions------------------
 definitions:
   ErrorResponse:

@@ -14,8 +14,8 @@ const config = {
 	swaggerFile: __dirname + '/../../swagger.yaml',
 	swaggerSecurityHandlers: {
 		JWT: async function securityHandler(req, res, cb) {
-			//if (checkJwt(req, res)) checkRoles(req, res, cb);
-			 cb(); // ? uncomment to skip role checking
+			if (checkJwt(req, res)) checkRoles(req, res, cb);
+			// cb(); // ? uncomment to skip role checking
 		},
 	},
 };
