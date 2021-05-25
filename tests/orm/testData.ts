@@ -10,6 +10,7 @@ import {
 	Collaborator,
 	Information,
 	Calendar,
+	View
 } from '../../src/orm/entities';
 
 connection
@@ -390,7 +391,9 @@ connection
 				}),
 			},
 		]);
+		await con.getRepository(View).save([{ name: 'Portal view',status:false}]);
 	})
+	
 	.then(() => {
 		console.info('Load test data done');
 		connection.close();
