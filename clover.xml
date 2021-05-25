@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1621537615158" clover="3.2.0">
-  <project timestamp="1621537615158" name="All files">
-    <metrics statements="604" coveredstatements="131" conditionals="88" coveredconditionals="0" methods="124" coveredmethods="21" elements="816" coveredelements="152" complexity="0" loc="604" ncloc="604" packages="5" files="32" classes="32"/>
+<coverage generated="1621901108194" clover="3.2.0">
+  <project timestamp="1621901108194" name="All files">
+    <metrics statements="592" coveredstatements="131" conditionals="84" coveredconditionals="0" methods="123" coveredmethods="21" elements="799" coveredelements="152" complexity="0" loc="592" ncloc="592" packages="5" files="32" classes="32"/>
     <package name="src">
-      <metrics statements="51" coveredstatements="2" conditionals="15" coveredconditionals="0" methods="10" coveredmethods="1"/>
+      <metrics statements="39" coveredstatements="2" conditionals="11" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
         <metrics statements="16" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -29,7 +29,7 @@
         <line num="5" count="1" type="stmt"/>
       </file>
       <file name="server.ts" path="/home/runner/work/backend/backend/src/server.ts">
-        <metrics statements="33" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="21" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -45,18 +45,6 @@
         <line num="18" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="cond" truecount="0" falsecount="3"/>
