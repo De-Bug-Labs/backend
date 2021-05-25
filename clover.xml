@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1621901108194" clover="3.2.0">
-  <project timestamp="1621901108194" name="All files">
-    <metrics statements="592" coveredstatements="131" conditionals="84" coveredconditionals="0" methods="123" coveredmethods="21" elements="799" coveredelements="152" complexity="0" loc="592" ncloc="592" packages="5" files="32" classes="32"/>
+<coverage generated="1621976987638" clover="3.2.0">
+  <project timestamp="1621976987638" name="All files">
+    <metrics statements="607" coveredstatements="131" conditionals="86" coveredconditionals="0" methods="127" coveredmethods="21" elements="820" coveredelements="152" complexity="0" loc="607" ncloc="607" packages="5" files="33" classes="33"/>
     <package name="src">
       <metrics statements="39" coveredstatements="2" conditionals="11" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -54,7 +54,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="396" coveredstatements="0" conditionals="58" coveredconditionals="0" methods="91" coveredmethods="0"/>
+      <metrics statements="411" coveredstatements="0" conditionals="60" coveredconditionals="0" methods="95" coveredmethods="0"/>
       <file name="AuthController.ts" path="/home/runner/work/backend/backend/src/api/AuthController.ts">
         <metrics statements="46" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
@@ -483,6 +483,24 @@
         <line num="82" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
         <line num="84" count="0" type="stmt"/>
+      </file>
+      <file name="ViewController.ts" path="/home/runner/work/backend/backend/src/api/ViewController.ts">
+        <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.middleware">
