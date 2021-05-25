@@ -3,7 +3,7 @@ info:
   version: 0.0.1
   title: GAAP API
 host: 'localhost:5000'
-basePath: /
+basePath: /api
 schemes:
   - http
   - https
@@ -56,6 +56,11 @@ parameters:
     in: query
     description: year selected of event
     type: number
+  viewParam:
+    name: view
+    in: query
+    description: id of the view
+    type: string  
 paths:
   #---------Swagger-----------------------------
   /swagger:
@@ -1224,7 +1229,7 @@ paths:
           description: unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'            
-#---------------//Calendar--------------------
+
   /calendar/{id}:
     x-swagger-router-controller: CalendarController
     x-typeorm-repository-name: Calendar
@@ -1270,6 +1275,66 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+     #---------------//Calendar--------------------
+      #---------------View--------------------       
+  /view:
+    x-swagger-router-controller: ViewController
+    x-typeorm-repository-name: View
+    get:
+      x-security-privilege: 'view:read'
+      operationId: getView
+      description: get the view 
+      tags:
+        - view
+      responses:
+        '200':
+          description: View successful
+          schema:
+            $ref: '#/definitions/ViewResponse'
+        '404':
+          description: View unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: View unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    put:
+      x-security-privilege: 'view:modify'
+      operationId: updateView
+      description: update view portal by id
+      tags:
+        - view
+      parameters:
+        - name: view
+          description: status of the view
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                description: 'ID of the the view'
+                type: string
+                format: uuid
+              name:
+                type: string
+              status:
+                description: 'true or false'
+                type: boolean    
+      responses:
+        '200':
+          description: successful consult
+          schema:
+             $ref: '#/definitions/ViewResponse'
+        '404':
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description:  unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  #---------------//View--------------------              
 #---------------definitions------------------
 definitions:
   ErrorResponse:
@@ -1427,5 +1492,15 @@ definitions:
           type: string
         name:
            type: string
+  ViewResponse:
+    type: object
+    properties:
+        viewId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+           type: boolean
 
     
