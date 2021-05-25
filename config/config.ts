@@ -1,5 +1,7 @@
-import * as dotenv from 'dotenv';  
-dotenv.config();
+import * as dotenv from 'dotenv'; 
+import dotenvExpand from 'dotenv-expand';
+
+dotenvExpand(dotenv.config());
 
 const wl: Array<string | undefined | null> = (process.env.CORS_WHITELIST || '').split(',');
 wl.push(undefined);
@@ -14,6 +16,7 @@ export default {
         'section:read',
         'collaborator:read',
         'calendar:read',
+        'mail:write',
     ],
     corsWhiteList: wl,
 }

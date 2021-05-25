@@ -5,8 +5,8 @@ export class Calendar {
 	@PrimaryGeneratedColumn('uuid')
 	public id!: string;
 
-	@Column({ type: 'timestamptz', nullable: false })
-	public date!: Date;
+	@Column({ type: 'date', nullable: false })
+	public date!: string;
 
 	@Column({ type: 'varchar', nullable: true })
 	public srcimg!: string;

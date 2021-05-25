@@ -1,4 +1,4 @@
-import { getManager, Like } from 'typeorm';
+import { getManager, ILike, Like } from 'typeorm';
 import { Collaborator } from '../orm/entity/collaborator';
 import { Section } from '../orm/entity/section';
 
@@ -18,18 +18,21 @@ export const consultSections = async (req, res): Promise<void> => {
 
 export const consultSectionPage = async (req, res): Promise<void> => {
 	try {
-		const pageSize = req.swagger.params.pageSize.raw;
-		const page = req.swagger.params.page.raw;
+		const pageSize = req.swagger.params.pageSize.raw || 5;
+		const page = req.swagger.params.page.raw || 1;
 		const sectionId = req.swagger.params.id.raw;
-		const name = req.swagger.params.name.raw;
+		const name = req.swagger.params.name.raw || '';
 		const collaborators = await collaboratorRepo.find({
-			where: { section: sectionId, name: Like(`${name}%`) },
+			where: {
+				section: sectionId,
+				name: ILike(`%${name}%`),
+			},
 			take: pageSize,
 			skip: (page - 1) * pageSize,
 			relations: ['section'],
 		});
 		if (collaborators.length) res.status(200).json(collaborators);
-		else res.status(404).json({ message: 'index out of bound' });
+		else res.status(404).json({ message: 'No Collaborators to display' });
 	} catch (e) {
 		res.status(400).json(e);
 	}

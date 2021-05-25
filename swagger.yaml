@@ -36,8 +36,27 @@ parameters:
     in: query
     description: name of the collaborator
     type: string
+  dayParam:
+    name: day
+    in: query
+    description: day selected of event (1-31), (1-30), (1-28), (1-29)
+    type: number
+  weekParam:
+    name: week
+    in: query
+    description: week selected of event (1-4)
+    type: number
+  monthParam:
+    name: month
+    in: query
+    description: month selected of event (01-12)
+    type: number
+  yearParam:
+    name: year
+    in: query
+    description: year selected of event
+    type: number
 paths:
-
   #---------Swagger-----------------------------
   /swagger:
     x-swagger-pipe: swagger_raw 
@@ -1118,7 +1137,7 @@ paths:
     x-swagger-router-controller: CalendarController
     x-typeorm-repository-name: Calendar
     post:
-      x-security-privilege: 'calendar:create'
+      x-security-privilege: 'calendar:write'
       operationId: createCalendar
       description: create new event in calendar
       tags:
@@ -1164,6 +1183,10 @@ paths:
       parameters:
         - $ref: '#/parameters/pageParam'
         - $ref: '#/parameters/pageSizeParam'
+        - $ref: '#/parameters/dayParam'
+        - $ref: '#/parameters/weekParam'
+        - $ref: '#/parameters/monthParam'
+        - $ref: '#/parameters/yearParam'
       responses:
         '200':
           description: successful
@@ -1202,6 +1225,51 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'            
 #---------------//Calendar--------------------
+  /calendar/{id}:
+    x-swagger-router-controller: CalendarController
+    x-typeorm-repository-name: Calendar
+    put:
+      x-security-privilege: 'calendar:modify'
+      operationId: updateCalendarEvent
+      description: Update an event by id
+      tags:
+        - calendar
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+        - name: event
+          description: user
+          in: body
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              srcimg:
+                 type: string
+              description:
+                 type: string 
+              address:
+                 type: string
+              title:
+                 type: string
+      responses:
+        '200':
+          description: Test successful
+          schema:
+            $ref: '#/definitions/CalendarResponse'
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 #---------------definitions------------------
 definitions:
   ErrorResponse:
