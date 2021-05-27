@@ -1275,7 +1275,6 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-<<<<<<< HEAD
     get:
       x-security-privilege: 'calendar:modify'
       operationId: getCalendarEvent
@@ -1326,7 +1325,6 @@ paths:
               description: deleted unsuccessfully
               schema:
                 $ref: '#/definitions/ErrorResponse'
-=======
      #---------------//Calendar--------------------
       #---------------View--------------------       
   /view:
@@ -1387,7 +1385,6 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
   #---------------//View--------------------              
->>>>>>> 80268dbc20b6fede32363d2a198ff9cf2f6478ec
 #---------------definitions------------------
 definitions:
   ErrorResponse:
