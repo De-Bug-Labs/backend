@@ -105,17 +105,7 @@ connection
 		])
 		.execute();
 	
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Permission)
-			.values([
-				{
-					name: 'Crear Evento',
-					description: 'Funcion que le permite al usuario crear y manejar un evento en el modulo del calendario',
-				},
-			])
-			.execute();
+	
 
 			const Alberto = await con.getRepository(Staff).save({
 				email: 'a01704584@itesm.mx',
