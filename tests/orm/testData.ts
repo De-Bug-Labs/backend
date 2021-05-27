@@ -10,6 +10,7 @@ import {
 	Collaborator,
 	Information,
 	Calendar,
+	View
 } from '../../src/orm/entities';
 
 connection
@@ -31,12 +32,10 @@ connection
 			.into(Information)
 			.values([
 				{
-					mision:
-						'GAAP CENTRO INTEGRAL DE APOYO GERIATRICO, IAP \nSomos una estancia de día para el Adulto y Adulto Mayor  ofreciendo servicios de ASISTENCIA SOCIAL, mediante el cuidado integral de la persona , buscando   un estado salud optimo, mejorar la calidad de vida, con una  atención de respeto y trato digno',
+					mision: 'GAAP CENTRO INTEGRAL DE APOYO GERIATRICO, IAP \nSomos una estancia de día para el Adulto y Adulto Mayor  ofreciendo servicios de ASISTENCIA SOCIAL, mediante el cuidado integral de la persona , buscando   un estado salud optimo, mejorar la calidad de vida, con una  atención de respeto y trato digno',
 					instalation:
 						'Contamos con áreas de atención  para personas de la tercera edad a través del servicio de Medicina General, Rehabilitación y Terapia Física, Atención Dental, Nutrición y Tanatología. De igual manera se cuenta con Talleres de Baile, Tejido, Taller Manejo de celulares, Terapia de la Memoria',
-					team:
-						'Contamos con un equipo de PROFESIONISTAS integrado por Médicos Generales, Médico en Rehabilitación, Terapeuta Físico, Odontólogo, Nutrióloga, Tanatóloga. \nContadores Públicos, Licenciada en Artes Escénicas, Licenciada en Comunicación. \n Jóvenes de Servicio Social y Voluntarios.',
+					team: 'Contamos con un equipo de PROFESIONISTAS integrado por Médicos Generales, Médico en Rehabilitación, Terapeuta Físico, Odontólogo, Nutrióloga, Tanatóloga. \nContadores Públicos, Licenciada en Artes Escénicas, Licenciada en Comunicación. \n Jóvenes de Servicio Social y Voluntarios.',
 				},
 			])
 			.execute();
@@ -117,32 +116,28 @@ connection
 		await con.getRepository(Calendar).save([
 			{
 				date: '2021-05-20',
-				srcimg:
-					'https://thumbs.dreamstime.com/b/backflip-beach-over-sunset-dubai-uae-backflip-beach-over-sunset-dubai-uae-editorial-183464357.jpg',
+				srcimg: 'https://thumbs.dreamstime.com/b/backflip-beach-over-sunset-dubai-uae-backflip-beach-over-sunset-dubai-uae-editorial-183464357.jpg',
 				description: 'Como hacer backflips como un chad de 80+ años',
 				address: 'El mundo de los colchones',
 				title: 'Como hacer backflips',
 			},
 			{
 				date: '2021-05-01',
-				srcimg:
-					'https://depor.com/resizer/oXiwyVaYXm2BaKFA7IVCzkQbkMQ=/1200x800/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/HCUOQUJTQNBWJFL6YRXONIBQTA.jpg',
+				srcimg: 'https://depor.com/resizer/oXiwyVaYXm2BaKFA7IVCzkQbkMQ=/1200x800/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/HCUOQUJTQNBWJFL6YRXONIBQTA.jpg',
 				description: 'En este evento aprenderemos como defendernos de carnivoros salvajes como el cocodrilo de caracas ',
 				address: 'Wameru',
 				title: 'Defensa de cocodrilos',
 			},
 			{
 				date: '2021-05-05',
-				srcimg:
-					'https://i2.wp.com/hipertextual.com/wp-content/uploads/2020/12/hipertextual-hacker-vacuna-covid-19-1.jpg?fit=2000%2C1126&ssl=1',
+				srcimg: 'https://i2.wp.com/hipertextual.com/wp-content/uploads/2020/12/hipertextual-hacker-vacuna-covid-19-1.jpg?fit=2000%2C1126&ssl=1',
 				description: 'Clases de hackeo en html y css',
 				address: 'Los servidores de la CIA',
 				title: 'clases de Hackers',
 			},
 			{
 				date: '2021-05-08',
-				srcimg:
-					'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/F8F9626F-21DB-486E-A63F-634DFB12C300/Derivates/d6cfcad9-aec0-4454-82f8-e7f4e8004c40.jpg',
+				srcimg: 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/F8F9626F-21DB-486E-A63F-634DFB12C300/Derivates/d6cfcad9-aec0-4454-82f8-e7f4e8004c40.jpg',
 				description: 'gomichelas en tarro de minion para todos',
 				address: 'Las miches',
 				title: 'nnoche de micheladas de mango',
@@ -150,9 +145,16 @@ connection
 			{
 				date: '2021-05-02',
 				srcimg: 'https://m.media-amazon.com/images/I/515hAcQ2cNL.jpg',
-				description: 'Esneñale a tu perro fisica cuantica! y dale la oportunnidad de obtener su titulo en la UNAM',
+				description: 'Enseñale a tu perro fisica cuantica! y dale la oportunnidad de obtener su titulo en la UNAM',
 				address: 'La UNAM',
 				title: 'Fisica cuantica para Perros',
+			},
+			{
+				date: '2021-06-02',
+				srcimg: 'https://metalpordetras.com/wp-content/uploads/policia-precinta-moshpit.jpg',
+				description: 'La banda de metal RAMSTEIN ofrecera el primer mosh pit de metal para la tercera edad asi que preparate para la diversion',
+				address: 'Estadio Corregidora',
+				title: 'Mosh pit',
 			},
 		]);
 		await con
@@ -196,7 +198,7 @@ connection
 				name: 'Emilio Rivas',
 				description:
 					'Una persona que trabajaba demasiado y aun asi se quejaba de todo lo que habia que haccerse, verdaderamente un heroe mexicano',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -207,7 +209,7 @@ connection
 			{
 				name: 'Bernardo Estrada',
 				description: 'Una persona que sabia todo y al mismo tiempo no sabia nada, un ejemplo a seguir',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -218,7 +220,7 @@ connection
 			{
 				name: 'Mutate Tatume',
 				description: 'tutametatumemutate',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Mexico',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -229,7 +231,7 @@ connection
 			{
 				name: 'Luis Carranza',
 				description: 'Heroe del ambito de sistemas mobiles',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -240,7 +242,7 @@ connection
 			{
 				name: 'Luis Corral',
 				description: 'heroe del ambito de sistemas mobiles pero chad',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -251,7 +253,7 @@ connection
 			{
 				name: 'Rutarde Tuntante',
 				description: 'nadie sabe que hizo pero algo hizo',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'UNAM',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -262,7 +264,7 @@ connection
 			{
 				name: 'Dom Dimadon',
 				description: 'Dueño del domo din de dimsdale',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Dimsdale',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -273,7 +275,7 @@ connection
 			{
 				name: 'Franz Lombardi',
 				description: 'Faint next to me baby',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Musica',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -284,7 +286,7 @@ connection
 			{
 				name: 'Rodillera de bronze',
 				description: 'Con su rodillera de bronze',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Heroe',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -295,7 +297,7 @@ connection
 			{
 				name: 'Reyna Elizabeth',
 				description: 'Vive por siempre',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Inglaterra',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -306,7 +308,7 @@ connection
 			{
 				name: 'Paco Diaz',
 				description: 'A pesar de su avanzada edad logra programar de una manera casi musical',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -317,7 +319,7 @@ connection
 			{
 				name: 'Sebastian Resendiz',
 				description: 'Se la pasa chido y asegura realizar todas las actividades a la perfeccion',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Cobac',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -328,7 +330,7 @@ connection
 			{
 				name: 'Eduardo Cadena',
 				description: 'Un verdadero caballero un maestro dirian algunos en cuanto a las computadoras',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -339,7 +341,7 @@ connection
 			{
 				name: 'Adrian Torres',
 				description: 'El la verdad no se la esta pasando bien pero aun asi va un dia a la vez',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Cobac',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -350,7 +352,7 @@ connection
 			{
 				name: 'Buzz Lightyear',
 				description: 'Guardian espacial, comando estelar no le contesta y destruyo su nave 4072 ',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -361,7 +363,7 @@ connection
 			{
 				name: 'Adrian Torres',
 				description: 'El la verdad no se la esta pasando bien pero aun asi va un dia a la vez',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'UVM',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -372,7 +374,7 @@ connection
 			{
 				name: 'Alberto Matute',
 				description: 'Un maestro de las bases de datos y el unico hombre digno de microsoft',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -383,7 +385,7 @@ connection
 			{
 				name: 'Paquita Barrio',
 				description: 'tiene la prepa trunca y la esta terminando porque una rata de dos patas la reprobo',
-				srcimg: 'img/test.jpg',
+				srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
 				institution: 'UVM',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -392,7 +394,9 @@ connection
 				}),
 			},
 		]);
+		await con.getRepository(View).save([{ name: 'Portal view',status:true}]);
 	})
+	
 	.then(() => {
 		console.info('Load test data done');
 		connection.close();
