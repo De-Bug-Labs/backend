@@ -78,3 +78,24 @@ export const updateCalendarEvent = async (req, res): Promise<void> => {
 		res.status(404).json(e);
 	}
 };
+
+export const getCalendarEvent = async (req, res): Promise<void> => {
+	try {
+		const eventId = req.swagger.params.id.raw;
+		const event = await calendarRepo.findOneOrFail(eventId);
+		res.status(200).json(event);
+	} catch (e) {
+		res.status(400).json(e);
+	}
+};
+
+export const deleteCalendarEvent = async (req, res): Promise<void> => {
+	try {
+		const event = await calendarRepo.findOneOrFail(req.swagger.params.id.raw);
+		await calendarRepo.delete(req.swagger.params.id.raw);
+		res.status(200).json(event);
+	} catch (e) {
+		res.status(410).json(e);
+	}
+};
+

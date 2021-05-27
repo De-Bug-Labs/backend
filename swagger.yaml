@@ -1275,6 +1275,56 @@ paths:
           description: Test unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
+    get:
+      x-security-privilege: 'calendar:modify'
+      operationId: getCalendarEvent
+      description: get event details by id
+      tags:
+        - calendar
+      parameters:
+        - name: id
+          type: string
+          format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: calendar detail successful
+          schema:
+            $ref: '#/definitions/CalendarResponse'
+        '404':
+          description: calendar detail unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: calendar detail unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+          x-security-privilege: 'test:delete'
+          operationId: deleteCalendarEvent
+          description: Delete a calendar event by id
+          tags:
+            - calendar
+          parameters:
+            - name: id
+              type: string
+              format: uuid
+              in: path
+              required: true
+          responses:
+            '200':
+              description: deleted successfully
+              schema:
+                $ref: '#/definitions/CalendarResponse'
+            '404':
+              description: deleted unsuccessfully
+              schema:
+                $ref: '#/definitions/ErrorResponse'
+            default:
+              description: deleted unsuccessfully
+              schema:
+                $ref: '#/definitions/ErrorResponse'
      #---------------//Calendar--------------------
       #---------------View--------------------       
   /view:
