@@ -50,7 +50,7 @@ connection
 			{ name: 'view:read', description: '' },
 			{ name: 'view:modify', description: '' },
 
-			{ name: 'login', description: '' },
+		
 		];
 
 		await con.getRepository(Permission).save(swaggerPermissions);
