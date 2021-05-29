@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
-import config from '../../config/config';
-import { Permission, Role } from '../orm/entities';
+import { Role } from '../orm/entities';
 
 export const checkJwt = async (req: Request, res: Response): Promise<boolean> => {
 	let token = <string>req.cookies.token || <string>req.headers.authorization || <string>req.headers.token;
@@ -28,16 +27,13 @@ export const checkJwt = async (req: Request, res: Response): Promise<boolean> =>
 			return false;
 		}
 	} else {
-		const guest = (
-			await getRepository(Role).findOneOrFail(
-				{
-					where: { name: 'guest' },
-					relations: ['permissions']
-				})
-			);
-		if(guest) {
+		const guest = await getRepository(Role).findOneOrFail({
+			where: { name: 'guest' },
+			relations: ['permissions'],
+		});
+		if (guest) {
 			res.locals.jwtPayload = {
-				permissions: guest.permissions.map(p => p.name),
+				permissions: guest.permissions.map((p) => p.name),
 			};
 		}
 	}
