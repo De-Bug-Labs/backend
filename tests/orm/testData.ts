@@ -10,7 +10,7 @@ import {
 	Collaborator,
 	Information,
 	Calendar,
-	View
+	View,
 } from '../../src/orm/entities';
 
 connection
@@ -152,7 +152,8 @@ connection
 			{
 				date: '2021-06-02',
 				srcimg: 'https://metalpordetras.com/wp-content/uploads/policia-precinta-moshpit.jpg',
-				description: 'La banda de metal RAMSTEIN ofrecera el primer mosh pit de metal para la tercera edad asi que preparate para la diversion',
+				description:
+					'La banda de metal RAMSTEIN ofrecera el primer mosh pit de metal para la tercera edad asi que preparate para la diversion',
 				address: 'Estadio Corregidora',
 				title: 'Mosh pit',
 			},
@@ -394,9 +395,9 @@ connection
 				}),
 			},
 		]);
-		await con.getRepository(View).save([{ name: 'Portal view',status:true}]);
+		await con.getRepository(View).save([{ name: 'Portal view', status: true }]);
 	})
-	
+
 	.then(() => {
 		console.info('Load test data done');
 		connection.close();

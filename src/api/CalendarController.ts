@@ -98,4 +98,3 @@ export const deleteCalendarEvent = async (req, res): Promise<void> => {
 		res.status(410).json(e);
 	}
 };
-
