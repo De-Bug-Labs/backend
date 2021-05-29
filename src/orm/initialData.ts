@@ -19,18 +19,7 @@ connection
 	.create()
 	.then(async (con) => {
 		// Add data inserts here
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Role)
-			.values([
-				{
-					name: 'Administrador',
-					description:
-						'Usuario con alto nivel de permisos, capaz de manejar el sistema desde el subdominio administrativo, cuenta con credenciales necesarias para ingresar al sistema',
-				},
-			])
-			.execute();
+	
 		const swaggerPermissions = [
 			{ name: 'test:read', description: '' },
 			{ name: 'test:write', description: '' },
@@ -208,68 +197,7 @@ connection
 			.execute();
 			await con.getRepository(Section).save([{ name: 'Estudiantes' }, { name: 'Profesionales' }, { name: 'Empresarios' }]);
 			await con.getRepository(View).save([{ name: 'Portal view',status:true}]);
-			await con.getRepository(Collaborator).save([
-				{
-					name: 'Emilio Rivas',
-					description:
-						'Creador de la pagina web de GAAP',
-					srcimg: 'https://lh3.googleusercontent.com/pw/ACtC-3dn6LnsDsEWCjcI99RYTdjDPeQ4RtxReyWnWbJHMJjoRDvUx453auU22kLVbYP2dx91tVGJY8VHuS6_p3ibGD0KTaPH3VuC_gZ117fy2MlnMteeizzBP5EvG2quO2d3YqbHpMYcX6YFdJvYsK02YhrE=s1007-no?authuser=0',
-					institution: 'Tecnologico de Monterrey',
-					section: await con.getRepository(Section).findOneOrFail({
-						where: {
-							name: 'Estudiantes',
-						},
-					}),
-				},
-				{
-					name: 'Bernardo Estrada',
-					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
-					institution: 'Tecnologico de Monterrey',
-					section: await con.getRepository(Section).findOneOrFail({
-						where: {
-							name: 'Estudiantes',
-						},
-					}),
-				},
-				{
-					name: 'Alberto Matute',
-					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
-					institution: 'Mexico',
-					section: await con.getRepository(Section).findOneOrFail({
-						where: {
-							name: 'Estudiantes',
-						},
-					}),
-				},
-				
-				
-				{
-					name: 'Eduardo Cadena',
-					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
-					institution: 'Tecnologico de Monterrey',
-					section: await con.getRepository(Section).findOneOrFail({
-						where: {
-							name: 'Estudiantes',
-						},
-					}),
-				},
-				
-				{
-					name: 'Nahima Medellin',
-					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
-					institution: 'Tecnologico de Monterrey',
-					section: await con.getRepository(Section).findOneOrFail({
-						where: {
-							name: 'Estudiantes',
-						},
-					}),
-				},
-				
-			]);
+			
 	})
 	.then(() => {
 		console.info('Load initial data done');
