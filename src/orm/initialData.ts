@@ -124,7 +124,74 @@ connection
 			
 			await con.getRepository(Section).save([{ name: 'Estudiantes' }, { name: 'Profesionales' }, { name: 'Empresarios' }]);
 			await con.getRepository(View).save([{ name: 'Portal view',status:true}]);
+			await con.getRepository(Collaborator).save([
+				{
+					name: 'Emilio Rivas',
+					description:'Creador de la pagina web de GAAP',
+					srcimg: '',
+					institution: 'Tecnologico de Monterrey',
+					section: await con.getRepository(Section).findOneOrFail({
+						where: {
+							name: 'Estudiantes',
+						},
+					}),
+				},
+				{
+					name: 'Bernardo Estrada',
+					description: 'Creador de la pagina web de GAAP',
+					srcimg: '',
+					institution: 'Tecnologico de Monterrey',
+					section: await con.getRepository(Section).findOneOrFail({
+						where: {
+							name: 'Estudiantes',
+						},
+					}),
+				},
+				
+				{
+					name: 'Nahim Medellin',
+					description: 'Creador de la pagina web de GAAP',
+					srcimg: '',
+					institution: 'Tecnologico de Monterrey',
+					section: await con.getRepository(Section).findOneOrFail({
+						where: {
+							name: 'Profesionales',
+						},
+					}),
+				},
 			
+		
+			
+			
+		
+			
+				{
+					name: 'Eduardo Cadena',
+					description: 'Creador de la pagina web de GAAP',
+					srcimg: '',
+					institution: 'Tecnologico de Monterrey',
+					section: await con.getRepository(Section).findOneOrFail({
+						where: {
+							name: 'Estudiantes',
+						},
+					}),
+				},
+				
+		
+
+				{
+					name: 'Alberto Matute',
+					description: 'Creador de la pagina web de GAAP',
+					srcimg: '',
+					institution: 'Tecnologico de Monterrey',
+					section: await con.getRepository(Section).findOneOrFail({
+						where: {
+							name: 'Estudiantes',
+						},
+					}),
+				},
+				
+			]);
 	})
 	.then(() => {
 		console.info('Load initial data done');
