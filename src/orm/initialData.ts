@@ -128,7 +128,7 @@ connection
 				{
 					name: 'Emilio Rivas',
 					description:'Creador de la pagina web de GAAP',
-					srcimg: '',
+					srcimg: 'https://drive.google.com/file/d/1q4VoUqGKV3geV-NPmjp4dsvZqF6AEOdr/view?usp=sharing',
 					institution: 'Tecnologico de Monterrey',
 					section: await con.getRepository(Section).findOneOrFail({
 						where: {
@@ -139,7 +139,7 @@ connection
 				{
 					name: 'Bernardo Estrada',
 					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
+					srcimg: 'https://drive.google.com/file/d/16dsQfMEpPsgM2PoRdHPZVGaCbv1OjVeZ/view?usp=sharing',
 					institution: 'Tecnologico de Monterrey',
 					section: await con.getRepository(Section).findOneOrFail({
 						where: {
@@ -151,7 +151,7 @@ connection
 				{
 					name: 'Nahim Medellin',
 					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
+					srcimg: 'https://drive.google.com/file/d/1JMrqqdKi7kqeR7h4J3n24vdAssAuCtnU/view?usp=sharing',
 					institution: 'Tecnologico de Monterrey',
 					section: await con.getRepository(Section).findOneOrFail({
 						where: {
@@ -168,7 +168,7 @@ connection
 				{
 					name: 'Eduardo Cadena',
 					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
+					srcimg: 'https://drive.google.com/file/d/1S4lom0K6Na8DD88OiJ2I5LN3ii_DdYXE/view?usp=sharing',
 					institution: 'Tecnologico de Monterrey',
 					section: await con.getRepository(Section).findOneOrFail({
 						where: {
@@ -182,7 +182,7 @@ connection
 				{
 					name: 'Alberto Matute',
 					description: 'Creador de la pagina web de GAAP',
-					srcimg: '',
+					srcimg: 'https://drive.google.com/file/d/1FpoaxDj-e4MoYJwPu6FFhemP-QBa3jk4/view?usp=sharing',
 					institution: 'Tecnologico de Monterrey',
 					section: await con.getRepository(Section).findOneOrFail({
 						where: {
