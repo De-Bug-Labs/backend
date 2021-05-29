@@ -6,7 +6,8 @@ import {
 	Permission,
 	Information,
 	View,
-	User
+	User,
+	Collaborator
  } from './entities';
 import { hashPassword } from '../api/UserController';
 
@@ -155,7 +156,7 @@ connection
 					institution: 'Tecnologico de Monterrey',
 					section: await con.getRepository(Section).findOneOrFail({
 						where: {
-							name: 'Profesionales',
+							name: 'Estudiantes',
 						},
 					}),
 				},
