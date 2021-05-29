@@ -1,15 +1,10 @@
 import connection from '../connect';
 import { 
-	ExampleUser,
 	Role,
 	Section,
-	Staff,
 	Department,
 	Permission,
-	Material,
-	Collaborator,
 	Information,
-	Calendar,
 	View,
 	User
  } from './entities';
@@ -94,107 +89,39 @@ connection
 		])
 		.execute();
 	
-	
-
-			const Alberto = await con.getRepository(Staff).save({
-				email: 'a01704584@itesm.mx',
-				name: 'Alberto Matute',
-			});
-			const Eduardo = await con.getRepository(Staff).save({
-				email: 'a01704641@itesm.mx',
-				name: 'Eduardo Cadena',
-			});
-			const Bernardo = await con.getRepository(Staff).save({
-				email: 'a01704320@itesm.mx',
-				name: 'Bernardo Estrada',
-			});
-			const Emilio = await con.getRepository(Staff).save({
-				email: 'a01704615@itesm.mx',
-				name: 'Emilio Rivas',
-			});
-			const Nahim = await con.getRepository(Staff).save({
-				email: 'a01700190@itesm.mx',
-				name: 'Nahim Medellin',
-			});
 			await con.getRepository(Department).save([
 				{
 					name: 'Nutricion',
 					description:
 						'disciplina que, mediante el estudio de los alimentos y su impacto en nuestra salud, estipula la alimentación adecuada para cada caso',
-					staff: [Alberto],
+					staff: [],
 				},
 				{
 					name: 'Medicina',
 					description:
 						'disciplina integral que intenta mantener y recuperar la salud mediante el estudio, el diagnóstico y el tratamiento de la enfermedad o lesión del paciente',
-					staff: [Eduardo],
+					staff: [],
 				},
 				{
 					name: 'Dental',
 					description:
 						'disciplina integral que se encarga del diagnóstico, tratamiento y prevención de las enfermedades del aparato estomatognático, el cual incluye además de los dientes, las encías, el tejido periodontal, el maxilar superior, el maxilar inferior y la articulación temporomandibular',
-					staff: [Emilio],
+					staff: [],
 				},
 				{
 					name: 'Rehabilitacion',
 					description:
 						'disciplina integral que aborda todo lo relacionado con el conjunto de medidas sociales, educativas y profesionales destinadas a restituir al sujeto en situación de discapacidad la mayor capacidad e independencia posibles',
-					staff: [Bernardo],
+					staff: [],
 				},
 				{
 					name: 'Tanatologia',
 					description: 'disciplina integral que aborda todo lo relacionado con el fenómeno de la muerte en el ser humano',
-					staff: [Nahim],
+					staff: [],
 				},
 			]);
-			await con.getRepository(Calendar).save([
-				{
-					date: '2021-05-20',
-					srcimg: 'http://www.karlosperu.com/wp-content/uploads/2017/11/LG-cuenta-con-aplicaci%C3%B3n-para-usar-el-celular-como-control-remoto.jpg',
-					description: 'Cómo usar las funciones básicas del celular,aprender a hacer llamadas mandas mensajes por whatsapp',
-					address: 'Santiago del Río 32, Jardines de Villas de Santiago, 76140 Santiago de Querétaro, Qro.',
-					title: 'Funciones básicas del celular',
-				},
-				{
-					date: '2021-05-01',
-					srcimg: 'https://es.validasinbarreras.com/img-article-950-533/yoga-para-ancianos-abuelos-beneficios-ejercicios-salud-actividades.jpg',
-					description: 'Varios ejercicios de yoga desde tu casa sin necesidad de ningun aparato',
-					address: 'Santiago del Río 32, Jardines de Villas de Santiago, 76140 Santiago de Querétaro, Qro.',
-					title: 'Haz yoga desde tu casa',
-				},
-				{
-					date: '2021-05-05',
-					srcimg: 'https://www.educaciontrespuntocero.com/wp-content/uploads/2020/03/280647.jpg',
-					description: 'Clases de ingles básico para adultos mayores',
-					address: 'Santiago del Río 32, Jardines de Villas de Santiago, 76140 Santiago de Querétaro, Qro.',
-					title: 'clases de Ingles',
-				},
-				{
-					date: '2021-05-08',
-					srcimg: 'https://www.tecnologia-informatica.com/wp-content/uploads/2018/08/caracteristicas-de-las-computadoras.jpg',
-					description: 'Aprende usar la computadora y sus funciones, enviar correo y buscar por internet',
-					address: 'Santiago del Río 32, Jardines de Villas de Santiago, 76140 Santiago de Querétaro, Qro.',
-					title: '¿Cómo usar la computadora?',
-				}
-			]);
-			await con
-			.createQueryBuilder()
-			.insert()
-			.into(Material)
-			.values([
-				{ title: 'Yoga Para Adultos Mayores Y Principiantes.', link: 'https://www.youtube.com/watch?v=20Xwv2zSIhc' },
-				{ title: 'Cómo pintar con acrílicos. Clase de pintura.', link: 'https://www.youtube.com/watch?v=qqw_tMvniSc' },
-				{ title: 'Curso de ingles desde el inicio COMPLETO Y GRATIS para PRINCIPIANTES hasta AVANZADO', link: 'https://www.youtube.com/watch?v=99FY4YcOUPE' },
-				{ title: 'Relajación guiada', link: 'https://www.youtube.com/watch?v=DQnkAUYT_-k' },
-				{ title: 'Meditación para principiantes', link: 'https://www.youtube.com/watch?v=3oCC4NDgYrY' },
-				{ title: 'Clases de canto parte 1', link: 'https://www.youtube.com/watch?v=UVUwP8AqD1g' },
-				{ title: 'Clases de canto parte 2', link: 'https://www.youtube.com/watch?v=4j_I4ECbJHU' },
-				{ title: 'Clases de canto parte 3', link: 'https://www.youtube.com/watch?v=3gmFx34Izp4' },
-				{ title: 'Alta Presión Sanguínea', link: 'https://www.youtube.com/watch?v=DzK_VBkA3N4' },
-				{ title: 'La mejor receta del pastel de 3 leches', link: 'https://www.youtube.com/watch?v=AYbNXNKIEMs' },
-				{ title: 'Las 8 ensaladas mas famosas del mundo', link: 'https://www.youtube.com/watch?v=JT-waJaWROg' },
-			])
-			.execute();
+			
+			
 			await con.getRepository(Section).save([{ name: 'Estudiantes' }, { name: 'Profesionales' }, { name: 'Empresarios' }]);
 			await con.getRepository(View).save([{ name: 'Portal view',status:true}]);
 			
