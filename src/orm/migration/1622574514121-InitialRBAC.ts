@@ -42,20 +42,11 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		const con = queryRunner.connection;
 		const swaggerPermissions = [...this.swaggerPerms];
+
 		// Add data inserts here
-		console.log('---------------------------------------------');
-		console.log(swaggerPermissions);
-		console.log('---------------------------------------------');
-		await con
-			.getRepository(Permission)
-			.save(swaggerPermissions)
-			.then((e) => console.log(e))
-			.catch((e) => console.error(e));
+		await con.getRepository(Permission).save(swaggerPermissions);
 		//permisos de admin
 		const adminPermissions = swaggerPermissions.filter((p) => p.name !== 'login');
-		console.log('---------------------------------------------');
-		console.log(adminPermissions);
-		console.log('---------------------------------------------');
 		//permisos de guest
 		const guestPermissionsTxt = [
 			'mail:write',
@@ -72,9 +63,6 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			'login',
 		];
 		const guestPermissions = swaggerPermissions.filter((p) => guestPermissionsTxt.indexOf(p.name) !== -1);
-		console.log('---------------------------------------------');
-		console.log(guestPermissions);
-		console.log('---------------------------------------------');
 		//agregar rol de guest
 		await con.getRepository(Role).save({
 			name: 'guest',
