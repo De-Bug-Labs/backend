@@ -8,40 +8,27 @@ connection
 		// Add data inserts here
 		//permisos de administrador
 		const guestPermissions = [
-	
-
 			{ name: 'mail:write', description: '' },
 
 			{ name: 'staff:read', description: '' },
 
-
 			{ name: 'user:getAll', description: '' },
 			{ name: 'user:getMail', description: '' },
 
-
 			{ name: 'information:read', description: '' },
 
-
-		
 			{ name: 'material:read', description: '' },
-
 
 			{ name: 'department:read', description: '' },
 
-
 			{ name: 'collaborator:read', description: '' },
-
 
 			{ name: 'section:read', description: '' },
 
 			{ name: 'calendar:read', description: '' },
 
-
 			{ name: 'view:read', description: '' },
 			{ name: 'login', description: '' },
-
-
-		
 		];
 		//agregar permisos de guest
 		await con.getRepository(Permission).save(guestPermissions);
@@ -51,7 +38,7 @@ connection
 			permissions: guestPermissions,
 		});
 
-//permisos de administrador
+		//permisos de administrador
 		const swaggerPermissions = [
 			{ name: 'test:read', description: '' },
 			{ name: 'test:write', description: '' },
@@ -94,17 +81,15 @@ connection
 
 			{ name: 'view:read', description: '' },
 			{ name: 'view:modify', description: '' },
-
-		
 		];
-//agregar permisos de administrador 
+		//agregar permisos de administrador
 		await con.getRepository(Permission).save(swaggerPermissions);
 		const sAdmin = await con.getRepository(Role).save({
 			name: 'Super Admin',
 			description: '',
 			permissions: swaggerPermissions,
 		});
-//agregar usuario con el rol de administrador
+		//agregar usuario con el rol de administrador
 		await con.getRepository(User).save({
 			email: 'admin@localhost.io',
 			name: 'Admin',
@@ -112,7 +97,7 @@ connection
 			password: await hashPassword('pass'),
 			roles: [sAdmin],
 		});
-//agregar informacion de gaap
+		//agregar informacion de gaap
 
 		await con
 			.createQueryBuilder()
@@ -127,7 +112,7 @@ connection
 				},
 			])
 			.execute();
-//agregar departamentos
+		//agregar departamentos
 		await con.getRepository(Department).save([
 			{
 				name: 'Nutricion',
@@ -159,11 +144,11 @@ connection
 				staff: [],
 			},
 		]);
-//agregar secciones  la de estudiantes, profesionales y empresarios
+		//agregar secciones  la de estudiantes, profesionales y empresarios
 		await con.getRepository(Section).save([{ name: 'Estudiantes' }, { name: 'Profesionales' }, { name: 'Empresarios' }]);
-//agregar vista del portal
+		//agregar vista del portal
 		await con.getRepository(View).save([{ name: 'Portal view', status: true }]);
-//agregar colaboradores
+		//agregar colaboradores
 		await con.getRepository(Collaborator).save([
 			{
 				name: 'Emilio Rivas',

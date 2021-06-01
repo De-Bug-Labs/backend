@@ -6,7 +6,7 @@ export class Permission {
 	@PrimaryGeneratedColumn('uuid')
 	public id!: string;
 
-	@Column({ type: 'varchar', nullable: false })
+	@Column({ type: 'varchar', nullable: false, unique: true })
 	public name!: string;
 
 	@Column({ type: 'varchar', nullable: false })
