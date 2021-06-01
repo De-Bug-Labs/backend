@@ -51,7 +51,6 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 		const guestPermissionsTxt = [
 			'mail:write',
 			'staff:read',
-			'user:getAll',
 			'user:getMail',
 			'information:read',
 			'material:read',
