@@ -21,22 +21,6 @@ process.on('unhandledRejection', (reason, p) => {
 app.use(bodyParser.json.apply({ limit: 100_000_000, type: 'application/json' }));
 app.use(cookieParser());
 
-// export function optionCORS(req, res, next): void {
-// 	const origin: string = req.headers.origin as string;
-// 	res.setHeader('Access-Control-Allow-Credentials', 'true');
-// 	res.setHeader('Access-Control-Allow-Origin', origin);
-// 	if (req.method === 'OPTIONS' || req.method === 'HEAD') {
-// 		res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-// 		res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, Content-Length, Origin, ' + 'X-Requested-With');
-
-// 		res.sendStatus(204);
-// 		return;
-// 	}
-// 	next();
-// }
-
-// app.use(optionCORS);
-// console.log(process.env.DATABASE_URL);
 createConnection()
 	.then(async () => {
 		const prt = toInteger(process.env.PORT || process.env.APP_PORT || 5000);
