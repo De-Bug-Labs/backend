@@ -423,7 +423,7 @@ paths:
     x-swagger-router-controller: UserController
     x-typeorm-repository-name: User
     post:
-      x-security-privilege: user:create
+      x-security-privilege: 'user:create'
       operationId: createUser
       description: Create a new user member and register in database
       tags:
@@ -1301,7 +1301,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     delete:
-          x-security-privilege: 'test:delete'
+          x-security-privilege: 'calendar:delete'
           operationId: deleteCalendarEvent
           description: Delete a calendar event by id
           tags:
