@@ -9,7 +9,7 @@ export const checkRoles = async (req, res, next: NextFunction) => {
 		} else {
 			// console.log(permission);
 			// console.log(userPermissions);
-			res.status(401).send();
+			res.status(401).json({ message: 'unauthorized' }).send();
 		}
 	} catch (error) {
 		res.status(400).send();

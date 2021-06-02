@@ -36,6 +36,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 		{ name: 'calendar:modify', description: '' },
 		{ name: 'view:read', description: '' },
 		{ name: 'view:modify', description: '' },
+		{ name: 'adminPortal:access', description: '' },
 		{ name: 'login', description: '' },
 	];
 
@@ -76,10 +77,10 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 		});
 		//agregar usuario con el rol de administrador
 		await con.getRepository(User).save({
-			email: 'admin@localhost.io',
+			email: 'postregistergaap@gmail.com',
 			name: 'Admin',
 			lastName: '',
-			password: await hashPassword('pass'),
+			password: await hashPassword('d3@BUG@l4bs'),
 			roles: [sAdmin],
 		});
 		//agregar informacion de gaap
@@ -138,7 +139,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			{
 				name: 'Emilio Rivas',
 				description: 'Creador de la pagina web de GAAP',
-				srcimg: 'https://drive.google.com/file/d/1q4VoUqGKV3geV-NPmjp4dsvZqF6AEOdr/view?usp=sharing',
+				srcimg: 'https://drive.google.com/uc?id=18-1GV7C_KSsyvIGh5Si6DXq6sxqvbyq_&export=download',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -149,7 +150,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			{
 				name: 'Bernardo Estrada',
 				description: 'Creador de la pagina web de GAAP',
-				srcimg: 'https://drive.google.com/file/d/16dsQfMEpPsgM2PoRdHPZVGaCbv1OjVeZ/view?usp=sharing',
+				srcimg: 'https://drive.google.com/uc?id=16dsQfMEpPsgM2PoRdHPZVGaCbv1OjVeZ&export=download',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -161,11 +162,11 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			{
 				name: 'Nahim Medellin',
 				description: 'Creador de la pagina web de GAAP',
-				srcimg: 'https://drive.google.com/file/d/1JMrqqdKi7kqeR7h4J3n24vdAssAuCtnU/view?usp=sharing',
+				srcimg: 'https://drive.google.com/uc?id=1JMrqqdKi7kqeR7h4J3n24vdAssAuCtnU&export=download',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
-						name: 'Profesionales',
+						name: 'Estudiantes',
 					},
 				}),
 			},
@@ -173,7 +174,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			{
 				name: 'Eduardo Cadena',
 				description: 'Creador de la pagina web de GAAP',
-				srcimg: 'https://drive.google.com/file/d/1S4lom0K6Na8DD88OiJ2I5LN3ii_DdYXE/view?usp=sharing',
+				srcimg: 'https://drive.google.com/uc?id=1S4lom0K6Na8DD88OiJ2I5LN3ii_DdYXE&export=download',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -185,7 +186,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			{
 				name: 'Alberto Matute',
 				description: 'Creador de la pagina web de GAAP',
-				srcimg: 'https://drive.google.com/file/d/1FpoaxDj-e4MoYJwPu6FFhemP-QBa3jk4/view?usp=sharing',
+				srcimg: 'https://drive.google.com/uc?id=1FpoaxDj-e4MoYJwPu6FFhemP-QBa3jk4&export=download',
 				institution: 'Tecnologico de Monterrey',
 				section: await con.getRepository(Section).findOneOrFail({
 					where: {
@@ -206,7 +207,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 		await con.getRepository(Section).delete({ name: In(['Estudiantes', 'Profesionales', 'Empresarios']) });
 		await con.getRepository(Department).delete({ name: In(['Nutricion', 'Medicina', 'Dental', 'Rehabilitacion', 'Tanatologia']) });
 		await queryRunner.query('TRUNCATE TABLE "information" CASCADE');
-		await con.getRepository(User).delete({ email: 'admin@localhost.io' });
+		await con.getRepository(User).delete({ email: 'postregistergaap@gmail.com' });
 		await con.getRepository(Role).delete({ name: 'Super Admin' });
 		await con.getRepository(Role).delete({ name: 'guest' });
 

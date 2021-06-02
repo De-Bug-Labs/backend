@@ -23,7 +23,7 @@ export const checkJwt = async (req: Request, res: Response): Promise<boolean> =>
 			d.setUTCSeconds(expire);
 			res.cookie('token', newToken, { expires: d, secure: false, sameSite: false });
 		} catch (e) {
-			res.status(401).json(e).send();
+			res.status(401).json({ message: 'unauthorized', error: e }).send();
 			return false;
 		}
 	} else {
@@ -35,6 +35,11 @@ export const checkJwt = async (req: Request, res: Response): Promise<boolean> =>
 			res.locals.jwtPayload = {
 				permissions: guest.permissions.map((p) => p.name),
 			};
+			const newToken = jwt.sign({ permissions: res.locals.jwtPayload.permissions }, jwtSecret, { expiresIn: '1d' });
+			res.setHeader('token', newToken);
+			const expire = Date.now() + 1000 * 60 * 60 * 24;
+			const d = new Date(expire);
+			res.cookie('token', newToken, { expires: d, secure: false, sameSite: false });
 		}
 	}
 	return true;
