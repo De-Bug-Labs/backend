@@ -1,17 +1,5 @@
 import connection from '../../src/connect';
-import {
-	ExampleUser,
-	Role,
-	Section,
-	Staff,
-	Department,
-	Permission,
-	Material,
-	Collaborator,
-	Information,
-	Calendar,
-	View,
-} from '../../src/orm/entities';
+import { ExampleUser, Section, Staff, Material, Collaborator, Calendar } from '../../src/orm/entities';
 
 connection
 	.create()
@@ -26,93 +14,43 @@ connection
 				{ firstName: 'Jane', lastName: 'Doe', age: 22 },
 			])
 			.execute();
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Information)
-			.values([
-				{
-					mision: 'GAAP CENTRO INTEGRAL DE APOYO GERIATRICO, IAP \nSomos una estancia de día para el Adulto y Adulto Mayor  ofreciendo servicios de ASISTENCIA SOCIAL, mediante el cuidado integral de la persona , buscando   un estado salud optimo, mejorar la calidad de vida, con una  atención de respeto y trato digno',
-					instalation:
-						'Contamos con áreas de atención  para personas de la tercera edad a través del servicio de Medicina General, Rehabilitación y Terapia Física, Atención Dental, Nutrición y Tanatología. De igual manera se cuenta con Talleres de Baile, Tejido, Taller Manejo de celulares, Terapia de la Memoria',
-					team: 'Contamos con un equipo de PROFESIONISTAS integrado por Médicos Generales, Médico en Rehabilitación, Terapeuta Físico, Odontólogo, Nutrióloga, Tanatóloga. \nContadores Públicos, Licenciada en Artes Escénicas, Licenciada en Comunicación. \n Jóvenes de Servicio Social y Voluntarios.',
-				},
-			])
-			.execute();
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Role)
-			.values([
-				{
-					name: 'Administrador',
-					description:
-						'Usuario con alto nivel de permisos, capaz de manejar el sistema desde el subdominio administrativo, cuenta con credenciales necesarias para ingresar al sistema',
-				},
-			])
-			.execute();
-		await con
-			.createQueryBuilder()
-			.insert()
-			.into(Permission)
-			.values([
-				{
-					name: 'Crear Evento',
-					description: 'Funcion que le permite al usuario crear y manejar un evento en el modulo del calendario',
-				},
-			])
-			.execute();
-		const Alberto = await con.getRepository(Staff).save({
+
+		await con.getRepository(Staff).save({
 			email: 'a01704584@itesm.mx',
 			name: 'Alberto Matute',
+			departments: await con.getRepository(Section).find({
+				where: { name: 'Nutricion' },
+			}),
 		});
-		const Eduardo = await con.getRepository(Staff).save({
+		await con.getRepository(Staff).save({
 			email: 'a01704641@itesm.mx',
 			name: 'Eduardo Cadena',
+			departments: await con.getRepository(Section).find({
+				where: { name: 'Medicina' },
+			}),
 		});
-		const Bernardo = await con.getRepository(Staff).save({
+		await con.getRepository(Staff).save({
 			email: 'a01704320@itesm.mx',
 			name: 'Bernardo Estrada',
+			departments: await con.getRepository(Section).find({
+				where: { name: 'Dental' },
+			}),
 		});
-		const Emilio = await con.getRepository(Staff).save({
+		await con.getRepository(Staff).save({
 			email: 'a01704615@itesm.mx',
 			name: 'Emilio Rivas',
+			departments: await con.getRepository(Section).find({
+				where: { name: 'Rehabilitacion' },
+			}),
 		});
-		const Nahim = await con.getRepository(Staff).save({
+		await con.getRepository(Staff).save({
 			email: 'a01700190@itesm.mx',
 			name: 'Nahim Medellin',
+			departments: await con.getRepository(Section).find({
+				where: { name: 'Tanatologia' },
+			}),
 		});
-		await con.getRepository(Department).save([
-			{
-				name: 'Nutricion',
-				description:
-					'disciplina que, mediante el estudio de los alimentos y su impacto en nuestra salud, estipula la alimentación adecuada para cada caso',
-				staff: [Alberto],
-			},
-			{
-				name: 'Medicina',
-				description:
-					'disciplina integral que intenta mantener y recuperar la salud mediante el estudio, el diagnóstico y el tratamiento de la enfermedad o lesión del paciente',
-				staff: [Eduardo],
-			},
-			{
-				name: 'Dental',
-				description:
-					'disciplina integral que se encarga del diagnóstico, tratamiento y prevención de las enfermedades del aparato estomatognático, el cual incluye además de los dientes, las encías, el tejido periodontal, el maxilar superior, el maxilar inferior y la articulación temporomandibular',
-				staff: [Emilio],
-			},
-			{
-				name: 'Rehabilitacion',
-				description:
-					'disciplina integral que aborda todo lo relacionado con el conjunto de medidas sociales, educativas y profesionales destinadas a restituir al sujeto en situación de discapacidad la mayor capacidad e independencia posibles',
-				staff: [Bernardo],
-			},
-			{
-				name: 'Tanatologia',
-				description: 'disciplina integral que aborda todo lo relacionado con el fenómeno de la muerte en el ser humano',
-				staff: [Nahim],
-			},
-		]);
+
 		await con.getRepository(Calendar).save([
 			{
 				date: '2021-05-20',
@@ -192,7 +130,6 @@ connection
 				{ title: 'Cyber Chascarrillos', link: 'https://www.youtube.com/watch?v=pSDTmJtE-Bc' },
 			])
 			.execute();
-		await con.getRepository(Section).save([{ name: 'Estudiantes' }, { name: 'Profesionales' }, { name: 'Empresarios' }]);
 
 		await con.getRepository(Collaborator).save([
 			{
@@ -395,7 +332,6 @@ connection
 				}),
 			},
 		]);
-		await con.getRepository(View).save([{ name: 'Portal view', status: true }]);
 	})
 
 	.then(() => {
