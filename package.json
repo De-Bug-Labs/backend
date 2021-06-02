@@ -23,7 +23,7 @@
       "eslint-orm-fix": "eslint --cache --color --fix src/orm/. --ext .ts",
       "typeorm": "ts-node ./node_modules/typeorm/cli.js",
       "migration-create": "typeorm migration:generate",
-      "migration-run": "typeorm migration:run",
+      "migration-run": "typeorm migration:run -t each",
       "migration-revert": "typeorm migration:revert",
       "load-initial-data": "node dist/src/orm/initialData.js",
       "load-test-data": "node dist/tests/orm/testData.js",
