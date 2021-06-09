@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1622600329082" clover="3.2.0">
-  <project timestamp="1622600329083" name="All files">
-    <metrics statements="631" coveredstatements="143" conditionals="88" coveredconditionals="0" methods="133" coveredmethods="21" elements="852" coveredelements="164" complexity="0" loc="631" ncloc="631" packages="5" files="33" classes="33"/>
+<coverage generated="1623282770745" clover="3.2.0">
+  <project timestamp="1623282770745" name="All files">
+    <metrics statements="631" coveredstatements="131" conditionals="88" coveredconditionals="0" methods="133" coveredmethods="21" elements="852" coveredelements="152" complexity="0" loc="631" ncloc="631" packages="5" files="33" classes="33"/>
     <package name="src">
       <metrics statements="39" coveredstatements="2" conditionals="11" coveredconditionals="0" methods="9" coveredmethods="1"/>
       <file name="app.ts" path="/home/runner/work/backend/backend/src/app.ts">
@@ -54,7 +54,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="423" coveredstatements="12" conditionals="60" coveredconditionals="0" methods="99" coveredmethods="0"/>
+      <metrics statements="423" coveredstatements="0" conditionals="60" coveredconditionals="0" methods="99" coveredmethods="0"/>
       <file name="AuthController.ts" path="/home/runner/work/backend/backend/src/api/AuthController.ts">
         <metrics statements="46" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
@@ -445,12 +445,12 @@
         <line num="82" count="0" type="stmt"/>
       </file>
       <file name="UserController.ts" path="/home/runner/work/backend/backend/src/api/UserController.ts">
-        <metrics statements="49" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="18" coveredmethods="0"/>
-        <line num="1" count="15" type="stmt"/>
-        <line num="2" count="15" type="stmt"/>
-        <line num="3" count="15" type="stmt"/>
-        <line num="4" count="15" type="stmt"/>
-        <line num="6" count="15" type="stmt"/>
+        <metrics statements="49" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="18" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
@@ -464,13 +464,13 @@
         <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="25" count="15" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="35" count="15" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
@@ -478,21 +478,21 @@
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="47" count="15" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
         <line num="59" count="0" type="stmt"/>
-        <line num="62" count="15" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
         <line num="63" count="0" type="stmt"/>
         <line num="64" count="0" type="stmt"/>
-        <line num="67" count="15" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
         <line num="74" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
-        <line num="81" count="15" type="stmt"/>
-        <line num="82" count="15" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
         <line num="84" count="0" type="stmt"/>
       </file>
