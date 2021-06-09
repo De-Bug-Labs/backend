@@ -80,7 +80,7 @@ export class InitialRBAC1622574514121 implements MigrationInterface {
 			email: 'postregistergaap@gmail.com',
 			name: 'Admin',
 			lastName: '',
-			password: await hashPassword('d3@BUG@l4bs'),
+			password: '$2b$10$PeB70TTlJXhwU9y7xVnELuEjpy6pVht5g3CM0hmLFyy0QTBtAPM8e',
 			roles: [sAdmin],
 		});
 		//agregar informacion de gaap
