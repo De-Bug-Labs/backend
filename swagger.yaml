@@ -419,6 +419,36 @@ paths:
             $ref: '#/definitions/ErrorResponse'
     #-----------------//Staff------------------------
     #------------------User----------------------
+  /roles: 
+    x-swagger-router-controller: UserController
+    x-typeorm-repository-name: Role
+    get:
+      x-security-privilege: 'roles:getAll'
+      operationId: getAllRoles
+      description: Fetch all roles
+      tags:
+        - user
+      responses:
+        '200':
+          description: Successful
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name: 
+                  type: string
+                id: 
+                  type: string
+                  format: uuid
+        '404':
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Test unsuccessful
+          schema:
+            $ref: '#/definitions/ErrorResponse'
   /user:
     x-swagger-router-controller: UserController
     x-typeorm-repository-name: User
