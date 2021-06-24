@@ -31,18 +31,19 @@ export const createRegisterEmail = async (req, res): Promise<void> => {
 
 		const nodemailer = require('nodemailer');
 
+		const auth = {
+			user: process.env.NODEMAILER_MAIL,
+			pass: process.env.NODEMAILER_PASS,
+		};
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
-			auth: {
-				user: 'postregistergaap@gmail.com',
-				pass: 'd3@BUG@l4bs',
-			},
+			auth: auth,
 		});
 
 		const maillist = [staffMail, userMail];
 
 		const mailOptions = {
-			from: 'postregistergaap@gmail.com',
+			from: auth.user,
 			to: maillist, //buscar una forma de poner el staff aqui
 			subject: 'Solicitud de ayuda GAAP I.A.P',
 			text: `${message}  \n\n de parte de: ${email.name} \n telefono: ${email.phone}`, //esto ya esta resuelto

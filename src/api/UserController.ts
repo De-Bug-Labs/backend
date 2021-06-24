@@ -83,3 +83,13 @@ export const checkIfPasswordIsValid = async (usr: User, unencryptedPassword: str
 	const res = await bcrypt.compare(unencryptedPassword, usr.password);
 	return res === true;
 };
+
+export const getAllRoles = async (req, res): Promise<void> => {
+	const rolesRepo = getRepository(Role);
+	try {
+		const usr = await rolesRepo.find();
+		res.status(200).json(usr);
+	} catch (e) {
+		res.status(404).json(e);
+	}
+};

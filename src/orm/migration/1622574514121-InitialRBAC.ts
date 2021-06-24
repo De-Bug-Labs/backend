@@ -1,5 +1,4 @@
 import { In, MigrationInterface, QueryRunner } from 'typeorm';
-import { hashPassword } from '../../api/UserController';
 import { Collaborator, Department, Information, Permission, Role, Section, User, View } from '../entities';
 
 export class InitialRBAC1622574514121 implements MigrationInterface {
