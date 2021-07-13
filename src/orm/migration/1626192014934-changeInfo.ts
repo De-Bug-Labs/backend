@@ -7,9 +7,9 @@ export class changeInfo1626192014934 implements MigrationInterface {
 		const id = await (await con.getRepository(Information).findOneOrFail()).id;
 
 		const team =
-			'Contamos con un equipo de profesionistas integrado por Médicos Generales, en Rehabilitación, Terapia Física, Odontología, Nutriología, Tanatología. Además contamos con talleres de baile, tejido, terapia de la memoria, manejo de celulares entre otros.';
+			'Contamos con un equipo de profesionistas integrado por médicos generales, odontólogos, nutriólogos, tanatólogos, rehabilitación y terapia física. Además contamos con talleres de baile, tejido, terapia de la memoria, manejo de celulares entre otros.';
 		const instalation =
-			'Contamos con áreas de atención para personas de la tercera edad a través del servicio de Medicina General, Atención Dental, Nutrición, Tanatología, Rehabilitación y Terapia Física. De igual manera se cuenta con Talleres de Baile, Tejido, Taller Manejo de celulares, Terapia de la Memoria.';
+			'Contamos con áreas de atención para personas de la tercera edad a través del servicio de medicina general, atención dental, nutrición, tanatología, rehabilitación y terapia física. De igual manera se cuenta con talleres de baile, tejido, manejo de celulares y terapia de la memoria.';
 
 		await con.getRepository(Information).update(id, {
 			team: team,
