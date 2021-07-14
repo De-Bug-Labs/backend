@@ -17,6 +17,7 @@ Somos una estancia de día para el Adulto y Adulto Mayor ofreciendo servicios de
 		await con.getRepository(Information).update(id, {
 			team: team,
 			instalation: instalation,
+			mision: mision,
 		});
 	}
 
@@ -36,6 +37,7 @@ Somos una estancia de día para el Adulto y Adulto Mayor  ofreciendo servicios d
 		await con.getRepository(Information).update(id, {
 			team: team,
 			instalation: instalation,
+			mision: mision,
 		});
 	}
 }
