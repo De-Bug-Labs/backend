@@ -13,4 +13,7 @@ export class Information {
 
 	@Column({ type: 'text', nullable: false })
 	public team!: string;
+
+	@Column({ type: 'text', nullable: false, default: 'GAAP' })
+	public indexText!: string;
 }
