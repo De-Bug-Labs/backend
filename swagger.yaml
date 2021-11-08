@@ -621,9 +621,6 @@ paths:
           description: information unsuccessful
           schema:
             $ref: '#/definitions/ErrorResponse'
-  /information/{id}:
-    x-swagger-router-controller: InformationController
-    x-typeorm-repository-name: Information
     put:
       x-security-privilege: 'information:modify'
       operationId: updateInformation
@@ -631,11 +628,6 @@ paths:
       tags:
         - information
       parameters:
-        - name: id
-          type: string
-          format: uuid
-          in: path
-          required: true
         - name: information
           description: information object
           in: body
@@ -1448,6 +1440,8 @@ definitions:
         instalation:
           type: string
         team:
+          type: string
+        indexText:
           type: string
   InformationResponse:
     allOf:
