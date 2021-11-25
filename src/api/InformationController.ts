@@ -17,8 +17,9 @@ export const readInformation = async (req, res): Promise<void> => {
 
 export const updateInformation = async (req, res): Promise<void> => {
 	try {
-		await informationRepo.update(req.swagger.params.id.raw, req.swagger.params.information.raw);
-		const information = await informationRepo.findOneOrFail(req.swagger.params.id.raw);
+		const infoId = (await informationRepo.findOneOrFail()).id;
+		await informationRepo.update(infoId, req.swagger.params.information.raw);
+		const information = await informationRepo.findOneOrFail(infoId);
 		res.status(200).json(information);
 	} catch (e) {
 		console.info(e);
